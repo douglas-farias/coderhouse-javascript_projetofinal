@@ -5,38 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/icons/favicon.png">
     <link rel="stylesheet" href="./styles/index.css">
-    <title>E-commerce</title>
+    <title>E_Commerce</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
 </head>
 <body>
-    <header>
+    <header class="menu-sup">
         <nav>
-            <span><a href="./index.html">Home</a></span>
-            <ul class="navLoja">
-                <li><a href="./assets/pages/loja-categoria-a.html">Categoria A</a></li>
-                <li><a href="./assets/pages/loja-categoria-b.html">Categoria B</a></li>
+            <div class="menu-sup__home"><a href="./index.html">E_COMMERCE</a></div>
+            <ul class="menu-sup__loja">
+                <li><a href="./assets/pages/loja-todas-categorias.html">Todas as categorias</a></li>
             </ul>
-            <ul class="navUsuario">
+            <ul class="menu-sup__usuario">
                 <li><a href="./assets/pages/cadastro-usuario.html">Login</a></li>
                 <li><a href="./assets/pages/carrinho.html">Carrinho</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <section id="titulo">
-            <h1>E-commerce</h1>
+    <main class="conteudo">
+        <section id="conteudo__titulo">
+            <h1>OS MELHORES PRODUTOS</h1><br>
             <h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h3>
         </section>
-        <section id="loja">
-            <div><a href="./assets/pages/loja-categoria-a.html">Categoria A</a></div>
-            <div><a href="./assets/pages/loja-categoria-b.html">Categoria B</a></div>
+        <section id="conteudo__loja">
+            <div id="conteudo__loja-categoriaa"><a href="./assets/pages/loja-categoria-a.html">CATEGORIA A</a></div>
+            <div id="conteudo__loja-categoriab"><a href="./assets/pages/loja-categoria-b.html">CATEGORIA B</a></div>
         </section>
-        <section id="ofertas">
-            <h2>Ofertas</h2>
+        <section id="conteudo__ofertas">
+            <div>
+                <h2>OFERTAS</h2>
+            </div>
         </section>
     </main>
     <footer>
         <h5>contato@ecommerce.com</h5>
     </footer>
-    <!-- <script src="./scripts/index.js"></script> -->
+    <script defer src="./scripts/index.js"></script>
 </body>
 </html>
