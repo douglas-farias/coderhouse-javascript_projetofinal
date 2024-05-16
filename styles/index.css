@@ -22,7 +22,7 @@ body {
     margin: 25px 50px;
     display: flex;
     flex-direction: column;
-    height: 92vh;
+    height: 100vh;
     justify-content: space-between;
 }
 
