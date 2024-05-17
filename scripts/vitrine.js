@@ -35,7 +35,6 @@ function renderizarProdutos(filtro, valor) {
 
         container.appendChild(divProduto)
     });
-
     
 };
 
