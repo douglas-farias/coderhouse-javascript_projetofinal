@@ -1,14 +1,16 @@
-function renderizarItem() {
-    const itemImagens = document.getElementsByClassName("conteudo__imagens");
+import { produtosCadastrados } from "./listaProdutos.js";
+
+function renderizarItem(produto) {
+    const itemImagens = document.getElementsByClassName("conteudo__imagens")[0];
     itemImagens.innerHTML = "";
 
-    const itemInfos = document.getElementsByClassName("conteudo__infos");
+    const itemInfos = document.getElementsByClassName("conteudo__infos")[0];
     itemInfos.innerHTML = "";
 
     const sectionItemImagens = document.createElement("section");
     sectionItemImagens.className = "imagens__produto";
     sectionItemImagens.innerHTML = `<div class="imagens__produto">
-                                        <img src="" alt="">
+                                        <img src="${produto.imagem}" alt="${produto.imagemAlt}">
                                     </div>
                                     <!-- <div class="imagens__relacionados">
                                         <img src="" alt="">
@@ -22,9 +24,9 @@ function renderizarItem() {
                                         <span>
                                             <h5>Categoria</h5>
                                         </span>
-                                        <h1 id="infos__nome">Produto 1</h1>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi sit numquam totam, fuga aliquam consequatur.</p>
-                                        <h1 id="infos__preco"> R$ 0,00</h1>
+                                        <h1 id="infos__nome">${produto.nome}</h1>
+                                        <p>${produto.descricao}</p>
+                                        <h1 id="infos__preco"> R$ ${produto.precoString}</h1>
                                     </div>
                                     <div class="infos__quantidade">
                                         <button id="quantidade__menos">-</button>
@@ -43,3 +45,14 @@ function renderizarItem() {
 
 const urlParams = new URLSearchParams(window.location.search);
 const itemID = urlParams.get('id');
+
+let produtoSelecionado = "";
+    for (const chave in produtosCadastrados) {
+        const produto = produtosCadastrados[chave].find(prod => prod.id === itemID);
+        if (produto) {
+            produtoSelecionado = produto;
+            break;
+        }
+    }
+    
+renderizarItem(produtoSelecionado)
