@@ -1,14 +1,12 @@
 import { produtosCadastrados } from "./listaProdutos.js";
 
 function renderizarItem(produto) {
-    const itemImagens = document.getElementsByClassName("conteudo__imagens")[0];
-    itemImagens.innerHTML = "";
+    const itemContainer = document.getElementsByClassName("conteudo")[0];
 
-    const itemInfos = document.getElementsByClassName("conteudo__infos")[0];
-    itemInfos.innerHTML = "";
+    const sectionBotoes = document.getElementsByClassName("conteudo__botoes")[0];
 
     const sectionItemImagens = document.createElement("section");
-    sectionItemImagens.className = "imagens__produto";
+    sectionItemImagens.className = "conteudo__imagens";
     sectionItemImagens.innerHTML = `<div class="imagens__produto">
                                         <img src="${produto.imagem}" alt="${produto.imagemAlt}">
                                     </div>
@@ -19,7 +17,7 @@ function renderizarItem(produto) {
                                     </div> -->`;
 
     const sectionItemInfos = document.createElement("section");
-    sectionItemInfos.className = "infos__principal";
+    sectionItemInfos.className = "conteudo__infos";
     sectionItemInfos.innerHTML = `<div class="infos__principal">
                                         <span>
                                             <h5>Categoria</h5>
@@ -27,20 +25,10 @@ function renderizarItem(produto) {
                                         <h1 id="infos__nome">${produto.nome}</h1>
                                         <p>${produto.descricao}</p>
                                         <h1 id="infos__preco"> R$ ${produto.precoString}</h1>
-                                    </div>
-                                    <div class="infos__quantidade">
-                                        <button id="quantidade__menos">-</button>
-                                        <h4 id="quantidade__valor">1</h4>
-                                        <button id="quantidade__mais">+</button>
-                                    </div>
-                                    <div class="infos_botoes">
-                                        <button class="botoes__comprarAgora">Comprar Agora</button>
-                                        <button class="botoes__adicionarCarrinho">Adicionar ao Carrinho</button>
                                     </div>`;
 
-    itemImagens.appendChild(sectionItemImagens);
-
-    itemInfos.appendChild(sectionItemInfos);
+    itemContainer.insertBefore(sectionItemInfos, sectionBotoes);
+    itemContainer.insertBefore(sectionItemImagens, sectionItemInfos);
 };
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -55,4 +43,30 @@ let produtoSelecionado = "";
         }
     }
     
-renderizarItem(produtoSelecionado)
+renderizarItem(produtoSelecionado);
+
+let quantidadeItem = document.getElementById("quantidade__qtde");
+let quantidadeItemFormatado = parseInt(quantidadeItem.innerText);
+
+let botaoSubtrair1 = document.getElementById("quantidade__subtrair1");
+let botaoSomar1 = document.getElementById("quantidade__somar1");
+
+function verficadorQuantidade(){
+    if (quantidadeItemFormatado === 1 ) {
+        botaoSubtrair1.setAttribute("disabled", "disabled");
+    } else {
+        botaoSubtrair1.removeAttribute("disabled");
+    };
+}
+
+botaoSubtrair1.onclick = () => {
+    quantidadeItemFormatado -= 1;
+    quantidadeItem.innerText = quantidadeItemFormatado;
+    verficadorQuantidade()
+};
+
+botaoSomar1.onclick = () => {
+    quantidadeItemFormatado += 1;
+    quantidadeItem.innerText = quantidadeItemFormatado;
+    verficadorQuantidade()
+};
