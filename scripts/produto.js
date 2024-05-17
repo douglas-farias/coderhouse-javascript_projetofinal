@@ -47,18 +47,18 @@ let produtoSelecionado = "";
     
 renderizarItem(produtoSelecionado);
 
-// BOTÃO DE QUANTIDADE E VISUALIZADOR DE SUBTOTAL
+    // BOTÃO DE QUANTIDADE E VISUALIZADOR DE SUBTOTAL
 
-let opcoesResultadoSubtotal = [];
+    let opcoesResultadoSubtotal = [];
 
-function calculoSubtotal() {
-    let subtotalFloat = (quantidadeItem.innerText * produtoSelecionado.precoFloat).toFixed(2)
+    function calculoSubtotal() {
+        let subtotalFloat = (quantidadeItem.innerText * produtoSelecionado.precoFloat).toFixed(2)
 
-    opcoesResultadoSubtotal[0] = subtotalFloat.toString().replace(".",",");
-    opcoesResultadoSubtotal[1] = parseFloat(subtotalFloat);
+        opcoesResultadoSubtotal[0] = subtotalFloat.toString().replace(".",",");
+        opcoesResultadoSubtotal[1] = parseFloat(subtotalFloat);
 
-    return opcoesResultadoSubtotal;
-}
+        return opcoesResultadoSubtotal;
+    }
 
 let quantidadeItem = document.getElementById("quantidade__qtde");
 let quantidadeItemFormatado = parseInt(quantidadeItem.innerText);
