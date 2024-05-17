@@ -1,3 +1,5 @@
+// RENDERIZAÇÃO DO PRODUTO SELECIONADO
+
 import { produtosCadastrados } from "./listaProdutos.js";
 
 function renderizarItem(produto) {
@@ -24,7 +26,7 @@ function renderizarItem(produto) {
                                         </span>
                                         <h1 id="infos__nome">${produto.nome}</h1>
                                         <p>${produto.descricao}</p>
-                                        <h1 id="infos__preco"> R$ ${produto.precoString}</h1>
+                                        <h1 id="infos__preco"> R$&nbsp${produto.precoString}</h1>
                                     </div>`;
 
     itemContainer.insertBefore(sectionItemInfos, sectionBotoes);
@@ -45,6 +47,19 @@ let produtoSelecionado = "";
     
 renderizarItem(produtoSelecionado);
 
+// BOTÃO DE QUANTIDADE E VISUALIZADOR DE SUBTOTAL
+
+let opcoesResultadoSubtotal = [];
+
+function calculoSubtotal() {
+    let subtotalFloat = (quantidadeItem.innerText * produtoSelecionado.precoFloat).toFixed(2)
+
+    opcoesResultadoSubtotal[0] = subtotalFloat.toString().replace(".",",");
+    opcoesResultadoSubtotal[1] = parseFloat(subtotalFloat);
+
+    return opcoesResultadoSubtotal;
+}
+
 let quantidadeItem = document.getElementById("quantidade__qtde");
 let quantidadeItemFormatado = parseInt(quantidadeItem.innerText);
 
@@ -62,11 +77,39 @@ function verficadorQuantidade(){
 botaoSubtrair1.onclick = () => {
     quantidadeItemFormatado -= 1;
     quantidadeItem.innerText = quantidadeItemFormatado;
-    verficadorQuantidade()
+    verficadorQuantidade();
+
+    subtotal.innerHTML = `R$&nbsp${calculoSubtotal()[0]}`
 };
 
 botaoSomar1.onclick = () => {
     quantidadeItemFormatado += 1;
     quantidadeItem.innerText = quantidadeItemFormatado;
-    verficadorQuantidade()
+    verficadorQuantidade();
+
+    subtotal.innerHTML = `R$&nbsp${calculoSubtotal()[0]}`;
 };
+
+const subtotal = document.getElementById("envio__subtotal");
+subtotal.innerHTML = `R$&nbsp${calculoSubtotal()[0]}`;
+
+// BOTÕES DE ENVIO PARA CARRINHO
+
+const botaoComprarAgora = document.getElementById("envio__comprarAgora");
+const botaoAdicionarCarrinho = document.getElementById("envio__adicionarCarrinho");
+
+// botaoComprarAgora.onclick = () => {}
+
+const objectItemSelecionado = {
+    item: produtoSelecionado,
+};
+
+botaoAdicionarCarrinho.onclick = () => {
+    objectItemSelecionado.quantidadeItem = quantidadeItem.innerText;
+    objectItemSelecionado.subtotalString = calculoSubtotal()[0];
+    objectItemSelecionado.subtotalFloat = calculoSubtotal()[1];
+
+    const itemJSON = JSON.stringify(objectItemSelecionado);
+
+    localStorage.setItem(`produto_${produtoSelecionado.id}`, itemJSON);
+}
