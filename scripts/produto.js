@@ -95,7 +95,7 @@ subtotal.innerHTML = `R$&nbsp${calculoSubtotal()[0]}`;
 
 // BOTÕES DE ENVIO PARA CARRINHO
 
-const botaoComprarAgora = document.getElementById("envio__comprarAgora");
+// const botaoComprarAgora = document.getElementById("envio__comprarAgora");
 const botaoAdicionarCarrinho = document.getElementById("envio__adicionarCarrinho");
 
 // botaoComprarAgora.onclick = () => {}

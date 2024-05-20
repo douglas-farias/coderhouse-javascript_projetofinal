@@ -58,45 +58,64 @@
                 <h4>Endereço de entrega:</h4>
                 <span id="usuarioEndereco"></span>
             </div>
-            <div>
+            <div class="conteudo_tabela">
                 <form>
                     <h4>Escolha a opção de frete:</h4>
-                    <table>
+                    <table class="tabela__frete">
                         <tr>
                             <th></th>
                             <th>Envio</th>
                             <th>Prazo</th>
                             <th>Preço</th>
                         </tr>
-                            <td><input type="radio" name="opcaoFrete" value="fretePadrao"></td>
+                        <tr id="fretePadrao">
+                            <td><input type="radio" name="opcaoFrete" value="5" checked></td>
                             <td>Padrão</td>
                             <td>10 a 15 dias úteis</td>
-                            <td>R$ 0,00</td>
-                        <tr>
-                            <td><input type="radio" name="opcaoFrete" value="freteExpresso"></td>
+                            <td>R$ 5,00</td>
+                        </tr>
+                        <tr id="freteExpresso">
+                            <td><input type="radio" name="opcaoFrete" value="10"></td>
                             <td>Expresso</td>
                             <td>3 a 5 dias úteis</td>
-                            <td>R$ 0,00</td>
+                            <td>R$ 10,00</td>
                         </tr>
                     </table>
                 </form>
             </div>
         </section>
+        <section class="conteudo__desconto">
+            <div>
+                <h4>Insira o cupom de desconto:</h4>
+            </div>
+            <div>
+                <input type="text" class="desconto__input" placeholder="CUPOM DE DESCONTO">
+                <button class="inserirCupom">Inserir</button>
+            </div>
+        </section>
         <section class="conteudo__resumo">
             <div>
-                <h2>Total</h2>
+                <h2>Resumo da compra</h2>
                 <table class="resumo__somaValores">
                     <tr>
                         <td id="somaValores__itens">Subtotal</td>
                         <td id="somaValores__valorItens"></td>
                     </tr>
                     <tr>
-                        <td id="somaValores__frete"></td>
+                        <td id="somaValores__frete">Frete</td>
                         <td id="somaValores__valorFrete"></td>
                     </tr>
                     <tr>
                         <td id="somaValores__desconto">Desconto</td>
                         <td id="somaValores__valorDesconto">R$ 0,00</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td id="somaValores__total">TOTAL</td>
+                        <td id="somaValores__valorTotal"></td>
                     </tr>
                 </table>
             </div>
