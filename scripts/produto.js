@@ -106,8 +106,8 @@ const objectItemSelecionado = {
 
 botaoAdicionarCarrinho.onclick = () => {
     objectItemSelecionado.quantidadeItem = quantidadeItem.innerText;
-    objectItemSelecionado.subtotalString = calculoSubtotal()[0];
-    objectItemSelecionado.subtotalFloat = calculoSubtotal()[1];
+    // objectItemSelecionado.subtotalString = calculoSubtotal()[0];
+    // objectItemSelecionado.subtotalFloat = calculoSubtotal()[1];
 
     const itemJSON = JSON.stringify(objectItemSelecionado);
 
