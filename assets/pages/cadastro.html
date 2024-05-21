@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/icons/favicon.png">
+    <link rel="stylesheet" href="../../styles/cadastro-usuario.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+    <title>EC_Cadastro</title>
+</head>
+<body>
+    <header class="menu-sup">
+        <nav>
+            <div class="menu-sup__home"><a href="../../index.html">E_COMMERCE</a></div>
+            <ul class="menu-sup__loja">
+                <li><a href="./assets/pages/loja-todas-categorias.html">Todas as categorias</a></li>
+            </ul>
+            <ul class="menu-sup__usuario">
+                <li><a href="cadastro.html">Login</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="conteudo">
+        <form class="conteudo__formulario">
+            <div>
+                <label for="formulario_nome">Nome</label>
+                <input type="text" id="formulario_nome" placeholder="Nome" required>
+                <label for="formulario_sobrenome">Sobrenome</label>
+                <input type="text" id="formulario_sobrenomenome" placeholder="Sobrenome" required>
+            </div>
+            <div>
+                <label for="formulario_cep">CEP</label>
+                <input type="text" id="formulario_cep" placeholder="00000-000" required>
+                <label for="formulario_endereço">Endereço</label>
+                <input type="text" id="formulario_endereco" placeholder="Endereço (Logradouro, Número)" required>
+            </div>
+            <div><label for="formulario_email">Email</label>
+                <input type="text" id="formulario_email" placeholder="Endereço de email" required>
+            </div>
+            <div>
+                <label for="formulario_senha">Senha</label>
+                <input type="password" id="formulario_senha" placeholder="Senha" required>
+                <label for="confirmarSenha">Repita a senha</label>
+                <input type="password" id="formulario_confirmarSenha" placeholder="Senha" required>
+                <h6 id="alertaRepetirSenha"></h6>
+            </div>
+            <button type="submit" id="formulario_botaoCadastrar" disabled>Cadastrar</button>
+        </form>
+    </main>
+    <footer>
+        <h5>contato@ecommerce.com</h5>
+    </footer>
+    <script defer src="../../scripts/cadastro.js"></script>
+</body>
+</html>

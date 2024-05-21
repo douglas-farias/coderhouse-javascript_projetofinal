@@ -3,6 +3,9 @@
 import { produtosCadastrados } from "./listaProdutos.js";
 
 function renderizarItem(produto) {
+    const tituloHead = document.getElementById("tituloHead");
+    tituloHead.innerText = `EC_${produto.nome}`;
+
     const itemContainer = document.getElementsByClassName("conteudo")[0];
 
     const sectionBotoes = document.getElementsByClassName("conteudo__botoes")[0];
@@ -95,10 +98,7 @@ subtotal.innerHTML = `R$&nbsp${calculoSubtotal()[0]}`;
 
 // BOTÕES DE ENVIO PARA CARRINHO
 
-// const botaoComprarAgora = document.getElementById("envio__comprarAgora");
 const botaoAdicionarCarrinho = document.getElementById("envio__adicionarCarrinho");
-
-// botaoComprarAgora.onclick = () => {}
 
 const objectItemSelecionado = {
     item: produtoSelecionado,
@@ -106,8 +106,6 @@ const objectItemSelecionado = {
 
 botaoAdicionarCarrinho.onclick = () => {
     objectItemSelecionado.quantidadeItem = quantidadeItem.innerText;
-    // objectItemSelecionado.subtotalString = calculoSubtotal()[0];
-    // objectItemSelecionado.subtotalFloat = calculoSubtotal()[1];
 
     const itemJSON = JSON.stringify(objectItemSelecionado);
 

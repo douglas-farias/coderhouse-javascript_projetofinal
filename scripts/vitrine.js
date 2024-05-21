@@ -1,6 +1,8 @@
 import { produtosCadastrados } from "./listaProdutos.js";
 
 function renderizarProdutos(filtro, valor) {
+    const tituloHead = document.getElementById("tituloHead");
+
     const tituloFiltro = document.getElementById("conteudo__titulo");
     tituloFiltro.innerText = "";
 
@@ -12,12 +14,15 @@ function renderizarProdutos(filtro, valor) {
     if (filtro === "categoria") {
         tituloFiltro.innerText = `Categoria ${valor.charAt(valor.length - 1).toUpperCase()}`;
         produtosFiltrados = produtosCadastrados[valor];
+        tituloHead.innerText = `EC_Categoria ${valor.charAt(valor.length - 1).toUpperCase()}`
     } else if (filtro === "novidades") {
         tituloFiltro.innerText = "Novidades";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.novidade);
+        tituloHead.innerText = `EC_Novidades`;
     } else if (filtro === "ofertas") {
         tituloFiltro.innerText = "Ofertas";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.oferta);
+        tituloHead.innerText = `EC_Ofertas`;
     }
 
     produtosFiltrados.forEach(produto => {
