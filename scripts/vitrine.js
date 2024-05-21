@@ -12,7 +12,7 @@ function renderizarProdutos(filtro, valor) {
     let produtosFiltrados = [];
 
     if (filtro === "categoria") {
-        tituloFiltro.innerText = `Categoria ${valor.charAt(valor.length - 1).toUpperCase()}`;
+        tituloFiltro.innerText = `CATEGORIA ${valor.charAt(valor.length - 1).toUpperCase()}`;
         produtosFiltrados = produtosCadastrados[valor];
         tituloHead.innerText = `EC_Categoria ${valor.charAt(valor.length - 1).toUpperCase()}`
     } else if (filtro === "novidades") {
@@ -30,9 +30,11 @@ function renderizarProdutos(filtro, valor) {
         divProduto.className = "conteudo__produto";
         divProduto.id = `prodtuo__${produto.id}`;
 
-        divProduto.innerHTML = `<a href="produto.html?id=${produto.id}">
-                                    <img src="${produto.imagem}" alt="${produto.imagemAlt}">
-                                </a>
+        divProduto.innerHTML = `<figure class="produto__imagem">
+                                    <a href="produto.html?id=${produto.id}">
+                                        <img src="${produto.imagem}" alt="${produto.imagemAlt}">
+                                    </a>
+                                </figure>
                                 <div>
                                     <h4>${produto.nome}</h4>
                                     <span id="precoProduto${produto.id}">R$ ${produto.precoString}</span>

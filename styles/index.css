@@ -118,20 +118,26 @@ nav ul li {
 
 .conteudo__vitrine {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
     padding: 20px;
 }
 
+.vitrine__titulo {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: end;
+}
+
 .vitrine__categorias {
-    background-color: white;
-    border-radius: 10px;
+    background-color: #E7F2BD;
+    height: 300px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 footer {

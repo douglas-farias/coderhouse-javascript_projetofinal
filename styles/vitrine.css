@@ -52,6 +52,39 @@ nav ul li {
     margin-right: 20px;
 }
 
+main {
+    padding: 20px;
+}
+
+#conteudo__titulo {
+    background-color: #E7F2BD;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 20pt;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.conteudo__vitrine {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    justify-items: center;
+}
+
+.conteudo__produto figure a {
+    background-color: #CCF294;
+    width: 300px;
+    height: 300px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* .conteudo__topo {
     display: grid;
     gap: 10px;
