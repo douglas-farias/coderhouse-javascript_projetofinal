@@ -1,3 +1,45 @@
+document.addEventListener('DOMContentLoaded', inicializarFormulario);
+
+// DECLARAÇÃO DaAS PRINCIPAIS CONSTANTES
+const formulario = document.getElementsByClassName("conteudo__formulario")[0];
+
+const usuarioNome = document.getElementById("formulario__nome");
+const usuariosobreNome = document.getElementById("formulario__sobrenome");
+const usuarioEndereco = document.getElementById("formulario__endereco");
+const usuarioCEP = document.getElementById("formulario__cep");
+const usuarioEmail = document.getElementById("formulario__email");
+const senhaInput1 = document.getElementById("formulario__senha");
+const senhaInput2 = document.getElementById("formulario__confirmarSenha");
+
+const camposObrigatorios = Array.from(formulario.querySelectorAll("input[required]"));
+
+const senhaAlertaRepetir = document.getElementById("formulario__alertaSenhaRepetir");
+const botaoCadastrar = document.getElementById("formulario__botaoCadastrar");
+
+// FUNÇÕES
+function inicializarFormulario() {
+    camposObrigatorios.forEach(campo => {
+        campo.addEventListener("input", validarFormulario);
+    });
+
+    document.querySelector(".conteudo__formulario").addEventListener("submit", cadastrarUsuario);
+};
+
+function validarFormulario() {
+    let formularioPreenchdio = true;
+    let senhasRepetidas = senhaInput1.value === senhaInput2.value;
+
+    camposObrigatorios.forEach(campo => {
+        if (!campo.value.trim()) {
+            formularioPreenchdio = false;
+        };
+    });
+
+    senhasRepetidas ? senhaAlertaRepetir.innerText = "" : senhaAlertaRepetir.innerText = "As senhas digitadas não coincidem."; 
+
+    (formularioPreenchdio && senhasRepetidas) ? botaoCadastrar.removeAttribute("disabled") : botaoCadastrar.setAttribute("disabled", "disabled");
+}
+
 function gerarID() {
     let ultimoID = localStorage.getItem("ultimoID");
     if (ultimoID === null) {
@@ -9,18 +51,33 @@ function gerarID() {
     const proximoID = ultimoID + 1;
     localStorage.setItem("ultimoID", proximoID);
 
-    return `usuario-${proximoID.toString().padStart(4,"0")}`
+    return `u-${proximoID.toString().padStart(4,"0")}`;
 };
 
-const usuario = {
-    id: gerarID(),
-    nome: document.getElementById("formulario_nome"),
-    sobrenome: document.getElementById("formulario_sobrenome"),
-    endereco: document.getElementById("formulario_endereco"),
-    cep: document.getElementById("formulario_ceo"),
-    email: document.getElementById("formulario_email"),
-    senha: document.getElementById("formulario_senha"),
-};
+function cadastrarUsuario(evento) {
+    evento.preventDefault();
+
+    const usuario = {
+        id: gerarID(),
+        nome: usuarioNome.value,
+        sobrenome: usuariosobreNome.value,
+        endereco: usuarioEndereco.value,
+        cep: usuarioCEP.value,
+        email: usuarioEmail.value,
+        senha: senhaInput1.value,
+        login: false,
+    };
+
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    usuarios.push(usuario);
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+    alert('Usuário cadastrado com sucesso!');
+    document.querySelector('.conteudo__formulario').reset();
+    botaoCadastrar.disabled = true;
+}
+
+
 
 // IMPLEMETNAÇÃO FUTURA
 // function verificarSenha(){
@@ -30,26 +87,7 @@ const usuario = {
 //     let caracEspeciais = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
 // };
 
-const formulario = document.getElementsByClassName("conteudo__formulario")[0];
-const camposObrigatorios = formulario.querySelectorAll("input[required]");
-const senhaInput1 = document.getElementById("formulario_senha")
-const senhaInput2 = document.getElementById("formulario_confirmarSenha")
+
+
 
 console.log(camposObrigatorios)
-
-camposObrigatorios.value != "" ? console.log("ok") : console.log("nao")
-
-const botaoCadastrar = document.getElementById("formulario_botaoCadastrar");
-
-function confirmarSenha() {
-    const alertaRepetirSenha = document.getElementById("alertaRepetirSenha");
-
-    if (senhaInput1 === senhaInput2) {
-        botaoCadastrar.removeAttribute("disabled");
-    } else {
-        botaoCadastrar.setAttribute("disabled", "disabled");
-        alertaRepetirSenha.innerText = "As senhas digitadas não coincidem."
-    };
-};
-
-confirmarSenha()
