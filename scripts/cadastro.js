@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', inicializarFormulario);
 const formulario = document.getElementsByClassName("conteudo__formulario")[0];
 
 const usuarioNome = document.getElementById("formulario__nome");
-const usuariosobreNome = document.getElementById("formulario__sobrenome");
-const usuarioEndereco = document.getElementById("formulario__endereco");
+const usuarioSobrenome = document.getElementById("formulario__sobrenome");
 const usuarioCEP = document.getElementById("formulario__cep");
+const usuarioEndereco = document.getElementById("formulario__endereco");
 const usuarioEmail = document.getElementById("formulario__email");
 const senhaInput1 = document.getElementById("formulario__senha");
 const senhaInput2 = document.getElementById("formulario__confirmarSenha");
@@ -26,18 +26,18 @@ function inicializarFormulario() {
 };
 
 function validarFormulario() {
-    let formularioPreenchdio = true;
+    let formularioPreenchido = true;
     let senhasRepetidas = senhaInput1.value === senhaInput2.value;
 
     camposObrigatorios.forEach(campo => {
         if (!campo.value.trim()) {
-            formularioPreenchdio = false;
+            formularioPreenchido = false;
         };
     });
 
     senhasRepetidas ? senhaAlertaRepetir.innerText = "" : senhaAlertaRepetir.innerText = "As senhas digitadas não coincidem."; 
 
-    (formularioPreenchdio && senhasRepetidas) ? botaoCadastrar.removeAttribute("disabled") : botaoCadastrar.setAttribute("disabled", "disabled");
+    (formularioPreenchido && senhasRepetidas) ? botaoCadastrar.removeAttribute("disabled") : botaoCadastrar.setAttribute("disabled", "disabled");
 }
 
 function gerarID() {
@@ -60,7 +60,7 @@ function cadastrarUsuario(evento) {
     const usuario = {
         id: gerarID(),
         nome: usuarioNome.value,
-        sobrenome: usuariosobreNome.value,
+        sobrenome: usuarioSobrenome.value,
         endereco: usuarioEndereco.value,
         cep: usuarioCEP.value,
         email: usuarioEmail.value,
@@ -68,26 +68,25 @@ function cadastrarUsuario(evento) {
         login: false,
     };
 
+    let mensagem = "";
+    let botao = "";
+
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    alert('Usuário cadastrado com sucesso!');
-    document.querySelector('.conteudo__formulario').reset();
+    alert("Usuário cadastrado com sucesso!");
+    document.querySelector(".conteudo__formulario").reset();
     botaoCadastrar.disabled = true;
+};
+
+function alertaPopup(mensagem, botao) {
+    const mensagemPopup = document.getElementById("popup__mensagem");
+    mensagemPopup.innerHTML = "";
+
+    const botaoPopup = document.getElementById("popup__botao");
+    botaoPopup.innerHTML = "";
+
+    mensagemPopup.innerHTML = mensagem;
+    botaoPopup.innerHTML = botao;
 }
-
-
-
-// IMPLEMETNAÇÃO FUTURA
-// function verificarSenha(){
-//     let caracMaisuculas = /[A-Z]/;
-//     let caracMinusculas = /[a-z]/;
-//     let carcacNumericos = /[0-9]/;
-//     let caracEspeciais = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
-// };
-
-
-
-
-console.log(camposObrigatorios)

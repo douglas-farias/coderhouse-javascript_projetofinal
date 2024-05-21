@@ -24,12 +24,12 @@
         </nav>
     </header>
     <main class="conteudo">
-        <form class="conteudo__formulario" id="formulario__formulario">
+        <form class="conteudo__formulario">
             <div>
                 <label for="formulario__nome">Nome*</label>
                 <input type="text" id="formulario__nome" placeholder="Nome" required>
                 <label for="formulario__sobrenome">Sobrenome*</label>
-                <input type="text" id="formulario__sobrenomenome" placeholder="Sobrenome" required>
+                <input type="text" id="formulario__sobrenome" placeholder="Sobrenome" required>
             </div>
             <div>
                 <label for="formulario__cep">CEP*</label>
@@ -45,10 +45,16 @@
                 <input type="password" id="formulario__senha" placeholder="Senha" required>
                 <label for="formulario__confirmarSenha">Repita a senha*</label>
                 <input type="password" id="formulario__confirmarSenha" placeholder="Senha" required>
-                <h6 id="formulario__alertaSenha"></h6>
+                <h6 id="formulario__alertaSenhaRepetir"></h6>
             </div>
             <button type="submit" id="formulario__botaoCadastrar" disabled>Cadastrar</button>
         </form>
+        <section class="conteudo__alertasCSS">
+            <div id="alertaCSS__popup">
+                <h2 id="popup__mensagem"></h2>
+                <button id="popup__botao" autofocus></button>
+            </div>
+        </section>
     </main>
     <footer>
         <h5>contato@ecommerce.com</h5>
