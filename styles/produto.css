@@ -8,6 +8,11 @@
     border-width: 0;
 }
 
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
 button {
     cursor: pointer;
 }
@@ -17,19 +22,20 @@ a {
 }
 
 body {
+    background-color: #F2F2F2;
+    margin: 0;
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
     color: #5A6273;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    background-color: #F2F2F2;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
-    margin: 25px 50px; 
+    margin: 24px 60px; 
 }
 
 nav {
@@ -56,22 +62,22 @@ nav ul li {
 }
 
 main {
-    padding: 20px;
+    padding: 24px 0;
+    flex: 1;
 }
 
 .conteudo {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 9fr 3fr;
-    grid-template-rows: auto auto;
-    gap: 100px;
+    grid-template-rows: auto 36px;
+    column-gap: 60px;
+    row-gap: 24px;
     grid-template-areas: 
     "imagens informacoes"
     "imagens botoes";
 }
 
 .conteudo__imagens {
-    display: flex;
     flex-direction: column;
     align-items: center;
     grid-area: imagens;
@@ -79,12 +85,13 @@ main {
 
 .imagens__produto {
     background-color: #CCF294;
-    width: 300px;
-    height: 300px;
-    border-radius: 14px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    justify-self: center;
 }
 
-.imagens__relacionados {
+/* .imagens__relacionados {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -93,12 +100,17 @@ main {
 
 .imagens__relacionados li {
     background-color: #CCF294;
+    display: flex;
+    flex-direction: row;
     width: 93px;
     height: 93px;
     border-radius: 14px;
-}
+} */
 
 .conteudo__infos {
+    background-color: #E7F2BD;
+    border-radius: 15px;
+    padding: 15px;
     grid-area: informacoes;
 }
 
@@ -130,19 +142,16 @@ main {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 20pt;
+    font-size: 24pt;
     padding-bottom: 20px;
 }
 
 .conteudo__botoes {
-    display: grid;
-    align-content: space-between;
-    justify-content: end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-items: stretch;
-    grid-template-areas: 
-    "quantidade botaoEnviar"
-    "subtotal botaoEnviar";
+    height: 100%;
     grid-area: botoes;
 }
 
@@ -152,28 +161,28 @@ main {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
-    font-size: 12pt;
+    font-size: 15pt;
     display: flex;
-    height: 30px;
-    width: 100px;
+    height: 100%;
+    width: 120px;
     border-radius: 15px;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-    grid-area: quantidade;
 }
 
-.botoes_quantidade button {
+.botoes__quantidade button {
     background-color: #99D959;
     color: #5A6273;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
-    font-size: 12pt;
+    font-size: 15pt;
+    align-items: center;
 }
 
 #envio__subtotal {
-    grid-area: subtotal;
+    font-size: 24pt;
 }
 
 #envio__adicionarCarrinho {
@@ -182,11 +191,10 @@ main {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
-    font-size: 12pt;
-    height: 30px;
-    width: 300px;
+    font-size: 15pt;
+    height: 36px;
+    width: 480px;
     border-radius: 15px;
-    grid-area: botaoEnviar;
 }
 
 footer {
@@ -194,5 +202,6 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     align-content: center;
-    margin: 25px 50px;
+    margin: 24px 60px;
+    margin-top: auto;
 }

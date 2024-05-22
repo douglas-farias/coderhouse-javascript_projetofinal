@@ -46,8 +46,8 @@ function renderizarCarrinho() {
                 <button class="quantidade__subtrair" data-index="${indice}" ${item.quantidadeItem == 1 ? 'disabled' : ''}>-</button>
                 <h4 class="quantidade__qtde">${item.quantidadeItem}</h4>
                 <button class="quantidade__somar" data-index="${indice}">+</button>
-                <button class="quantidade__deletar" data-index="${indice}">Remover</button>
             </div>
+            <button class="quantidade__deletar" data-index="${indice}">Remover</button>
             <div>
                 <h3 class="item__subtotal">R$&nbsp${(item.quantidadeItem * item.item.precoFloat).toFixed(2).replace(".", ",")}</h3>
             </div>`;

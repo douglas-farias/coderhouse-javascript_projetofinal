@@ -52,6 +52,93 @@ nav ul li {
     margin-right: 20px;
 }
 
+main {
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    gap: 20px;
+    grid-template-areas:
+    "titulo titulo"
+    "lista resumo"
+    "desconto resumo"
+    "frete resumo";
+}
+
+.conteudo__titulo {
+    grid-area: titulo;
+}
+
+.conteudo__lista {
+    grid-area: lista;
+}
+
+.conteudo__lista div:last-child {
+    margin-bottom: 0;
+    grid-area: lista;
+}
+
+.conteudo__item {
+    background-color: #E7F2BD;
+    display: grid;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    grid-template-areas:
+    "imagem nome quantidade subtotal"
+    "imagem preco quantidade deletar";
+}
+
+.item__imagem {
+    grid-area: imagem;
+}
+
+.item__nome {
+    grid-area: nome;
+}
+
+.item__preco {
+    grid-area: preco;
+}
+
+.item__quantidade {
+    background-color: #E7F2BD;
+    grid-area: quantidade;
+}
+
+.item__quantidade button {
+    background-color: #E7F2BD;
+}
+
+.quantidade__deletar {
+    background-color: #E7F2BD;
+    grid-area: deletar;
+}
+
+.item__subtotal {
+    grid-area: subtotal;
+}
+
+.conteudo__desconto{
+    background-color: #CCF294;
+    border-radius: 15px;
+    padding: 15px;
+    grid-area: desconto;
+}
+
+.conteudo__frete {
+    background-color: #CCF294;
+    border-radius: 15px;
+    padding: 15px;
+    grid-area: frete;
+}
+
+.conteudo__resumo {
+    background-color: #99D959;
+    border-radius: 15px;
+    padding: 15px;
+    grid-area: resumo;
+}
+
 /* .conteudo__topo {
     display: grid;
     gap: 10px;
