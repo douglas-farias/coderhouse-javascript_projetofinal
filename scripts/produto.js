@@ -12,23 +12,23 @@ function renderizarItem(produto) {
 
     const sectionItemImagens = document.createElement("section");
     sectionItemImagens.className = "conteudo__imagens";
-    sectionItemImagens.innerHTML = `<div class="imagens__produto">
+    sectionItemImagens.innerHTML = `<figure class="imagens__produto">
                                         <img src="${produto.imagem}" alt="${produto.imagemAlt}">
-                                    </div>
-                                    <!-- <div class="imagens__relacionados">
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                        <img src="" alt="">
-                                    </div> -->`;
+                                    </figure>
+                                    <ul class="imagens__relacionados">
+                                        <li><img src="${produto.imagem}" alt=""></li>
+                                        <li><img src="${produto.imagem}" alt=""></li>
+                                        <li><img src="${produto.imagem}" alt=""></li>
+                                    </ul>`;
 
     const sectionItemInfos = document.createElement("section");
     sectionItemInfos.className = "conteudo__infos";
     sectionItemInfos.innerHTML = `<div class="infos__principal">
                                         <span>
-                                            <h5>Categoria</h5>
+                                            <h5>${produto.categoria}</h5>
                                         </span>
                                         <h1 id="infos__nome">${produto.nome}</h1>
-                                        <p>${produto.descricao}</p>
+                                        <p id="infos__descricao">${produto.descricao}</p>
                                         <h1 id="infos__preco"> R$&nbsp${produto.precoString}</h1>
                                     </div>`;
 

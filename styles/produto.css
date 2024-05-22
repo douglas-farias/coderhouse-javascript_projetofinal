@@ -6,7 +6,10 @@
     list-style: none;
     text-decoration: none;
     border-width: 0;
-    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
 }
 
 a {
@@ -52,87 +55,139 @@ nav ul li {
     margin-right: 20px;
 }
 
-/* .conteudo__topo {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 3fr 2fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-    "titulo ofertasAlgumas"
-    "loja ofertasAlgumas";
-    height: calc(92vh - 25px);
+main {
     padding: 20px;
 }
 
-#topo__titulo {
-    background-color: #E7F2BD;
-    border-radius: 14px;
-    padding: 14px;
-    grid-area: titulo;
+.conteudo {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 9fr 3fr;
+    grid-template-rows: auto auto;
+    gap: 100px;
+    grid-template-areas: 
+    "imagens informacoes"
+    "imagens botoes";
 }
 
-#topo__titulo h1 {
+.conteudo__imagens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: imagens;
+}
+
+.imagens__produto {
+    background-color: #CCF294;
+    width: 300px;
+    height: 300px;
+    border-radius: 14px;
+}
+
+.imagens__relacionados {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.imagens__relacionados li {
+    background-color: #CCF294;
+    width: 93px;
+    height: 93px;
+    border-radius: 14px;
+}
+
+.conteudo__infos {
+    grid-area: informacoes;
+}
+
+.infos__principal h5 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 12pt;
+    padding-bottom: 10px;
+}
+
+#infos__nome {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
     font-size: 30pt;
+    padding-bottom: 20px;
 }
 
-#topo__titulo h3 {
-    font-family: "Archivo", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: normal;
+#infos__descricao {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
     font-style: normal;
+    font-size: 12pt;
+    padding-bottom: 20px;
 }
 
-#topo__loja {
-    display: flex;
-    flex-direction: row;
-    grid-area: loja;
+#infos__preco {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20pt;
+    padding-bottom: 20px;
 }
 
-#topo__loja div {
+.conteudo__botoes {
+    display: grid;
+    align-content: space-between;
+    justify-content: end;
+    align-items: center;
+    justify-items: stretch;
+    grid-template-areas: 
+    "quantidade botaoEnviar"
+    "subtotal botaoEnviar";
+    grid-area: botoes;
+}
+
+.botoes__quantidade {
+    background-color: #99D959;
+    color: #5A6273;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
-    background-color: #CCF294;
-    border-radius: 14px;
+    font-size: 12pt;
     display: flex;
-    flex-direction: column;
+    height: 30px;
+    width: 100px;
+    border-radius: 15px;
     align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    margin: 0 5px;
+    justify-content: space-evenly;
+    flex-direction: row;
+    grid-area: quantidade;
 }
 
-#topo__feed {
+.botoes_quantidade button {
     background-color: #99D959;
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    grid-area: ofertasAlgumas;
+    color: #5A6273;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 12pt;
 }
 
-.conteudo__vitrine {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
+#envio__subtotal {
+    grid-area: subtotal;
 }
 
-.vitrine__categorias {
-    background-color: white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-} */
+#envio__adicionarCarrinho {
+    background-color: #99D959;
+    color: #5A6273;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 12pt;
+    height: 30px;
+    width: 300px;
+    border-radius: 15px;
+    grid-area: botaoEnviar;
+}
 
 footer {
     display: flex;
