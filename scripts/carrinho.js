@@ -38,12 +38,13 @@ function renderizarCarrinho() {
             <div class="item__imagem">
                 <img src="${item.item.imagem}" alt="${item.item.imagemAlt}">
             </div>
-            <div>
+            <div id="item__info">
                 <a href="produto.html?id=${item.item.id}" id="item__nome-link">
                     <h3 class="item__nome">${item.item.nome.toUpperCase()}</h3>
                 </a>
-                    <h3 class="item__preco">R$&nbsp${item.item.precoString}</h3>
+                <h3 class="item__categoria">${item.item.categoria}</h3>
             </div>
+            <h3 class="item__preco">R$&nbsp${item.item.precoString}</h3>
             <div class="item__quantidade">
                 <button id="quantidade__subtrair" data-index="${indice}" ${item.quantidadeItem == 1 ? 'disabled' : ''}>-</button>
                 <h4 id="quantidade__qtde">${item.quantidadeItem}</h4>

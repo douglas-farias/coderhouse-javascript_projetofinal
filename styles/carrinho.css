@@ -19,8 +19,6 @@ button {
 
 body {
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
     background-color: #FFFFFF;
     margin: 0;
     display: flex;
@@ -83,12 +81,13 @@ main {
 .conteudo__item {
     display: grid;
     background-color: #F2F2F2;
+    min-height: 120px;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 15px;
     grid-template-areas:
-    "imagem nome quantidade subtotal"
-    "imagem preco quantidade deletar";
+    "imagem nome preco quantidade subtotal"
+    "imagem categoria preco quantidade deletar";
     color: #000000;
 }
 
@@ -97,15 +96,28 @@ main {
 }
 
 .item__nome {
-
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: bold;
+    font-size: 15pt;
     grid-area: nome;
 }
 
 #item__nome-link {
-    color #000000;
+    color: #000000;
+}
+
+.item__categoria {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 12pt;
+    grid-area: categoria;
 }
 
 .item__preco {
+    font-weight: 100;
+    font-style: normal;
     grid-area: preco;
 }
 
@@ -113,31 +125,51 @@ main {
     background-color: #F2F2F2;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: top;
     justify-content: space-evenly;
     grid-area: quantidade;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: bold;
+    font-size: 12pt;
 }
 
 .item__quantidade button {
     background-color: #F2F2F2;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: bold;
+    font-size: 12pt;
+}
+
+.item__quantidade #quantidade__qtde {
+    font-weight: 100;
+    font-style: normal;
 }
 
 .item__subtotal {
     display: flex;
     justify-content: right;
+    font-weight: 900;
+    font-style: bold;
+    font-size: 15pt;
     grid-area: subtotal;
 }
 
 .quantidade__deletar {
     background-color: #F2F2F2;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
+    align-items: flex-end;
     grid-area: deletar;
 }
 
 .quantidade__deletar img {
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
 }
 
 @keyframes rotate90 {
