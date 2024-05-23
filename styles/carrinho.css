@@ -10,15 +10,18 @@
 }
 
 a {
-    color: #5A6273;
+    color: #000000;
+}
+
+button {
+    cursor: pointer;
 }
 
 body {
-    color: #5A6273;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -78,14 +81,15 @@ main {
 }
 
 .conteudo__item {
-    background-color: #E7F2BD;
     display: grid;
+    background-color: #F2F2F2;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 15px;
     grid-template-areas:
     "imagem nome quantidade subtotal"
     "imagem preco quantidade deletar";
+    color: #000000;
 }
 
 .item__imagem {
@@ -93,7 +97,12 @@ main {
 }
 
 .item__nome {
+
     grid-area: nome;
+}
+
+#item__nome-link {
+    color #000000;
 }
 
 .item__preco {
@@ -101,125 +110,99 @@ main {
 }
 
 .item__quantidade {
-    background-color: #E7F2BD;
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     grid-area: quantidade;
 }
 
 .item__quantidade button {
-    background-color: #E7F2BD;
-}
-
-.quantidade__deletar {
-    background-color: #E7F2BD;
-    grid-area: deletar;
+    background-color: #F2F2F2;
 }
 
 .item__subtotal {
+    display: flex;
+    justify-content: right;
     grid-area: subtotal;
 }
 
+.quantidade__deletar {
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: right;
+    grid-area: deletar;
+}
+
+.quantidade__deletar img {
+    height: 20px;
+    width: 20px;
+}
+
+@keyframes rotate90 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+.quantidade__deletar img:hover {
+    animation: rotate90 1s ease forwards;
+    transform: rotate(180deg);
+    filter: invert(17%) sepia(30%) saturate(6963%) hue-rotate(227deg) brightness(94%) contrast(95%);
+}
+
 .conteudo__desconto{
-    background-color: #CCF294;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #ADC0D9;
     border-radius: 15px;
     padding: 15px;
+    color: #FFFFFF;
     grid-area: desconto;
 }
 
+.desconto__input {
+    background-color: #ADC0D9;    
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;  
+}
+
+.desconto__input:focus {
+    border-bottom: 2px solid #2135A6;
+}
+
 .conteudo__frete {
-    background-color: #CCF294;
+    display: grid;
+    justify-content: space-between;
+    background-color: #7999D9;
     border-radius: 15px;
     padding: 15px;
     grid-area: frete;
+    grid-template-areas:
+    "endereco freteTabela";
+    color: #FFFFFF;
+}
+
+.frete_endereco {
+    grid-area: endereco;
+}
+.frete_tabela {
+    grid-area: freteTabela;
 }
 
 .conteudo__resumo {
-    background-color: #99D959;
+    background-color: #4563BF;
     border-radius: 15px;
     padding: 15px;
+    color: #FFFFFF;
     grid-area: resumo;
 }
-
-/* .conteudo__topo {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 3fr 2fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-    "titulo ofertasAlgumas"
-    "loja ofertasAlgumas";
-    height: calc(92vh - 25px);
-    padding: 20px;
-}
-
-#topo__titulo {
-    background-color: #E7F2BD;
-    border-radius: 14px;
-    padding: 14px;
-    grid-area: titulo;
-}
-
-#topo__titulo h1 {
-    font-family: "Roboto", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-    font-size: 30pt;
-}
-
-#topo__titulo h3 {
-    font-family: "Archivo", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: normal;
-    font-style: normal;
-}
-
-#topo__loja {
-    display: flex;
-    flex-direction: row;
-    grid-area: loja;
-}
-
-#topo__loja div {
-    font-family: "Roboto", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-    background-color: #CCF294;
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    margin: 0 5px;
-}
-
-#topo__feed {
-    background-color: #99D959;
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    grid-area: ofertasAlgumas;
-}
-
-.conteudo__vitrine {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
-}
-
-.vitrine__categorias {
-    background-color: white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-} */
 
 footer {
     display: flex;

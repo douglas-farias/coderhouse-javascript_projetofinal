@@ -1,3 +1,4 @@
+preto: #000000
 fundo: #FFFFFF
 cinza: #F2F2F2
 clara 1: #ADC0D9

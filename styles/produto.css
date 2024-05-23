@@ -18,17 +18,17 @@ button {
 }
 
 a {
-    color: #5A6273;
+    color: #000000;
 }
 
 body {
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
     margin: 0;
     padding: 0 60px;
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    color: #5A6273;
+    color: #2135A6;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -84,7 +84,7 @@ main {
 }
 
 .imagens__produto {
-    background-color: #CCF294;
+    background-color: #7999D9;
     width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -108,9 +108,12 @@ main {
 } */
 
 .conteudo__infos {
-    background-color: #E7F2BD;
+    background-color: #F2F2F2;
     border-radius: 15px;
     padding: 15px;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
     grid-area: informacoes;
 }
 
@@ -156,8 +159,8 @@ main {
 }
 
 .botoes__quantidade {
-    background-color: #99D959;
-    color: #5A6273;
+    background-color: #4563BF;
+    color: #FFFFFF;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
@@ -165,15 +168,15 @@ main {
     display: flex;
     height: 100%;
     width: 120px;
-    border-radius: 15px;
+    border-radius: 18px;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
 }
 
 .botoes__quantidade button {
-    background-color: #99D959;
-    color: #5A6273;
+    background-color: #4563BF;
+    color: #FFFFFF;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
@@ -186,8 +189,8 @@ main {
 }
 
 #envio__adicionarCarrinho {
-    background-color: #99D959;
-    color: #5A6273;
+    background-color: #4563BF;
+    color: #FFFFFF;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
@@ -195,6 +198,10 @@ main {
     height: 36px;
     width: 480px;
     border-radius: 15px;
+}
+
+#envio__adicionarCarrinho:hover {
+    background-color: #2135A6;
 }
 
 footer {

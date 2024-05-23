@@ -10,15 +10,19 @@
 }
 
 a {
-    color: #5A6273;
+    color: #2135A6;
+}
+
+button {
+    cursor: pointer;
 }
 
 body {
-    color: #5A6273;
+    color: #2135A6;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -65,7 +69,8 @@ nav ul li {
 }
 
 #topo__titulo {
-    background-color: #E7F2BD;
+    color: #000000;
+    background-color: #F2F2F2;
     border-radius: 14px;
     padding: 14px;
     grid-area: titulo;
@@ -91,11 +96,8 @@ nav ul li {
     grid-area: loja;
 }
 
-#topo__loja div {
-    font-family: "Roboto", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-    background-color: #CCF294;
+#topo__loja a {
+    background-color: #ADC0D9;
     border-radius: 14px;
     display: flex;
     flex-direction: column;
@@ -104,10 +106,19 @@ nav ul li {
     flex-grow: 1;
     flex-basis: 0;
     margin: 0 5px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+#topo__loja a:hover {
+    background-color: #2135A6;
+    color: #FFFFFF;
 }
 
 #topo__feed {
-    background-color: #99D959;
+    color: #F2F2F2;
+    background-color: #4563BF;
     border-radius: 14px;
     display: flex;
     flex-direction: column;
@@ -131,13 +142,19 @@ nav ul li {
 }
 
 .vitrine__categorias {
-    background-color: #E7F2BD;
+    color: #F2F2F2;
+    background-color: #4563BF;
     height: 300px;
-    border-radius: 14px;
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+}
+
+.vitrine__categorias:hover {
+    background-color: #2135A6;
+    color: #FFFFFF;
 }
 
 footer {

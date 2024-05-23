@@ -24,9 +24,9 @@ function renderizarItem(produto) {
     const sectionItemInfos = document.createElement("section");
     sectionItemInfos.className = "conteudo__infos";
     sectionItemInfos.innerHTML = `<div class="infos__principal">
-                                        <span>
-                                            <h5>${produto.categoria}</h5>
-                                        </span>
+                                        <a href="vitrine.html?categoria=categoria${produto.categoria}">
+                                            <h5>CATEGORIA ${produto.categoria}</h5>
+                                        </a>
                                         <h1 id="infos__nome">${produto.nome}</h1>
                                         <p id="infos__descricao">${produto.descricao}</p>
                                         <h1 id="infos__preco"> R$&nbsp${produto.precoString}</h1>

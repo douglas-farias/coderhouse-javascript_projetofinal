@@ -16,11 +16,11 @@ function renderizarProdutos(filtro, valor) {
         produtosFiltrados = produtosCadastrados[valor];
         tituloHead.innerText = `EC_Categoria ${valor.charAt(valor.length - 1).toUpperCase()}`
     } else if (filtro === "novidades") {
-        tituloFiltro.innerText = "Novidades";
+        tituloFiltro.innerText = "NOVIDADES";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.novidade);
         tituloHead.innerText = `EC_Novidades`;
     } else if (filtro === "ofertas") {
-        tituloFiltro.innerText = "Ofertas";
+        tituloFiltro.innerText = "OFERTAS";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.oferta);
         tituloHead.innerText = `EC_Ofertas`;
     }

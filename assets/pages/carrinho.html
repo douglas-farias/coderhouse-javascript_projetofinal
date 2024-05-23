@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../icons/favicon.png">
     <link rel="stylesheet" href="../../styles/carrinho.css">
-    <title>EC - Carrinho</title>
+    <title>EC_Carrinho</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
@@ -15,7 +15,7 @@
         <nav>
             <div class="menu-sup__home"><a href="../../index.html">E_COMMERCE</a></div>
             <ul class="menu-sup__loja">
-                <li><a href="./assets/pages/loja-todas-categorias.html">Todas as categorias</a></li>
+                <li><a href=""></a></li>
             </ul>
             <ul class="menu-sup__usuario">
                 <li><a href="cadastro.html">Login</a></li>
@@ -31,38 +31,27 @@
             </div>
 
             <div class="conteudo__item">
-                <!-- MODELO DA DIV PARA CADA ITEM DA LISTA
-                <div class="item__imagem">
-                    <img src="" alt="">
-                </div>
-
-                <div>
-                    <h3 class="item__nome">Produto 1</h3>
-                    <h3 class="item__preco">R$ 0,00</h3>
-                </div>
-
-                <div class="item__quantidade">
-                    <button id="quantidade__menos">-</button>
-                    <h4 id="quantidade__valor">1</h4>
-                    <button id="quantidade__mais">+</button>
-                    <button id="quantidade__deletar">Remover</button>
-                </div>
-
-                <div>
-                    <h3 class="item_subtotal">R$ 0,00</h3>
-                </div> -->
-
+                <!-- DIV PARA CADA ITEM DA LISTA -->
+            </div>
+        </section>
+        <section class="conteudo__desconto">
+            <div>
+                <h4>Insira o cupom de desconto:</h4>
+            </div>
+            <div>
+                <input type="text" class="desconto__input" placeholder="CUPOM DE DESCONTO">
+                <button class="inserirCupom">Inserir</button>
             </div>
         </section>
         <section class="conteudo__frete">
-            <div>
+            <div class="frete__endereco">
                 <h4>Endereço de entrega:</h4>
                 <span id="usuarioEndereco"></span>
             </div>
-            <div class="conteudo_tabela">
+            <div class="frete_tabela">
                 <form>
                     <h4>Escolha a opção de frete:</h4>
-                    <table class="tabela__frete">
+                    <table class="tabela__opcoes">
                         <tr>
                             <th></th>
                             <th>Envio</th>
@@ -85,15 +74,6 @@
                 </form>
             </div>
         </section>
-        <section class="conteudo__desconto">
-            <div>
-                <h4>Insira o cupom de desconto:</h4>
-            </div>
-            <div>
-                <input type="text" class="desconto__input" placeholder="CUPOM DE DESCONTO">
-                <button class="inserirCupom">Inserir</button>
-            </div>
-        </section>
         <section class="conteudo__resumo">
             <div>
                 <h2>Resumo da compra</h2>
@@ -103,12 +83,12 @@
                         <td id="somaValores__valorItens"></td>
                     </tr>
                     <tr>
-                        <td id="somaValores__frete">Frete</td>
-                        <td id="somaValores__valorFrete"></td>
-                    </tr>
-                    <tr>
                         <td id="somaValores__desconto">Desconto</td>
                         <td id="somaValores__valorDesconto">R$ 0,00</td>
+                    </tr>
+                    <tr>
+                        <td id="somaValores__frete">Frete</td>
+                        <td id="somaValores__valorFrete"></td>
                     </tr>
                 </table>
             </div>

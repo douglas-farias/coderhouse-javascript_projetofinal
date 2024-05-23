@@ -10,15 +10,15 @@
 }
 
 a {
-    color: #5A6273;
+    color: #2135A6;
 }
 
 body {
-    color: #5A6273;
+    color: #2135A6;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@ main {
 }
 
 #conteudo__titulo {
-    background-color: #E7F2BD;
+    background-color: #F2F2F2;
     font-family: "Roboto", sans-serif;
     font-weight: 900;
     font-style: normal;
@@ -76,7 +76,7 @@ main {
 }
 
 .conteudo__produto figure a {
-    background-color: #CCF294;
+    background-color: #ADC0D9;
     width: 300px;
     height: 300px;
     border-radius: 14px;
