@@ -1,5 +1,20 @@
+import { somaQuantidades } from "./qtdeItens.js";
+
+function qtdCarNavbar() {
+    let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
+    quantidadeCarrinho.innerHTML = somaQuantidades;
+}
+
 let itensCarrinho = [];
 let somaSubtotalItens = 0;
+let valorDesconto = 0;
+
+const listaCupons = [
+    { codigo: "CUPOM10", valor: 0.1 },
+    { codigo: "CUPOM15", valor: 0.15 },
+    { codigo: "CUPOM25", valor: 0.25 },
+    { codigo: "CUPOM50", valor: 0.5 },
+];
 
 function obterCarrinho() {
     itensCarrinho = [];
@@ -24,12 +39,12 @@ function renderizarCarrinho() {
     if (itensCarrinho.length === 0) {
         const mensagemCarrinhoVazio = document.createElement("div");
         mensagemCarrinhoVazio.id = "lista__carrinhoVazio";
-        mensagemCarrinhoVazio.innerHTML = `<h2>Ainda não há produtos no seu carrinho.</h2>`;
+        mensagemCarrinhoVazio.innerHTML = `<h2>ainda não há produtos no seu carrinho.</h2>`;
         containerLista.appendChild(mensagemCarrinhoVazio);
         return;
-    }   
+    }
 
-    somaSubtotalItens = 0; // Reset the subtotal calculation
+    somaSubtotalItens = 0;
 
     itensCarrinho.forEach((item, indice) => {
         const divItem = document.createElement("div");
@@ -42,7 +57,7 @@ function renderizarCarrinho() {
                 <a href="produto.html?id=${item.item.id}" id="item__nome-link">
                     <h3 class="item__nome">${item.item.nome.toUpperCase()}</h3>
                 </a>
-                <h3 class="item__categoria">${item.item.categoria}</h3>
+                <h3 class="item__categoria">CATEGORIA ${item.item.categoria}</h3>
             </div>
             <h3 class="item__preco">R$&nbsp${item.item.precoString}</h3>
             <div class="item__quantidade">
@@ -60,21 +75,21 @@ function renderizarCarrinho() {
         somaSubtotalItens += (item.quantidadeItem * item.item.precoFloat);
     });
 
-    document.querySelectorAll('#quantidade__subtrair').forEach(botao => {
+    document.querySelectorAll("#quantidade__subtrair").forEach(botao => {
         botao.addEventListener('click', function () {
             const indice = this.getAttribute('data-index');
             alterarQuantidade(indice, -1);
         });
     });
 
-    document.querySelectorAll('#quantidade__somar').forEach(botao => {
+    document.querySelectorAll("#quantidade__somar").forEach(botao => {
         botao.addEventListener('click', function () {
             const indice = this.getAttribute('data-index');
             alterarQuantidade(indice, 1);
         });
     });
 
-    document.querySelectorAll('.quantidade__deletar').forEach(botao => {
+    document.querySelectorAll(".quantidade__deletar").forEach(botao => {
         botao.addEventListener('click', function () {
             const indice = this.getAttribute('data-index');
             removerItem(indice);
@@ -82,6 +97,7 @@ function renderizarCarrinho() {
     });
 
     atualizarSubtotalItens();
+    qtdCarNavbar();
 }
 
 function alterarQuantidade(indice, delta) {
@@ -104,32 +120,64 @@ function removerItem(indice) {
 function atualizarSubtotalItens() {
     const modificadorHTMLSubtotalItens = document.getElementById("somaValores__valorItens");
     modificadorHTMLSubtotalItens.innerHTML = `R$&nbsp${somaSubtotalItens.toFixed(2).replace(".", ",")}`;
-    atualizarTotalCompra();
+    obterFreteSelecionado();
 }
+
+function obterCumpomDesconto() {
+    const inputCupom = document.getElementById("cupomInserido");
+    const descontoHTML = document.getElementById("somaValores__valorDesconto");
+    descontoHTML.innerHTML = "";
+
+    valorDesconto = 0;
+
+    const cupom = listaCupons.find((c) => c.codigo === inputCupom.value);
+
+    if (cupom) {
+        valorDesconto = parseFloat(cupom.valor * somaSubtotalItens);
+        descontoHTML.innerHTML = `- R$&nbsp${valorDesconto.toFixed(2).replace(".", ",")}`
+    } else {
+        inputCupom.value = "CÓDIGO INVÁLIDO";
+        descontoHTML.innerHTML = `R$&nbsp0,00`;
+    };
+
+    obterFreteSelecionado();
+};
 
 function obterFreteSelecionado() {
     const freteSelecionado = document.querySelector('input[name="opcaoFrete"]:checked');
     const subtotalFrete = document.getElementById("somaValores__valorFrete");
 
+    let valorFrete = 0;
     if (freteSelecionado) {
-        subtotalFrete.innerHTML = `R$&nbsp${parseFloat(freteSelecionado.value).toFixed(2).replace(".", ",")}`;
+        valorFrete = parseFloat(freteSelecionado.value);
+        subtotalFrete.innerHTML = `R$&nbsp${valorFrete.toFixed(2).replace(".", ",")}`;
     } else {
         subtotalFrete.innerHTML = `R$&nbsp0,00`;
     }
 
-    atualizarTotalCompra();
+    atualizarTotalCompra(valorFrete);
 }
 
-function atualizarTotalCompra() {
-    const subtotalFreteFormatado = parseFloat(document.getElementById("somaValores__valorFrete").textContent.replace("R$&nbsp", "").replace(",", ".")) || 0;
-    const totalCompra = somaSubtotalItens + subtotalFreteFormatado;
+function atualizarTotalCompra(valorFrete) {
+    const totalCompra = somaSubtotalItens + valorFrete - valorDesconto;
     const modificadorHTMLTotalCompra = document.getElementById("somaValores__valorTotal");
     modificadorHTMLTotalCompra.innerHTML = `R$&nbsp${totalCompra.toFixed(2).replace(".", ",")}`;
 }
 
 document.querySelectorAll('input[name="opcaoFrete"]').forEach(radio => {
-    radio.addEventListener('change', obterFreteSelecionado);
+    radio.addEventListener("change", obterFreteSelecionado);
 });
 
+document.getElementById("limparCarrinho").addEventListener("click", function () {
+    localStorage.clear();
+    obterCarrinho();
+    renderizarCarrinho();
+});
+
+document.getElementById("inserirCupom").addEventListener("click", function () {
+    obterCumpomDesconto();
+})
+
 renderizarCarrinho();
-obterFreteSelecionado();
+
+export { itensCarrinho };

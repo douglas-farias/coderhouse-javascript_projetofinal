@@ -17,6 +17,25 @@ button {
     cursor: pointer;
 }
 
+table {
+    border: none;
+    border-collapse: collapse;
+    text-align: inherit;
+}
+
+table th,
+table td {
+    height: 36px;
+}
+
+input::placeholder {
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 9pt;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     background-color: #FFFFFF;
@@ -76,6 +95,15 @@ main {
 .conteudo__lista div:last-child {
     margin-bottom: 0;
     grid-area: lista;
+}
+
+#lista__carrinhoVazio h2 {
+    padding-bottom: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 24pt;
+    grid-area: nome;
 }
 
 .conteudo__item {
@@ -188,29 +216,72 @@ main {
 }
 
 .conteudo__desconto{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr;
+    align-items: center;
     justify-content: space-between;
+    justify-items: center;
     background-color: #ADC0D9;
     border-radius: 15px;
     padding: 15px;
     color: #FFFFFF;
+    grid-template-areas:
+    "tituloDesc inputDesc botaoDesc";
     grid-area: desconto;
 }
 
+.desconto__titulo {
+    grid-area: tituloDesc;
+}
+
+.desconto_inputDiv {
+    width: 100%;
+    padding: 0 10px;
+    grid-area: inputDesc; 
+}
+
 .desconto__input {
-    background-color: #ADC0D9;    
+    display: inline-block;
+    background-color: #ADC0D9;
+    width: 100%;
     border: 0;
     border-bottom: 1px solid #FFFFFF;
-    outline: 0;  
+    outline: 0;
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12pt;
 }
 
 .desconto__input:focus {
-    border-bottom: 2px solid #2135A6;
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+    border-bottom: 2px solid #FFFFFF;
+}
+
+.desconto__botao {
+    grid-area: botaoDesc;
+    background-color: #ADC0D9;
+    padding: 5px 0;
+    align-items: center; 
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+.desconto__botao:hover {
+    font-weight: 400
 }
 
 .conteudo__frete {
     display: grid;
+    grid-template-columns: 2fr 1fr;
     justify-content: space-between;
     background-color: #7999D9;
     border-radius: 15px;
@@ -222,10 +293,64 @@ main {
 }
 
 .frete_endereco {
+    display: flex;
+    flex-direction: column;
     grid-area: endereco;
 }
+
+.endereco__tituo{
+    padding-bottom: 10px;
+}
+
+.endereco__dados {
+    height: 100%;    
+}
+
+.endereco__dados span h4{
+    font-weight: 100;
+    font-size: 10pt;
+    padding-bottom: 5px;
+}
+
 .frete_tabela {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.frete_tabela table {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 10pt;
     grid-area: freteTabela;
+}
+
+input[type="radio"] {
+    appearance: none;
+    background-color: #7999D9;
+    height: 12px;
+    width: 12px;
+    border-radius: 6px;
+    border: 2px solid #FFFFFF;
+    font: inherit;
+}
+
+input[type="radio"]:checked {
+    background-color: #FFFFFF;
+}
+
+.frete_tabela table th:first-child,
+.frete_tabela table td:first-child {
+    width: auto;
+    white-space: nowrap;
+    padding-right: 6px;
+}
+
+.frete_tabela table th:last-child,
+.frete_tabela table td:last-child {
+    text-align: left;
 }
 
 .conteudo__resumo {
@@ -234,6 +359,56 @@ main {
     padding: 15px;
     color: #FFFFFF;
     grid-area: resumo;
+}
+
+.conteudo__resumo table {
+    width: 100%;
+    margin-bottom: 50px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+.conteudo__resumo table th:first-child,
+.conteudo__resumo table td:first-child {
+    text-align: left;
+}
+
+.conteudo__resumo table th:last-child, 
+.conteudo__resumo table td:last-child {
+    text-align: right;
+}
+
+.conteudo__resumo table tr:last-child{
+    height: 50px;
+    vertical-align: bottom;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 15pt;
+}
+
+.resumo__botoes {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.resumo__botoes button {
+    background-color: #4563BF;
+    padding: 5px 0;
+    align-items: center; 
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+.resumo__botoes button:hover {
+    font-weight: 700;
 }
 
 footer {

@@ -20,6 +20,7 @@
             <ul class="menu-sup__usuario">
                 <li><a href="cadastro.html">Login</a></li>
                 <li><a href="carrinho.html">Carrinho</a></li>
+                <li id="quantidadeCarrinho">0</li>
             </ul>
         </nav>
     </header>
@@ -35,43 +36,46 @@
             </div>
         </section>
         <section class="conteudo__desconto">
-            <div>
-                <h4>Insira o cupom de desconto:</h4>
+            <div class="desconto__titulo">
+                <h4>DESCONTO</h4>
             </div>
-            <div>
-                <input type="text" class="desconto__input" placeholder="CUPOM DE DESCONTO">
-                <button class="inserirCupom">Inserir</button>
+            <div class="desconto_inputDiv">
+                <input type="text" class="desconto__input" id="cupomInserido" placeholder="digite seu código de desconto" value="">
             </div>
+            <button class="desconto__botao" id="inserirCupom" onclick="obterCumpomDesconto()">ISERIR</button>
         </section>
         <section class="conteudo__frete">
             <div class="frete__endereco">
-                <h4>Endereço de entrega:</h4>
-                <span id="usuarioEndereco"></span>
+                <h4 class="endereco__tituo">ENTREGA</h4>
+                <div class="endereco__dados" id="usuarioEndereco">
+                    <span><h4>ENDEREÇO </h4><h4 id=""></h4></span>
+                    <span><h4>COMPLEMENTO </h4><h4 id=""></h4></span>
+                    <span><h4>CEP </h4><h4 id=""></h4></span>
+                    <span><h4>CIDADE </h4><h4 id=""></h4></span>
+                </div>
             </div>
             <div class="frete_tabela">
-                <form>
-                    <h4>Escolha a opção de frete:</h4>
-                    <table class="tabela__opcoes">
-                        <tr>
-                            <th></th>
-                            <th>Envio</th>
-                            <th>Prazo</th>
-                            <th>Preço</th>
-                        </tr>
-                        <tr id="fretePadrao">
-                            <td><input type="radio" name="opcaoFrete" value="5" checked></td>
-                            <td>Padrão</td>
-                            <td>10 a 15 dias úteis</td>
-                            <td>R$ 5,00</td>
-                        </tr>
-                        <tr id="freteExpresso">
-                            <td><input type="radio" name="opcaoFrete" value="10"></td>
-                            <td>Expresso</td>
-                            <td>3 a 5 dias úteis</td>
-                            <td>R$ 10,00</td>
-                        </tr>
-                    </table>
-                </form>
+                <h4>FRETE</h4>
+                <table class="tabela__opcoes">
+                    <tr>
+                        <th>_</th>
+                        <th>ENVIO</th>
+                        <th>PRAZO</th>
+                        <th>PREÇO</th>
+                    </tr>
+                    <tr id="fretePadrao">
+                        <td><input type="radio" name="opcaoFrete" value="5" checked></td>
+                        <td>PADRÃO</td>
+                        <td>10 a 15 dias úteis</td>
+                        <td>R$ 5,00</td>
+                    </tr>
+                    <tr id="freteExpresso">
+                        <td><input type="radio" name="opcaoFrete" value="10"></td>
+                        <td>EXPRESSO</td>
+                        <td>3 a 5 dias úteis</td>
+                        <td>R$ 10,00</td>
+                    </tr>
+                </table>
             </div>
         </section>
         <section class="conteudo__resumo">
@@ -79,36 +83,32 @@
                 <h2>TOTAIS</h2>
                 <table class="resumo__somaValores">
                     <tr>
-                        <td id="somaValores__itens">Subtotal</td>
+                        <td id="somaValores__itens">subtotal</td>
                         <td id="somaValores__valorItens"></td>
                     </tr>
                     <tr>
-                        <td id="somaValores__desconto">Desconto</td>
-                        <td id="somaValores__valorDesconto">R$ 0,00</td>
+                        <td id="somaValores__desconto">desconto</td>
+                        <td id="somaValores__valorDesconto">R$&nbsp0,00</td>
                     </tr>
                     <tr>
-                        <td id="somaValores__frete">Frete</td>
+                        <td id="somaValores__frete">frete</td>
                         <td id="somaValores__valorFrete"></td>
                     </tr>
-                </table>
-            </div>
-            <div>
-                <table>
                     <tr>
                         <td id="somaValores__total">TOTAL</td>
                         <td id="somaValores__valorTotal"></td>
                     </tr>
                 </table>
             </div>
-            <div>
-                <button id="limparCarrinho">Limpar Carrinho</button>
-                <button id="finalizarCompra">Finalizar Compra</button>
+            <div class="resumo__botoes">
+                <button id="limparCarrinho">LIMPAR</button>
+                <button id="finalizarCompra">FINALIZAR</button>
             </div>
         </section>
     </main>
     <footer>
         <h5>contato@ecommerce.com</h5>
     </footer>
-    <script defer src="../../scripts/carrinho.js"></script>
+    <script defer type="module" src="../../scripts/carrinho.js"></script>
 </body>
 </html>
