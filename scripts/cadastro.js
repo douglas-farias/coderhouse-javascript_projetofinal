@@ -7,13 +7,14 @@ function quantidadeCarrinhoHeader() {
 
 document.addEventListener('DOMContentLoaded', inicializarFormulario);
 
-// DECLARAÇÃO DaAS PRINCIPAIS CONSTANTES
+// DECLARAÇÃO DAS PRINCIPAIS CONSTANTES
 const formulario = document.getElementsByClassName("conteudo__formulario")[0];
 
 const usuarioNome = document.getElementById("formulario__nome");
 const usuarioSobrenome = document.getElementById("formulario__sobrenome");
 const usuarioCEP = document.getElementById("formulario__cep");
 const usuarioEndereco = document.getElementById("formulario__endereco");
+const usuarioComplemento = document.getElementById("formulario__complemento");
 const usuarioEmail = document.getElementById("formulario__email");
 const senhaInput1 = document.getElementById("formulario__senha");
 const senhaInput2 = document.getElementById("formulario__confirmarSenha");
@@ -30,7 +31,7 @@ function inicializarFormulario() {
     });
 
     document.querySelector(".conteudo__formulario").addEventListener("submit", cadastrarUsuario);
-};
+}
 
 function validarFormulario() {
     let formularioPreenchido = true;
@@ -39,7 +40,7 @@ function validarFormulario() {
     camposObrigatorios.forEach(campo => {
         if (!campo.value.trim()) {
             formularioPreenchido = false;
-        };
+        }
     });
 
     senhasRepetidas ? senhaAlertaRepetir.innerText = "" : senhaAlertaRepetir.innerText = "As senhas digitadas não coincidem."; 
@@ -53,13 +54,13 @@ function gerarID() {
         ultimoID = 0
     } else {
         ultimoID = parseInt(ultimoID, 10);
-    };
+    }
 
     const proximoID = ultimoID + 1;
     localStorage.setItem("ultimoID", proximoID);
 
     return `u-${proximoID.toString().padStart(4,"0")}`;
-};
+}
 
 function cadastrarUsuario(evento) {
     evento.preventDefault();
@@ -69,33 +70,35 @@ function cadastrarUsuario(evento) {
         nome: usuarioNome.value,
         sobrenome: usuarioSobrenome.value,
         endereco: usuarioEndereco.value,
+        complemento: usuarioComplemento.value,
         cep: usuarioCEP.value,
         email: usuarioEmail.value,
         senha: senhaInput1.value,
-        login: false,
+        login: true,
     };
-
-    let mensagem = "";
-    let botao = "";
 
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 
-    alert("Usuário cadastrado com sucesso!");
+    abrirPopupConclusao();
     document.querySelector(".conteudo__formulario").reset();
     botaoCadastrar.disabled = true;
-};
-
-function alertaPopup(mensagem, botao) {
-    const mensagemPopup = document.getElementById("popup__mensagem");
-    mensagemPopup.innerHTML = "";
-
-    const botaoPopup = document.getElementById("popup__botao");
-    botaoPopup.innerHTML = "";
-
-    mensagemPopup.innerHTML = mensagem;
-    botaoPopup.innerHTML = botao;
 }
 
-quantidadeCarrinhoHeader()
+const popupConclusao = document.querySelector(".container__conclusao");
+
+function abrirPopupConclusao() {
+    popupConclusao.classList.add("container__conclusao--exibir");
+}
+
+function fecharPopupConclusao() {
+    popupConclusao.classList.remove("container__conclusao--exibir");
+    window.location.href = "../../index.html";
+}
+
+quantidadeCarrinhoHeader();
+
+window.cadastrarUsuario = cadastrarUsuario;
+window.fecharPopupConclusao = fecharPopupConclusao;

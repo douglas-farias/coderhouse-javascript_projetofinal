@@ -25,6 +25,8 @@ body {
     min-height: 100vh;
 }
 
+/* ------------ HEADER ------------ */
+
 header {
     margin: 25px 50px; 
 }
@@ -51,6 +53,17 @@ nav ul {
 nav ul li {
     margin-right: 20px;
 }
+
+.menu-sup__usuario li button {
+    background-color: #FFFFFF00;
+    cursor: pointer;
+    color: #2135A6;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;  
+}
+
+/* ------------ CONTEÚDO ------------ */
 
 .conteudo__topo {
     display: grid;
@@ -153,6 +166,8 @@ nav ul li {
     color: #FFFFFF;
 }
 
+/* ------------ FOOTER ------------ */
+
 footer {
     display: flex;
     flex-direction: row;
@@ -161,14 +176,7 @@ footer {
     margin: 25px 50px;
 }
 
-.menu-sup__usuario li button {
-    background-color: #FFFFFF00;
-    cursor: pointer;
-    color: #2135A6;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 12pt;  
-}
+/* ------------ POP UP CADASTRO ------------ */
 
 .container__acesso {
     font-family: "Roboto", sans-serif;

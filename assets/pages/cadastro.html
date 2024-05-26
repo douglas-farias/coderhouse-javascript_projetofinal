@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../icons/favicon.png">
-    <link rel="stylesheet" href="../../styles/cadastro-usuario.css">
+    <link rel="stylesheet" href="../../styles/cadastro.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap');
     </style>
     <title>EC_Cadastro</title>
 </head>
@@ -14,9 +14,7 @@
     <header class="menu-sup">
         <nav>
             <div class="menu-sup__home"><a href="../../index.html">E_COMMERCE</a></div>
-            <ul class="menu-sup__loja">
-                <li><a href="./assets/pages/loja-todas-categorias.html">Todas as categorias</a></li>
-            </ul>
+            <ul class="menu-sup__loja"></ul>
             <ul class="menu-sup__usuario">
                 <li><a href="carrinho.html">Carrinho</a></li>
                 <li id="quantidadeCarrinho">0</li>
@@ -24,35 +22,42 @@
         </nav>
     </header>
     <main class="conteudo">
-        <form class="conteudo__formulario">
-            <div>
+        <h1 class="conteudo__titulo">CADASTRO</h1>
+        <div class="conteudo__formulario">
+            <div class="formulario__dadosPessoais">
                 <label for="formulario__nome">Nome*</label>
                 <input type="text" id="formulario__nome" placeholder="Nome" required>
                 <label for="formulario__sobrenome">Sobrenome*</label>
                 <input type="text" id="formulario__sobrenome" placeholder="Sobrenome" required>
             </div>
-            <div>
+            <div class="formulario__dadosLocalizacao">
                 <label for="formulario__cep">CEP*</label>
                 <input type="text" id="formulario__cep" placeholder="00000-000" required>
                 <label for="formulario__endereco">Endereço*</label>
-                <input type="text" id="formulario__endereco" placeholder="Endereço (Logradouro, Número)" required>
+                <input type="text" id="formulario__endereco" placeholder="Logradouro, Número" required>
+                <label for="formulario__complemento">Complemento</label>
+                <input type="text" id="formulario__complemento" placeholder="Apto, bloco, etc.">
             </div>
-            <div><label for="formulario__email">Email*</label>
+            <div class="formulario__dadosAcesso">
+                <label for="formulario__email">Email*</label>
                 <input type="text" id="formulario__email" placeholder="Endereço de email" required>
-            </div>
-            <div>
                 <label for="formulario__senha">Senha*</label>
                 <input type="password" id="formulario__senha" placeholder="Senha" required>
                 <label for="formulario__confirmarSenha">Repita a senha*</label>
                 <input type="password" id="formulario__confirmarSenha" placeholder="Senha" required>
                 <h6 id="formulario__alertaSenhaRepetir"></h6>
             </div>
-            <button type="submit" id="formulario__botaoCadastrar" disabled>Cadastrar</button>
-        </form>
-        <section class="conteudo__alertasCSS">
-            <div id="alertaCSS__popup">
-                <h2 id="popup__mensagem"></h2>
-                <button id="popup__botao" autofocus></button>
+            <button type="submit" id="formulario__botaoCadastrar" onclick="cadastrarUsuario(event)" disabled>CONCLUIR CADASTRO</button>
+        </div>
+        <section class="container__conclusao">
+            <div class="conclusao__planoDeFundo">
+                <div class="conclusao__popup">
+                    <div class="popup__mensagem">
+                        <h2>cadastro concluído.</h2>
+                        <h2>boas compras!</h2>
+                    </div>
+                    <button class="popup__botao" onclick="fecharPopupConclusao()">CONTINUAR</button>
+                </div>
             </div>
         </section>
     </main>
