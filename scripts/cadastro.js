@@ -1,3 +1,10 @@
+import { somaQuantidades } from "./qtdeItens.js";
+
+function quantidadeCarrinhoHeader() {
+    let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
+    quantidadeCarrinho.innerHTML = somaQuantidades;
+}
+
 document.addEventListener('DOMContentLoaded', inicializarFormulario);
 
 // DECLARAÇÃO DaAS PRINCIPAIS CONSTANTES
@@ -90,3 +97,5 @@ function alertaPopup(mensagem, botao) {
     mensagemPopup.innerHTML = mensagem;
     botaoPopup.innerHTML = botao;
 }
+
+quantidadeCarrinhoHeader()

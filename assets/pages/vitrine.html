@@ -15,14 +15,41 @@
         <nav>
             <div class="menu-sup__home"><a href="../../index.html">E_COMMERCE</a></div>
             <ul class="menu-sup__loja">
-                <li><a href="./assets/pages/loja-todas-categorias.html">Todas as categorias</a></li>
+                <li>
+                    <!-- <input type="text">
+                    <button id="menu-sup__busca">Procurar</button> -->
+                </li>
             </ul>
             <ul class="menu-sup__usuario">
-                <li><a href="cadastro.html">Login</a></li>
+                <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
                 <li><a href="carrinho.html">Carrinho</a></li>
+                <li id="quantidadeCarrinho">0</li>
             </ul>
         </nav>
     </header>
+    <section class="container__acesso">
+        <div class="acesso__planoDeFundo">
+            <div class="acesso__popUp">
+                <div class="acesso__login">
+                    <h2>E_COMMERCE</h2>
+                    <form action="">
+                        <input type="text" id="loginEmail" placeholder="email">
+                        <input type="password" id="loginSenha" placeholder="senha">
+                    </form>
+                    <button>ENTRAR</button>
+                </div>
+                <div class="acesso__cadastro">
+                    <figure>
+                        <img src="" alt="">
+                    </figure>
+                    <a href="./cadastro.html">
+                        <button>CADASTRAR-SE</button>
+                    </a>
+                </div>
+            </div>
+            <button class="popUp__fechar" onclick="fecharPopupAcesso()">fechar</button>
+        </div>
+    </section>
     <main class="conteudo">
         <section class="conteudo__cabecalho">
             <div id="conteudo__categorias"></div>

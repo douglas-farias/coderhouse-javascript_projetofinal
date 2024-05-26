@@ -1,6 +1,7 @@
 import { somaQuantidades } from "./qtdeItens.js";
+import { abrirPopupAcesso, fecharPopupAcesso } from "./popupAcesso.js";
 
-function qtdCarNavbar() {
+function quantidadeCarrinhoHeader() {
     let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
     quantidadeCarrinho.innerHTML = somaQuantidades;
 }
@@ -97,7 +98,7 @@ function renderizarCarrinho() {
     });
 
     atualizarSubtotalItens();
-    qtdCarNavbar();
+    quantidadeCarrinhoHeader();
 }
 
 function alterarQuantidade(indice, delta) {
@@ -179,5 +180,8 @@ document.getElementById("inserirCupom").addEventListener("click", function () {
 })
 
 renderizarCarrinho();
+
+window.abrirPopupAcesso = abrirPopupAcesso;
+window.fecharPopupAcesso = fecharPopupAcesso;
 
 export { itensCarrinho };

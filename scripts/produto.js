@@ -1,3 +1,11 @@
+import { somaQuantidades } from "./qtdeItens.js";
+import { abrirPopupAcesso, fecharPopupAcesso } from "./popupAcesso.js";
+
+function quantidadeCarrinhoHeader() {
+    let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
+    quantidadeCarrinho.innerHTML = somaQuantidades;
+}
+
 // RENDERIZAÇÃO DO PRODUTO SELECIONADO
 
 import { produtosCadastrados } from "./listaProdutos.js";
@@ -111,3 +119,8 @@ botaoAdicionarCarrinho.onclick = () => {
 
     localStorage.setItem(`produto_${produtoSelecionado.id}`, itemJSON);
 }
+
+quantidadeCarrinhoHeader()
+
+window.abrirPopupAcesso = abrirPopupAcesso;
+window.fecharPopupAcesso = fecharPopupAcesso;

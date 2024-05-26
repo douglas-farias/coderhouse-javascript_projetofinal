@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/icons/favicon.png">
     <link rel="stylesheet" href="./styles/index.css">
-    <title>E_Commerce</title>
+    <title>E_COMMERCE</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
@@ -16,16 +16,40 @@
             <div class="menu-sup__home"><a href="./index.html">E_COMMERCE</a></div>
             <ul class="menu-sup__loja">
                 <li>
-                    <input type="text">
-                    <button id="menu-sup__busca">Procurar</button>
+                    <!-- <input type="text">
+                    <button id="menu-sup__busca">Procurar</button> -->
                 </li>
             </ul>
             <ul class="menu-sup__usuario">
-                <li><a href="./assets/pages/cadastro.html">Login</a></li>
+                <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
                 <li><a href="./assets/pages/carrinho.html">Carrinho</a></li>
+                <li id="quantidadeCarrinho">0</li>
             </ul>
         </nav>
     </header>
+    <section class="container__acesso">
+        <div class="acesso__planoDeFundo">
+            <div class="acesso__popUp">
+                <div class="acesso__login">
+                    <h2>E_COMMERCE</h2>
+                    <form action="">
+                        <input type="text" id="loginEmail" placeholder="email">
+                        <input type="password" id="loginSenha" placeholder="senha">
+                    </form>
+                    <button>ENTRAR</button>
+                </div>
+                <div class="acesso__cadastro">
+                    <figure>
+                        <img src="" alt="">
+                    </figure>
+                    <a href="./assets/pages/cadastro.html">
+                        <button>CADASTRAR-SE</button>
+                    </a>
+                </div>
+            </div>
+            <button class="popUp__fechar" onclick="fecharPopupAcesso()">fechar</button>
+        </div>
+    </section>
     <main class="conteudo">
         <section class="conteudo__topo">
             <section id="topo__titulo">
