@@ -1,11 +1,5 @@
 import { renderizarProdutos } from './vitrine.js';
-import { somaQuantidades } from "./qtdeItens.js";
-import { abrirPopupAcesso, fecharPopupAcesso } from "./popupAcesso.js";
-
-function quantidadeCarrinhoHeader() {
-    let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
-    quantidadeCarrinho.innerHTML = somaQuantidades;
-}
+import { atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader,abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const categoria = urlParams.get('categoria');
@@ -17,7 +11,11 @@ if (categoria) {
     renderizarProdutos(filtro);
 }
 
-quantidadeCarrinhoHeader()
-
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
+window.abrirPopupPerfil = abrirPopupPerfil;
+window.fecharPopupPerfil = fecharPopupPerfil;
+window.login = login;
+window.logout = logout;

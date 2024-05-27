@@ -93,48 +93,7 @@ footer {
     margin: 25px 50px;
 }
 
-.menu-sup__usuario li button {
-    background-color: #FFFFFF00;
-    cursor: pointer;
-    color: #2135A6;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 12pt;  
-}
-
-.container__acesso {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    display: none;
-}
-
-.container__acesso--exibir {
-    display: flex;
-}
-
-.acesso__planoDeFundo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #FFFFFF90;
-    z-index: 999;
-    padding: 120px 240px;
-}
-
-.acesso__popUp {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background-color: #F2F2F2;
-    width: 100%;
-    height: 100%;
-    border-radius: 24px;
-    position: relative;
-    z-index: 1000;
-    grid-template-areas:
-    "login cadastro";
-}
+/* ------------ POP UP CADASTRO ------------ */
 
 .acesso__popUp button {
     background-color: #4563BF;
@@ -206,21 +165,106 @@ footer {
     grid-area: cadastro;
 }
 
-.popUp__fechar {
-    background-color: #FFFFFF00;
+/* ------------ POP UP PERFIL ------------ */
+
+.acesso__perfil {
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 24px 48px;
+    border-radius: 24px;
+    position: relative;
+    z-index: 1000;
+    font-family: "Roboto", sans-serif;
+}
+
+.acesso__perfil input {
+    background-color: #F2F2F2;
+    border-width: 0;
+}
+
+.acesso__perfil input:not([disabled]) {
+    border-bottom: 1px solid #4563BF;
+    background-color: #F2F2F2;
+}
+
+.acesso__perfil input:focus {
+    outline: none;
+    border-width: 0;
+    border-bottom: 1px solid #4563BF;
+}
+
+.acesso__perfil span {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    position: relative;
-    top: 12px;
-    left: calc(50% - 22px);
-    color: #4563BF;
-    font-family: "Roboto", sans-serif;
+    width: 100%;
+    padding-bottom: 24px;
+    font-size: 12pt;
+}
+
+.acesso__perfil span:last-child {
+padding-top: 36px;
+}
+
+.perfil__label {
     font-weight: 200;
+    font-size: 15pt;
+    color: #4563BF;
+}
+
+.perfil__input {
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15pt;
+    color: #4563BF;
+}
+
+.perfil__input input {
+    background-color: #F2F2F2;
+}
+
+.perfil__input input:not([disabled]) {
+    border: none;
+    border-bottom: 1px solid #4563BF;
+    background-color: #F2F2F2;
+}
+
+.perfil__input input:not(:disabled):focus {
+    border-bottom: 2px solid #4563BF;
+}
+
+.perfil__botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.perfil__botoes button {
+    background-color: #4563BF;
+    width: 300px;
+    height: 36px;
+    border-radius: 12px;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
     font-style: normal;
     font-size: 12pt;
 }
 
-.popUp__fechar:hover {
-    font-weight: 400;
+.perfil__botoes button:hover {
+    background-color: #2135A6;
+}
+
+#botoesLogout {
+    background-color: #D98879;
+}
+
+#botoesLogout:hover {
+    background-color: #b24c3a;
 }

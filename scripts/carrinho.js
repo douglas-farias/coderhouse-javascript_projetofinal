@@ -1,10 +1,4 @@
-import { somaQuantidades } from "./qtdeItens.js";
-import { abrirPopupAcesso, fecharPopupAcesso } from "./popupAcesso.js";
-
-function quantidadeCarrinhoHeader() {
-    let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
-    quantidadeCarrinho.innerHTML = somaQuantidades;
-}
+import { abrirPopupAcesso, fecharPopupAcesso, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
 
 let itensCarrinho = [];
 let somaSubtotalItens = 0;
@@ -98,7 +92,7 @@ function renderizarCarrinho() {
     });
 
     atualizarSubtotalItens();
-    quantidadeCarrinhoHeader();
+    atualizarQuantidadeCarrinhoHeader();
 }
 
 function alterarQuantidade(indice, delta) {
@@ -109,13 +103,16 @@ function alterarQuantidade(indice, delta) {
     localStorage.setItem(`produto_${item.item.id}`, JSON.stringify(item));
 
     renderizarCarrinho();
+    atualizarQuantidadeCarrinhoHeader();
 }
 
 function removerItem(indice) {
     const item = itensCarrinho[indice];
     localStorage.removeItem(`produto_${item.item.id}`);
     itensCarrinho.splice(indice, 1);
+
     renderizarCarrinho();
+    atualizarQuantidadeCarrinhoHeader();
 }
 
 function atualizarSubtotalItens() {
@@ -181,7 +178,10 @@ document.getElementById("inserirCupom").addEventListener("click", function () {
 
 renderizarCarrinho();
 
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
+window.login = login;
+window.logout = logout;
 
 export { itensCarrinho };

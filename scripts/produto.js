@@ -1,10 +1,4 @@
-import { somaQuantidades } from "./qtdeItens.js";
-import { abrirPopupAcesso, fecharPopupAcesso } from "./popupAcesso.js";
-
-function quantidadeCarrinhoHeader() {
-    let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
-    quantidadeCarrinho.innerHTML = somaQuantidades;
-}
+import { abrirPopupAcesso, fecharPopupAcesso, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
 
 // RENDERIZAÇÃO DO PRODUTO SELECIONADO
 
@@ -118,9 +112,34 @@ botaoAdicionarCarrinho.onclick = () => {
     const itemJSON = JSON.stringify(objectItemSelecionado);
 
     localStorage.setItem(`produto_${produtoSelecionado.id}`, itemJSON);
+
+    abrirPopupConclusao()
 }
 
-quantidadeCarrinhoHeader()
+const popupConclusao = document.querySelector(".container__conclusao");
+
+function abrirPopupConclusao() {
+    popupConclusao.classList.add("container__conclusao--exibir");
+}
+
+function fecharPopupContinuar() {
+    popupConclusao.classList.remove("container__conclusao--exibir");
+    window.location.href = `vitrine.html?categoria=categoria${produtoSelecionado.categoria}`;
+}
+
+function fecharPopupVerCarrinho() {
+    popupConclusao.classList.remove("container__conclusao--exibir");
+    window.location.href = "carrinho.html";
+}
+
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
+
+window.fecharPopupContinuar = fecharPopupContinuar;
+window.fecharPopupVerCarrinho = fecharPopupVerCarrinho;
+
+window.login = login;
+window.logout = logout;

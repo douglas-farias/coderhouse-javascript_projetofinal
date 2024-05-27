@@ -21,34 +21,12 @@
                 </li>
             </ul>
             <ul class="menu-sup__usuario">
-                <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
-                <li><a href="carrinho.html">Carrinho</a></li>
-                <li id="quantidadeCarrinho">0</li>
+
             </ul>
         </nav>
     </header>
     <section class="container__acesso">
-        <div class="acesso__planoDeFundo">
-            <div class="acesso__popUp">
-                <div class="acesso__login">
-                    <h2>E_COMMERCE</h2>
-                    <form action="">
-                        <input type="text" id="loginEmail" placeholder="email">
-                        <input type="password" id="loginSenha" placeholder="senha">
-                    </form>
-                    <button>ENTRAR</button>
-                </div>
-                <div class="acesso__cadastro">
-                    <figure>
-                        <img src="" alt="">
-                    </figure>
-                    <a href="./cadastro.html">
-                        <button>CADASTRAR-SE</button>
-                    </a>
-                </div>
-            </div>
-            <button class="popUp__fechar" onclick="fecharPopupAcesso()">fechar</button>
-        </div>
+
     </section>
     <main class="conteudo">
     <!-- <section class="conteudo__imagens">
@@ -85,6 +63,18 @@
             </div>
         </section>
     </main>
+    <section class="container__conclusao">
+        <div class="conclusao__planoDeFundo">
+            <div class="conclusao__popup">
+                <div class="popup__mensagem">
+                    <h2>produto adicionado ao carrinho</h2>
+                    <!-- <h2>ao carrinho</h2> -->
+                </div>
+                <button class="popup__botao" onclick="fecharPopupContinuar()">CONTINUAR COMPRANDO</button>
+                <button class="popup__botao" onclick="fecharPopupVerCarrinho()">VER CARRINHO</button>
+            </div>
+        </div>
+    </section>
     <footer>
         <h5>contato@ecommerce.com</h5>
     </footer>
