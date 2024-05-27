@@ -110,7 +110,6 @@ export function abrirPopupPerfil() {
     `;
     popupPerfil.classList.add("container__acesso--exibir");
 
-    // Definindo a função editarPerfil
     function editarPerfil() {
         const inputsDados = document.querySelectorAll("input.perfil__input");
         const botaoEditar = document.getElementById("botoesEditar");

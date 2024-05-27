@@ -1,5 +1,5 @@
 import { produtosCadastrados } from "./listaProdutos.js";
-import { abrirPopupAcesso, fecharPopupAcesso, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
+import { abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
 
 function renderizarProdutos(filtro, valor) {
     const tituloHead = document.getElementById("tituloHead");
@@ -60,7 +60,8 @@ window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
-
+window.abrirPopupPerfil = abrirPopupPerfil;
+window.fecharPopupPerfil = fecharPopupPerfil;
 window.login = login;
 window.logout = logout;
 

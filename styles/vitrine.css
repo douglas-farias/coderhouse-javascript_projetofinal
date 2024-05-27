@@ -93,6 +93,61 @@ footer {
     margin: 25px 50px;
 }
 
+/* ------------ POP UP GERAL ------------ */
+
+.container__acesso {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    display: none;
+}
+
+.container__acesso--exibir {
+    display: flex;
+}
+
+.acesso__planoDeFundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF90;
+    z-index: 999;
+    padding: 120px 240px;
+}
+
+.acesso__popUp {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #F2F2F2;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    position: relative;
+    z-index: 1000;
+    grid-template-areas:
+    "login cadastro";
+}
+
+.popUp__fechar {
+    background-color: #FFFFFF00;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    top: 12px;
+    left: calc(50% - 22px);
+    color: #4563BF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+.popUp__fechar:hover {
+    font-weight: 400;
+}
+
 /* ------------ POP UP CADASTRO ------------ */
 
 .acesso__popUp button {

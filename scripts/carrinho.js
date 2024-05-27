@@ -1,4 +1,4 @@
-import { abrirPopupAcesso, fecharPopupAcesso, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
+import { abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
 
 let itensCarrinho = [];
 let somaSubtotalItens = 0;
@@ -181,6 +181,8 @@ renderizarCarrinho();
 window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
+window.abrirPopupPerfil = abrirPopupPerfil;
+window.fecharPopupPerfil = fecharPopupPerfil;
 window.login = login;
 window.logout = logout;
 

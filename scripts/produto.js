@@ -1,4 +1,4 @@
-import { abrirPopupAcesso, fecharPopupAcesso, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
+import { abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
 
 // RENDERIZAÇÃO DO PRODUTO SELECIONADO
 
@@ -137,6 +137,9 @@ window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
+
+window.abrirPopupPerfil = abrirPopupPerfil;
+window.fecharPopupPerfil = fecharPopupPerfil;
 
 window.fecharPopupContinuar = fecharPopupContinuar;
 window.fecharPopupVerCarrinho = fecharPopupVerCarrinho;
