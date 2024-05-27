@@ -6,8 +6,11 @@ const formulario = document.getElementsByClassName("conteudo__formulario")[0];
 const usuarioNome = document.getElementById("formulario__nome");
 const usuarioSobrenome = document.getElementById("formulario__sobrenome");
 const usuarioCEP = document.getElementById("formulario__cep");
-const usuarioEndereco = document.getElementById("formulario__endereco");
+const usuarioLogradouro = document.getElementById("formulario__logradouro");
+const usuarioNumero = document.getElementById("formulario__numero");
 const usuarioComplemento = document.getElementById("formulario__complemento");
+const usuarioBairro = document.getElementById("formulario__bairro");
+const usuarioCidadeUf = document.getElementById("formulario__cidadeUf");
 const usuarioEmail = document.getElementById("formulario__email");
 const senhaInput1 = document.getElementById("formulario__senha");
 const senhaInput2 = document.getElementById("formulario__confirmarSenha");
@@ -18,6 +21,21 @@ const senhaAlertaRepetir = document.getElementById("formulario__alertaSenhaRepet
 const botaoCadastrar = document.getElementById("formulario__botaoCadastrar");
 
 // FUNÇÕES
+const preencherEndereco = (resultadoBusca) => {
+    usuarioLogradouro.value = resultadoBusca.logradouro;
+    usuarioBairro.value = resultadoBusca.bairro;
+    usuarioCidadeUf.value = `${resultadoBusca.localidade}, ${resultadoBusca.uf}`;
+}
+
+const buscarCep = async () => {
+    const url = `http://viacep.com.br/ws/${usuarioCEP.value}/json/`;
+    const promisseViaCep = await fetch(url);
+    const resultadoBusca = await promisseViaCep.json();
+    preencherEndereco(resultadoBusca);
+}
+
+usuarioCEP.addEventListener("focusout", buscarCep);
+
 function inicializarFormulario() {
     camposObrigatorios.forEach(campo => {
         campo.addEventListener("input", validarFormulario);
@@ -62,9 +80,11 @@ function cadastrarUsuario(evento) {
         id: gerarID(),
         nome: usuarioNome.value,
         sobrenome: usuarioSobrenome.value,
-        endereco: usuarioEndereco.value,
-        complemento: usuarioComplemento.value,
         cep: usuarioCEP.value,
+        endereco: `${usuarioLogradouro.value}, ${usuarioNumero.value}`,
+        complemento: usuarioComplemento.value.trim() || "-",
+        bairro: usuarioBairro.value,
+        cidadeUF: usuarioCidadeUf.value,
         email: usuarioEmail.value,
         senha: senhaInput1.value,
         login: true,

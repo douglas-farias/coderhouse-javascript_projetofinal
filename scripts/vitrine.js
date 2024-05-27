@@ -1,5 +1,5 @@
 import { produtosCadastrados } from "./listaProdutos.js";
-import { abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
+import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
 function renderizarProdutos(filtro, valor) {
     const tituloHead = document.getElementById("tituloHead");
@@ -55,13 +55,16 @@ if (categoria) {
     renderizarProdutos(filtro);
 };
 
-window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+
 
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
+
 window.abrirPopupPerfil = abrirPopupPerfil;
 window.fecharPopupPerfil = fecharPopupPerfil;
+
 window.login = login;
 window.logout = logout;
 

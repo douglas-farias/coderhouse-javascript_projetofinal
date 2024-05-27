@@ -1,5 +1,5 @@
 import { renderizarProdutos } from './vitrine.js';
-import { atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
+import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const categoria = urlParams.get('categoria');
@@ -11,11 +11,14 @@ if (categoria) {
     renderizarProdutos(filtro);
 }
 
-window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;
+
 window.abrirPopupPerfil = abrirPopupPerfil;
 window.fecharPopupPerfil = fecharPopupPerfil;
+
 window.login = login;
 window.logout = logout;

@@ -1,4 +1,4 @@
-import { abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, atualizarUsuarioLogadoHeader, atualizarQuantidadeCarrinhoHeader, login, logout } from "./domUtils.js";
+import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
 // RENDERIZAÇÃO DO PRODUTO SELECIONADO
 
@@ -132,8 +132,8 @@ function fecharPopupVerCarrinho() {
     window.location.href = "carrinho.html";
 }
 
-window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
 
 window.abrirPopupAcesso = abrirPopupAcesso;
 window.fecharPopupAcesso = fecharPopupAcesso;

@@ -121,7 +121,7 @@ export function abrirPopupPerfil() {
             usuarioLogado.nome = document.getElementById('inputNome').value;
             usuarioLogado.sobrenome = document.getElementById('inputSobrenome').value;
             usuarioLogado.endereco = document.getElementById('inputEndereco').value;
-            usuarioLogado.complemento = document.getElementById('inputComplemento').value;
+            usuarioLogado.complemento = document.getElementById('inputComplemento').value.trim() || "-";
             usuarioLogado.cep = document.getElementById('inputCep').value;
 
             localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
