@@ -1,12 +1,14 @@
 export function atualizarQuantidadeCarrinhoHeader() {
     let somaQuantidades = 0;
 
-    for (let i = 0; i < localStorage.length; i++) {
-        let chave = localStorage.key(i);
-        if (chave.startsWith("produto_")) {
-            const itemString = localStorage.getItem(chave);
-            const item = JSON.parse(itemString);
-            somaQuantidades += parseInt(item.quantidadeItem);
+    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
+    let carrinhoTemp = JSON.parse(localStorage.getItem("carrinhoTemp")) || [];
+
+    if (usuarioLogado) {
+        somaQuantidades = usuarioLogado.carrinho.reduce((total, item) => total + parseInt(item.quantidadeItem), 0);
+    } else {
+        for (let i = 0; i < carrinhoTemp.length; i++) {
+            somaQuantidades += parseInt(carrinhoTemp[i].quantidadeItem);
         }
     }
 
@@ -24,13 +26,13 @@ export function atualizarUsuarioLogadoHeader() {
         menuSupUsuario.innerHTML=`
         <li><button onclick="abrirPopupPerfil()">Perfil</button></li>
             <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
-            <li id="quantidadeCarrinho">0</li>
+            <!-- <li id="quantidadeCarrinho">0</li> -->
         `;
     } else {
         menuSupUsuario.innerHTML=`
             <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
             <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
-            <li id="quantidadeCarrinho">0</li>
+            <!-- <li id="quantidadeCarrinho">0</li> -->
         `;
     }
 };
@@ -150,14 +152,23 @@ export function login() {
     const loginSenha = document.getElementById("loginSenha");
     const alertaDadosInvalidos = document.getElementById("acesso__alertaDadosInvalidos");
 
-    let usuarios = localStorage.getItem("usuarios");
-    usuarios = JSON.parse(usuarios);
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     const usuarioAcesso = usuarios.find((u) => u.email === loginEmail.value);
 
     if(usuarioAcesso && usuarioAcesso.senha === loginSenha.value) {
+        let carrinhoTemp = JSON.parse(localStorage.getItem('carrinhoTemp')) || [];
+        
+        if (carrinhoTemp.length > 0) {
+            usuario.carrinho = [...usuario.carrinho, ...carrinhoTemp];
+            localStorage.removeItem('carrinhoTemp');
+        };
+
         usuarioAcesso.login = true;
+
         localStorage.setItem("usuarioLogado", JSON.stringify(usuarioAcesso));
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
         alertaDadosInvalidos.innerText = "";
         window.location.reload();
     } else {

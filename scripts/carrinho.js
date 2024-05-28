@@ -14,16 +14,11 @@ const listaCupons = [
 ];
 
 function obterCarrinho() {
-    itensCarrinho = [];
+    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
+    let carrinhoTemp = JSON.parse(localStorage.getItem("carrinhoTemp")) || [];
 
-    for (let i = 0; i < localStorage.length; i++) {
-        let chave = localStorage.key(i);
-        if (chave.startsWith("produto_")) {
-            const itemString = localStorage.getItem(chave);
-            const item = JSON.parse(itemString);
-            itensCarrinho.push(item);
-        }
-    }
+    usuarioLogado ? itensCarrinho = usuarioLogado.carrinho : itensCarrinho = carrinhoTemp;
+
     return itensCarrinho;
 }
 
@@ -32,6 +27,7 @@ obterCarrinho();
 function renderizarCarrinho() {
     const containerLista = document.getElementsByClassName("conteudo__lista")[0];
     containerLista.innerHTML = "";
+    const botaoFinalizarCompra = document.getElementById("finalizarCompras");
 
     if (itensCarrinho.length === 0) {
         const mensagemCarrinhoVazio = document.createElement("div");
@@ -116,6 +112,7 @@ function removerItem(indice) {
 
     renderizarCarrinho();
     atualizarQuantidadeCarrinhoHeader();
+    habilitarBotaoFinalizar()
 }
 
 function atualizarSubtotalItens() {
@@ -144,6 +141,35 @@ function obterCumpomDesconto() {
     obterFreteSelecionado();
 };
 
+function calcularDataEntrega(opcaoFrete) {
+    const previsaoEntrega = document.getElementById("previsaoEntrega");
+    previsaoEntrega.innerHTML = "";
+    
+    const dataAtual = new Date();
+
+    const diasFrete = {
+        padrao: { min: 10, max: 15 },
+        expressa: { min: 3, max: 5 }
+    };
+
+    const dataEntregaMin = new Date(dataAtual);
+    dataEntregaMin.setDate(dataAtual.getDate() + diasFrete[opcaoFrete].min);
+
+    const dataEntregaMax = new Date(dataAtual);
+    dataEntregaMax.setDate(dataAtual.getDate() + diasFrete[opcaoFrete].max);
+
+    const formatoData = (data) => {
+        const dia = String(data.getDate()).padStart(2, '0');
+        const mes = String(data.getMonth() + 1).padStart(2, '0');
+        return `${dia}/${mes}`;
+    };
+
+    const dataEntregaMinFormatada = formatoData(dataEntregaMin);
+    const dataEntregaMaxFormatada = formatoData(dataEntregaMax);
+
+    previsaoEntrega.innerHTML = `${dataEntregaMinFormatada} a ${dataEntregaMaxFormatada}.`;
+};
+
 function obterFreteSelecionado() {
     const freteSelecionado = document.querySelector('input[name="opcaoFrete"]:checked');
     const subtotalFrete = document.getElementById("somaValores__valorFrete");
@@ -156,14 +182,13 @@ function obterFreteSelecionado() {
         subtotalFrete.innerHTML = `R$&nbsp0,00`;
     }
 
+    calcularDataEntrega(freteSelecionado.id === "fretePadrao" ? "padrao" : "expressa");
     atualizarTotalCompra(valorFrete);
 }
 
 function preencherEndereco() {
     const usuarioEndereco = document.querySelectorAll("h4.endereco__dados");
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-    console.log(usuarioLogado)
 
     let dadosEndereco = document.getElementById("dadosEndereco");
     let dadosComplemento = document.getElementById("dadosComplemento");
@@ -192,14 +217,46 @@ document.getElementById("limparCarrinho").addEventListener("click", function () 
     localStorage.clear();
     obterCarrinho();
     renderizarCarrinho();
+    habilitarBotaoFinalizar()
 });
 
 document.getElementById("inserirCupom").addEventListener("click", function () {
     obterCumpomDesconto();
 })
 
+function habilitarBotaoFinalizar() {
+    const botaoFinalizarCompra = document.getElementById("finalizarCompra");
+    (itensCarrinho.length === 0) ? botaoFinalizarCompra.setAttribute("disabled", "disabled") : botaoFinalizarCompra.removeAttribute("disabled");
+}
+const popupConclusao = document.querySelector(".container__conclusao");
+
+function abrirPopupConclusao() {
+    let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    
+    if (usuarioLogado) {
+        popupConclusao.classList.add("container__conclusao--exibir");
+
+        usuarioLogado.carrinho = [];
+        
+        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        let indiceUsuario = usuarios.findIndex(u => u.email === usuarioLogado.email);
+        usuarios[indiceUsuario] = usuarioLogado;
+        
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    } else {
+        abrirPopupAcesso();
+    };
+};
+
+function fecharPopupConclusao() {
+    popupConclusao.classList.remove("container__conclusao--exibir");
+    window.location.href = "/index.html";
+};
+
 renderizarCarrinho();
-preencherEndereco()
+preencherEndereco();
+habilitarBotaoFinalizar();
 
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
@@ -212,5 +269,15 @@ window.fecharPopupPerfil = fecharPopupPerfil;
 
 window.login = login;
 window.logout = logout;
+
+window.abrirPopupConclusao = abrirPopupConclusao;
+window.fecharPopupConclusao = fecharPopupConclusao;
+
+document.querySelectorAll('input[name="opcaoFrete"]').forEach(radio => {
+    radio.addEventListener("change", function() {
+        calcularDataEntrega(this.value);
+    });
+});
+
 
 export { itensCarrinho };

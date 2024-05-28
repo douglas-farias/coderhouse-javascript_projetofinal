@@ -24,12 +24,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding: 0 60px;
 }
 
 /* ------------ HEADER ------------ */
 
 header {
-    margin: 25px 50px; 
+    margin: 25px; 
 }
 
 nav {
@@ -75,7 +76,6 @@ nav ul li {
     "titulo ofertasAlgumas"
     "loja ofertasAlgumas";
     height: calc(92vh - 25px);
-    padding: 20px;
 }
 
 #topo__titulo {
@@ -141,12 +141,12 @@ nav ul li {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .vitrine__titulo {
     display: flex;
-    padding: 20px;
+    padding: 20px 0;
     align-items: center;
     justify-content: end;
 }
@@ -174,7 +174,7 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     align-content: center;
-    margin: 25px 50px;
+    margin: 25px 0;
 }
 
 /* ------------ POP UP GERAL ------------ */

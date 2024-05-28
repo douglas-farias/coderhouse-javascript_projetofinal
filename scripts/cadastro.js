@@ -70,11 +70,13 @@ function gerarID() {
     const proximoID = ultimoID + 1;
     localStorage.setItem("ultimoID", proximoID);
 
-    return `u-${proximoID.toString().padStart(4,"0")}`;
+    return `u${proximoID.toString().padStart(4,"0")}`;
 }
 
 function cadastrarUsuario(evento) {
     evento.preventDefault();
+
+    let carrinhoUsuario = [];
 
     const usuario = {
         id: gerarID(),
@@ -88,6 +90,7 @@ function cadastrarUsuario(evento) {
         email: usuarioEmail.value,
         senha: senhaInput1.value,
         login: true,
+        carrinho: carrinhoUsuario,
     };
 
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];

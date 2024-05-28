@@ -1,5 +1,5 @@
 import { renderizarProdutos } from './vitrine.js';
-import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
+import { atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, atualizarQuantidadeCarrinhoHeader } from "./domUtils.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const categoria = urlParams.get('categoria');

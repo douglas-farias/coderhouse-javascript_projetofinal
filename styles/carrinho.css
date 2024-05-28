@@ -10,7 +10,7 @@
 }
 
 a {
-    color: #000000;
+    color: #2135A6;
 }
 
 button {
@@ -35,10 +35,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding: 0 60px;
 }
 
 header {
-    margin: 25px 50px; 
+    margin: 25px 0; 
 }
 
 nav {
@@ -64,10 +65,18 @@ nav ul li {
     margin-right: 20px;
 }
 
+.menu-sup__usuario li button {
+    background-color: #FFFFFF00;
+    cursor: pointer;
+    color: #2135A6;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;  
+}
+
 main {
     display: grid;
     grid-template-columns: 9fr 3fr;
-    padding: 0 60px;
     gap: 20px;
     grid-template-areas:
     "titulo titulo"
@@ -427,7 +436,9 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     align-content: center;
-    margin: 25px 50px;
+    margin: 25px 0;
+    color: #2135A6;
+    font-family: "Roboto", sans-serif;
 }
 
 /* ------------ POP UP GERAL ------------ */
@@ -659,4 +670,74 @@ padding-top: 36px;
 
 #botoesLogout:hover {
     background-color: #b24c3a;
+}
+
+/* ------------ POP UP CONCLUSÃO ------------ */
+
+.container__conclusao {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    display: none;
+}
+
+.container__conclusao--exibir {
+    display: flex;
+}
+
+.conclusao__planoDeFundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF90;
+    z-index: 999;
+    padding: 240px 480px;
+}
+
+.conclusao__popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F2F2F2;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    padding: 24px;
+    position: relative;
+    z-index: 1000;
+}
+
+.popup__mensagem {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-top: 48px;
+}
+
+.popup__mensagem h2 {
+    font-weight: 300;
+    font-style: normal;
+    font-size: 24pt;
+    align-self: center;
+}
+
+.popup__botao {
+    background-color: #4563BF;
+    padding: 5px 0;
+    width: 300px;
+    height: 36px;
+    border-radius: 12px;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+
+.acesso__popUp button:hover {
+    background-color: #2135A6;
 }

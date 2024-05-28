@@ -52,18 +52,18 @@ let produtoSelecionado = "";
     
 renderizarItem(produtoSelecionado);
 
-    // BOTÃO DE QUANTIDADE E VISUALIZADOR DE SUBTOTAL
+// BOTÃO DE QUANTIDADE E VISUALIZADOR DE SUBTOTAL
 
-    let opcoesResultadoSubtotal = [];
+let opcoesResultadoSubtotal = [];
 
-    function calculoSubtotal() {
-        let subtotalFloat = (quantidadeItem.innerText * produtoSelecionado.precoFloat).toFixed(2)
+function calculoSubtotal() {
+    let subtotalFloat = (quantidadeItem.innerText * produtoSelecionado.precoFloat).toFixed(2)
 
-        opcoesResultadoSubtotal[0] = subtotalFloat.toString().replace(".",",");
-        opcoesResultadoSubtotal[1] = parseFloat(subtotalFloat);
+    opcoesResultadoSubtotal[0] = subtotalFloat.toString().replace(".",",");
+    opcoesResultadoSubtotal[1] = parseFloat(subtotalFloat);
 
-        return opcoesResultadoSubtotal;
-    }
+    return opcoesResultadoSubtotal;
+}
 
 let quantidadeItem = document.getElementById("quantidade__qtde");
 let quantidadeItemFormatado = parseInt(quantidadeItem.innerText);
@@ -109,9 +109,16 @@ const objectItemSelecionado = {
 botaoAdicionarCarrinho.onclick = () => {
     objectItemSelecionado.quantidadeItem = quantidadeItem.innerText;
 
-    const itemJSON = JSON.stringify(objectItemSelecionado);
+    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
+    let carrinhoTemp = JSON.parse(localStorage.getItem("carrinhoTemp")) || [];
 
-    localStorage.setItem(`produto_${produtoSelecionado.id}`, itemJSON);
+    if (usuarioLogado) {
+        usuarioLogado.carrinho.push(objectItemSelecionado)
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+    } else {
+        carrinhoTemp.push(objectItemSelecionado);
+        localStorage.setItem("carrinhoTemp", JSON.stringify(carrinhoTemp));
+    };
 
     abrirPopupConclusao()
 }

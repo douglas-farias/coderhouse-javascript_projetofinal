@@ -78,13 +78,13 @@
                     <tr id="fretePadrao">
                         <td><input type="radio" name="opcaoFrete" value="5" checked></td>
                         <td>PADRÃO</td>
-                        <td>10 a 15 dias úteis</td>
+                        <td>10 a 15 dias</td>
                         <td>R$ 5,00</td>
                     </tr>
                     <tr id="freteExpresso">
                         <td><input type="radio" name="opcaoFrete" value="10"></td>
-                        <td>EXPRESSO</td>
-                        <td>3 a 5 dias úteis</td>
+                        <td>EXPRESSO</td>   
+                        <td>3 a 5 dias</td>
                         <td>R$ 10,00</td>
                     </tr>
                 </table>
@@ -114,7 +114,19 @@
             </div>
             <div class="resumo__botoes">
                 <button id="limparCarrinho">LIMPAR</button>
-                <button id="finalizarCompra">FINALIZAR</button>
+                <button id="finalizarCompra" onclick="abrirPopupConclusao()" disabled>FINALIZAR</button>
+            </div>
+        </section>
+        <section class="container__conclusao">
+            <div class="conclusao__planoDeFundo">
+                <div class="conclusao__popup">
+                    <div class="popup__mensagem">
+                        <h2>COMPRA FINALIZADA</h2>
+                        <h2>PREVISÃO DE ENTREGA</h2>
+                        <h2 id="previsaoEntrega"></h2>
+                    </div>
+                    <button class="popup__botao" onclick="fecharPopupConclusao()">VOLTAR PARA A HOME</button>
+                </div>
             </div>
         </section>
     </main>

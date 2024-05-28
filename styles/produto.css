@@ -20,7 +20,7 @@ button {
 }
 
 a {
-    color: #000000;
+    color: #2135A6;
 }
 
 body {
@@ -34,12 +34,13 @@ body {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
+    padding: 0 60px;
 }
 
 /* ------------ HEADER ------------ */
 
 header {
-    margin: 24px 60px; 
+    margin: 24px 0; 
 }
 
 nav {
@@ -226,7 +227,7 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
     align-content: center;
-    margin: 24px 60px;
+    margin: 24px 0;
     margin-top: auto;
 }
 
