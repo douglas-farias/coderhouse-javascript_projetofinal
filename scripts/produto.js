@@ -42,14 +42,14 @@ const urlParams = new URLSearchParams(window.location.search);
 const itemID = urlParams.get('id');
 
 let produtoSelecionado = "";
-    for (const chave in produtosCadastrados) {
-        const produto = produtosCadastrados[chave].find(prod => prod.id === itemID);
-        if (produto) {
-            produtoSelecionado = produto;
-            break;
-        }
+for (const chave in produtosCadastrados) {
+    const produto = produtosCadastrados[chave].find(prod => prod.id === itemID);
+    if (produto) {
+        produtoSelecionado = produto;
+        break;
     }
-    
+}
+
 renderizarItem(produtoSelecionado);
 
 // BOTÃO DE QUANTIDADE E VISUALIZADOR DE SUBTOTAL
@@ -57,9 +57,9 @@ renderizarItem(produtoSelecionado);
 let opcoesResultadoSubtotal = [];
 
 function calculoSubtotal() {
-    let subtotalFloat = (quantidadeItem.innerText * produtoSelecionado.precoFloat).toFixed(2)
+    let subtotalFloat = (quantidadeItem.innerText * produtoSelecionado.precoFloat).toFixed(2);
 
-    opcoesResultadoSubtotal[0] = subtotalFloat.toString().replace(".",",");
+    opcoesResultadoSubtotal[0] = subtotalFloat.toString().replace(".", ",");
     opcoesResultadoSubtotal[1] = parseFloat(subtotalFloat);
 
     return opcoesResultadoSubtotal;
@@ -71,12 +71,12 @@ let quantidadeItemFormatado = parseInt(quantidadeItem.innerText);
 let botaoSubtrair1 = document.getElementById("quantidade__subtrair1");
 let botaoSomar1 = document.getElementById("quantidade__somar1");
 
-function verficadorQuantidade(){
-    if (quantidadeItemFormatado === 1 ) {
+function verficadorQuantidade() {
+    if (quantidadeItemFormatado === 1) {
         botaoSubtrair1.setAttribute("disabled", "disabled");
     } else {
         botaoSubtrair1.removeAttribute("disabled");
-    };
+    }
 }
 
 botaoSubtrair1.onclick = () => {
@@ -84,7 +84,7 @@ botaoSubtrair1.onclick = () => {
     quantidadeItem.innerText = quantidadeItemFormatado;
     verficadorQuantidade();
 
-    subtotal.innerHTML = `R$&nbsp${calculoSubtotal()[0]}`
+    subtotal.innerHTML = `R$&nbsp${calculoSubtotal()[0]}`;
 };
 
 botaoSomar1.onclick = () => {
@@ -107,20 +107,34 @@ const objectItemSelecionado = {
 };
 
 botaoAdicionarCarrinho.onclick = () => {
-    objectItemSelecionado.quantidadeItem = quantidadeItem.innerText;
+    objectItemSelecionado.quantidadeItem = parseInt(quantidadeItem.innerText);
 
     let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
     let carrinhoTemp = JSON.parse(localStorage.getItem("carrinhoTemp")) || [];
 
     if (usuarioLogado) {
-        usuarioLogado.carrinho.push(objectItemSelecionado)
+        let itemExistente = usuarioLogado.carrinho.find(item => item.item.id === objectItemSelecionado.item.id);
+
+        if (itemExistente) {
+            itemExistente.quantidadeItem += objectItemSelecionado.quantidadeItem;
+        } else {
+            usuarioLogado.carrinho.push(objectItemSelecionado);
+        }
+
         localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
     } else {
-        carrinhoTemp.push(objectItemSelecionado);
-        localStorage.setItem("carrinhoTemp", JSON.stringify(carrinhoTemp));
-    };
+        let itemExistente = carrinhoTemp.find(item => item.item.id === objectItemSelecionado.item.id);
 
-    abrirPopupConclusao()
+        if (itemExistente) {
+            itemExistente.quantidadeItem += objectItemSelecionado.quantidadeItem;
+        } else {
+            carrinhoTemp.push(objectItemSelecionado);
+        }
+
+        localStorage.setItem("carrinhoTemp", JSON.stringify(carrinhoTemp));
+    }
+
+    abrirPopupConclusao();
 }
 
 const popupConclusao = document.querySelector(".container__conclusao");

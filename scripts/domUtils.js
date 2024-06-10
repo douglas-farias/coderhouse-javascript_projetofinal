@@ -1,3 +1,22 @@
+export function atualizarUsuarioLogadoHeader() {
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    const menuSupUsuario = document.querySelector(".menu-sup__usuario");
+
+    if (usuarioLogado) {
+        menuSupUsuario.innerHTML=`
+        <li><button onclick="abrirPopupPerfil()">Perfil</button></li>
+            <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
+            <li id="quantidadeCarrinho">0</li>
+        `;
+    } else {
+        menuSupUsuario.innerHTML=`
+            <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
+            <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
+            <li id="quantidadeCarrinho">0</li>
+        `;
+    }
+};
+
 export function atualizarQuantidadeCarrinhoHeader() {
     let somaQuantidades = 0;
 
@@ -14,26 +33,7 @@ export function atualizarQuantidadeCarrinhoHeader() {
 
     let quantidadeCarrinho = document.getElementById("quantidadeCarrinho");
     if (quantidadeCarrinho) {
-        quantidadeCarrinho.innerHTML = somaQuantidades;
-    }
-};
-
-export function atualizarUsuarioLogadoHeader() {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    const menuSupUsuario = document.querySelector(".menu-sup__usuario");
-
-    if (usuarioLogado) {
-        menuSupUsuario.innerHTML=`
-        <li><button onclick="abrirPopupPerfil()">Perfil</button></li>
-            <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
-            <!-- <li id="quantidadeCarrinho">0</li> -->
-        `;
-    } else {
-        menuSupUsuario.innerHTML=`
-            <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
-            <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
-            <!-- <li id="quantidadeCarrinho">0</li> -->
-        `;
+        quantidadeCarrinho.innerText = somaQuantidades;
     }
 };
 
@@ -160,7 +160,7 @@ export function login() {
         let carrinhoTemp = JSON.parse(localStorage.getItem('carrinhoTemp')) || [];
         
         if (carrinhoTemp.length > 0) {
-            usuario.carrinho = [...usuario.carrinho, ...carrinhoTemp];
+            usuarioAcesso.carrinho = [...usuarioAcesso.carrinho, ...carrinhoTemp];
             localStorage.removeItem('carrinhoTemp');
         };
 
@@ -185,6 +185,6 @@ export function logout() {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    atualizarUsuarioLogadoHeader(); 
     atualizarQuantidadeCarrinhoHeader();
-    atualizarUsuarioLogadoHeader();
 });

@@ -27,7 +27,10 @@ body {
 }
 
 header {
-    margin: 25px; 
+    margin-top: 25px;
+    margin-right: 25px;
+    /* [disabled]margin-left: 25px; */
+    margin-bottom: 25px;
 }
 
 nav {
@@ -50,7 +53,7 @@ nav ul {
 }
 
 nav ul li {
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .menu-sup__usuario li button {
@@ -62,18 +65,12 @@ nav ul li {
     font-size: 12pt;  
 }
 
-main {
-    padding: 20px 0;
-}
-
 #conteudo__titulo {
-    background-color: #F2F2F2;
+    color: #000000;
     font-family: "Roboto", sans-serif;
-    font-weight: 900;
+    font-weight: 700;
     font-style: normal;
-    font-size: 20pt;
-    border-radius: 14px;
-    padding: 20px;
+    font-size: 24pt;
     margin-bottom: 20px;
 }
 

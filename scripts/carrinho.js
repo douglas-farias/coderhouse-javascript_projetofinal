@@ -1,6 +1,6 @@
 import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
-atualizarQuantidadeCarrinhoHeader()
+atualizarQuantidadeCarrinhoHeader();
 
 let itensCarrinho = [];
 let somaSubtotalItens = 0;
@@ -13,21 +13,31 @@ const listaCupons = [
     { codigo: "CUPOM50", valor: 0.5 },
 ];
 
+let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
+
 function obterCarrinho() {
-    let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
     let carrinhoTemp = JSON.parse(localStorage.getItem("carrinhoTemp")) || [];
-
-    usuarioLogado ? itensCarrinho = usuarioLogado.carrinho : itensCarrinho = carrinhoTemp;
-
+    itensCarrinho = usuarioLogado ? usuarioLogado.carrinho : carrinhoTemp;
     return itensCarrinho;
 }
 
 obterCarrinho();
 
+function salvarCarrinho() {
+    if (usuarioLogado) {
+        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        let indiceUsuario = usuarios.findIndex(u => u.email === usuarioLogado.email);
+        usuarios[indiceUsuario].carrinho = itensCarrinho;
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+    } else {
+        localStorage.setItem('carrinhoTemp', JSON.stringify(itensCarrinho));
+    }
+}
+
 function renderizarCarrinho() {
     const containerLista = document.getElementsByClassName("conteudo__lista")[0];
     containerLista.innerHTML = "";
-    const botaoFinalizarCompra = document.getElementById("finalizarCompras");
 
     if (itensCarrinho.length === 0) {
         const mensagemCarrinhoVazio = document.createElement("div");
@@ -72,7 +82,7 @@ function renderizarCarrinho() {
         botao.addEventListener('click', function () {
             const indice = this.getAttribute('data-index');
             alterarQuantidade(indice, -1);
-            atualizarQuantidadeCarrinhoHeader()
+            atualizarQuantidadeCarrinhoHeader();
         });
     });
 
@@ -80,7 +90,7 @@ function renderizarCarrinho() {
         botao.addEventListener('click', function () {
             const indice = this.getAttribute('data-index');
             alterarQuantidade(indice, 1);
-            atualizarQuantidadeCarrinhoHeader()
+            atualizarQuantidadeCarrinhoHeader();
         });
     });
 
@@ -88,11 +98,11 @@ function renderizarCarrinho() {
         botao.addEventListener('click', function () {
             const indice = this.getAttribute('data-index');
             removerItem(indice);
-            atualizarQuantidadeCarrinhoHeader()
+            atualizarQuantidadeCarrinhoHeader();
         });
     });
 
-    atualizarSubtotalItens();
+    atualizarSubtotalItens();   
 }
 
 function alterarQuantidade(indice, delta) {
@@ -100,19 +110,17 @@ function alterarQuantidade(indice, delta) {
     item.quantidadeItem = Math.max(1, parseInt(item.quantidadeItem) + delta);
     item.subtotal = item.quantidadeItem * item.item.precoFloat;
 
-    localStorage.setItem(`produto_${item.item.id}`, JSON.stringify(item));
-
+    salvarCarrinho();
     renderizarCarrinho();
 }
 
 function removerItem(indice) {
-    const item = itensCarrinho[indice];
-    localStorage.removeItem(`produto_${item.item.id}`);
     itensCarrinho.splice(indice, 1);
 
+    salvarCarrinho();
     renderizarCarrinho();
     atualizarQuantidadeCarrinhoHeader();
-    habilitarBotaoFinalizar()
+    habilitarBotaoFinalizar();
 }
 
 function atualizarSubtotalItens() {
@@ -136,10 +144,10 @@ function obterCumpomDesconto() {
     } else {
         inputCupom.value = "CÓDIGO INVÁLIDO";
         descontoHTML.innerHTML = `R$&nbsp0,00`;
-    };
+    }
 
     obterFreteSelecionado();
-};
+}
 
 function calcularDataEntrega(opcaoFrete) {
     const previsaoEntrega = document.getElementById("previsaoEntrega");
@@ -168,7 +176,7 @@ function calcularDataEntrega(opcaoFrete) {
     const dataEntregaMaxFormatada = formatoData(dataEntregaMax);
 
     previsaoEntrega.innerHTML = `${dataEntregaMinFormatada} a ${dataEntregaMaxFormatada}.`;
-};
+}
 
 function obterFreteSelecionado() {
     const freteSelecionado = document.querySelector('input[name="opcaoFrete"]:checked');
@@ -200,7 +208,7 @@ function preencherEndereco() {
         dadosCep.innerText = usuarioLogado.cep;
     } else {
         usuarioEndereco.innterText = "";
-    };
+    }
 }
 
 function atualizarTotalCompra(valorFrete) {
@@ -214,20 +222,25 @@ document.querySelectorAll('input[name="opcaoFrete"]').forEach(radio => {
 });
 
 document.getElementById("limparCarrinho").addEventListener("click", function () {
-    localStorage.clear();
+    localStorage.removeItem("carrinhoTemp");
+    if (usuarioLogado) {
+        usuarioLogado.carrinho = [];
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
+    }
     obterCarrinho();
     renderizarCarrinho();
-    habilitarBotaoFinalizar()
+    habilitarBotaoFinalizar();
 });
 
 document.getElementById("inserirCupom").addEventListener("click", function () {
     obterCumpomDesconto();
-})
+});
 
 function habilitarBotaoFinalizar() {
     const botaoFinalizarCompra = document.getElementById("finalizarCompra");
     (itensCarrinho.length === 0) ? botaoFinalizarCompra.setAttribute("disabled", "disabled") : botaoFinalizarCompra.removeAttribute("disabled");
 }
+
 const popupConclusao = document.querySelector(".container__conclusao");
 
 function abrirPopupConclusao() {
@@ -246,13 +259,13 @@ function abrirPopupConclusao() {
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
     } else {
         abrirPopupAcesso();
-    };
-};
+    }
+}
 
 function fecharPopupConclusao() {
     popupConclusao.classList.remove("container__conclusao--exibir");
     window.location.href = "/index.html";
-};
+}
 
 renderizarCarrinho();
 preencherEndereco();
@@ -278,6 +291,5 @@ document.querySelectorAll('input[name="opcaoFrete"]').forEach(radio => {
         calcularDataEntrega(this.value);
     });
 });
-
 
 export { itensCarrinho };
