@@ -64,6 +64,10 @@ nav ul li {
     margin-left: 20px;
 }
 
+nav ul li:last-child {
+    margin-left: 0;
+}
+
 .menu-sup__usuario li button {
     background-color: #FFFFFF;
     cursor: pointer;

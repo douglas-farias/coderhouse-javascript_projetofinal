@@ -184,6 +184,15 @@ main {
 }
 
 #formulario__alertaSenhaRepetir {
+    margin: -10px 0 10px 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 9pt;
+}
+
+#formulario__alertaEmailRepetido {
+    margin: -10px 0 10px 0;
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;

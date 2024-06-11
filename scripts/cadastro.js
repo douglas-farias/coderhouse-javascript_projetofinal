@@ -18,6 +18,7 @@ const senhaInput2 = document.getElementById("formulario__confirmarSenha");
 const camposObrigatorios = Array.from(formulario.querySelectorAll("input[required]"));
 
 const senhaAlertaRepetir = document.getElementById("formulario__alertaSenhaRepetir");
+const emailAltertaRepetido = document.getElementById("formulario__alertaEmailRepetido");
 const botaoCadastrar = document.getElementById("formulario__botaoCadastrar");
 
 // FUNÇÕES
@@ -45,6 +46,15 @@ function inicializarFormulario() {
 }
 
 function validarFormulario() {
+    let emailInserido = usuarioEmail.value;
+
+    let usuariosJSON = JSON.parse(localStorage.getItem("usuarios"));
+    let usuarioEncontrado = usuariosJSON.find(usuario => usuario.email === emailInserido);
+
+    if (usuariosJSON) {
+        !usuarioEncontrado ? emailAltertaRepetido.innerText = "" : emailAltertaRepetido.innerText = "Email já cadastrado.";
+    };
+
     let formularioPreenchido = true;
     let senhasRepetidas = senhaInput1.value === senhaInput2.value;
 
@@ -56,7 +66,7 @@ function validarFormulario() {
 
     senhasRepetidas ? senhaAlertaRepetir.innerText = "" : senhaAlertaRepetir.innerText = "As senhas digitadas não coincidem."; 
 
-    (formularioPreenchido && senhasRepetidas) ? botaoCadastrar.removeAttribute("disabled") : botaoCadastrar.setAttribute("disabled", "disabled");
+    (formularioPreenchido && !usuarioEncontrado && senhasRepetidas) ? botaoCadastrar.removeAttribute("disabled") : botaoCadastrar.setAttribute("disabled", "disabled");
 }
 
 function gerarID() {

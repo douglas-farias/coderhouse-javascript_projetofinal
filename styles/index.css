@@ -30,10 +30,7 @@ body {
 /* ------------ HEADER ------------ */
 
 header {
-    margin-top: 25px;
-    margin-right: 25px;
-    /* [disabled]margin-left: 25px; */
-    margin-bottom: 25px;
+    margin: 25px 0; 
 }
 
 nav {
@@ -52,15 +49,18 @@ nav div {
 nav ul {
     display: flex;
     flex-direction: row;
-    margin-right: -20px;
 }
 
 nav ul li {
     margin-left: 20px;
 }
 
+nav ul li:last-child {
+    margin-left: 0;
+}
+
 .menu-sup__usuario li button {
-    background-color: #FFFFFF00;
+    background-color: #FFFFFF;
     cursor: pointer;
     color: #2135A6;
     font-weight: 400;

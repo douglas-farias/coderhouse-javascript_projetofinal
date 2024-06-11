@@ -5,14 +5,14 @@ export function atualizarUsuarioLogadoHeader() {
     if (usuarioLogado) {
         menuSupUsuario.innerHTML=`
         <li><button onclick="abrirPopupPerfil()">Perfil</button></li>
-            <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
-            <li id="quantidadeCarrinho">0</li>
+            <li><a href="/assets/pages/carrinho.html">Carrinho_</a></li>
+            <a href="/assets/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
         `;
     } else {
         menuSupUsuario.innerHTML=`
             <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
-            <li><a href="/assets/pages/carrinho.html">Carrinho</a></li>
-            <li id="quantidadeCarrinho">0</li>
+            <li><a href="/assets/pages/carrinho.html">Carrinho_</a></li>
+            <a href="/assets/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
         `;
     }
 };
