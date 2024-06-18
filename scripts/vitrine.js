@@ -1,4 +1,3 @@
-import { produtosCadastrados } from "./listaProdutos.js";
 import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, buscarProdutos } from "./domUtils.js";
 
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
@@ -10,6 +9,19 @@ window.fecharPopupPerfil = fecharPopupPerfil;
 window.login = login;
 window.logout = logout;
 
+let produtosCadastrados = {};
+
+async function carregarProdutos() {
+    try {
+        const response = await fetch("../assets/files/listaProdutos.json");
+        const data = await response.json();
+        produtosCadastrados = data.produtos;
+        inicializarPagina();
+    } catch (error) {
+        console.error("Erro ao carregar produtos:", error);
+    }
+}
+
 function renderizarProdutos(filtro, valor) {
     const tituloFiltro = document.getElementById("conteudo__titulo");
     const container = document.querySelector(".conteudo__vitrine");
@@ -20,7 +32,7 @@ function renderizarProdutos(filtro, valor) {
 
     if (filtro === "categoria") {
         tituloFiltro.innerText = `CATEGORIA ${valor.toUpperCase()}`;
-        produtosFiltrados = produtosCadastrados[`categoria${valor}`];
+        produtosFiltrados = produtosCadastrados[`categoria${valor}`] || [];
     } else if (filtro === "novidades") {
         tituloFiltro.innerText = "NOVIDADES";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.novidade);
@@ -56,31 +68,35 @@ function renderizarProdutos(filtro, valor) {
     });
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const categoria = urlParams.get('categoria');
-const filtro = urlParams.get('filtro');
-const busca = urlParams.get('busca');
+function inicializarPagina() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoria = urlParams.get('categoria');
+    const filtro = urlParams.get('filtro');
+    const busca = urlParams.get('busca');
 
-if (categoria) {
-    renderizarProdutos('categoria', categoria);
-} else if (filtro) {
-    renderizarProdutos(filtro);
-} else if (busca) {
-    renderizarProdutos('busca', busca);
-}
+    if (categoria) {
+        renderizarProdutos('categoria', categoria);
+    } else if (filtro) {
+        renderizarProdutos(filtro);
+    } else if (busca) {
+        renderizarProdutos('busca', busca);
+    }
 
-const buscaProdutosInput = document.getElementById("buscaProdutos");
-if (buscaProdutosInput) {
-    buscaProdutosInput.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            const termosBusca = buscaProdutosInput.value.toLowerCase();
-            if (termosBusca.trim() === "") {
-                alert("Por favor, insira um termo de busca.");
-            } else {
-                window.location.href = `vitrine.html?busca=${termosBusca}`;
+    const buscaProdutosInput = document.getElementById("buscaProdutos");
+    if (buscaProdutosInput) {
+        buscaProdutosInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                const termosBusca = buscaProdutosInput.value.toLowerCase();
+                if (termosBusca.trim() === "") {
+                    alert("Por favor, insira um termo de busca.");
+                } else {
+                    window.location.href = `vitrine.html?busca=${termosBusca}`;
+                }
             }
-        }
-    });
+        });
+    }
 }
+
+document.addEventListener("DOMContentLoaded", carregarProdutos);
 
 export { renderizarProdutos };
