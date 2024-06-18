@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../assets/icons/favicon.png">
+    <link rel="stylesheet" href="../../styles/admin.css">
+    <title>EC_Admin_Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu__lateral">
+            <div>
+                <h3><a href="./dashboard.html">Dashboard</a></h3>
+            </div>
+            <div class="menu__existentes">
+                <h3>Produtos Cadastrados</h3>
+                <a href="./categoria.html?categoria=A">Categoria A</a>
+                <a href="./categoria.html?categoria=B">Categoria B</a>
+                <a href="./categoria.html?categoria=C">Categoria C</a>
+                <a href="./categoria.html?categoria=D">Categoria D</a>
+            </div>
+            <div class="menu__cadastrar">
+                <h3>Cadatrar</h3>
+                <a href="./novoProduto.html">Novo produto</a>
+            </div>
+            <div>
+                <a href="../../index.html">Sair</a>
+            </div>
+        </div>
+    </header>
+    <section class="menu__busca">
+        <h3>Buscar Produtos</h3>
+        <label for="buscaProdutos"></label>
+        <input type="text" id="buscaProdutos">
+        <button id="botaoBuscar">Buscar</button>
+    </section>
+    <main class="conteudo__principal">
+        <div id="conteudo__titulo"></div>
+        <section id="conteudoContainer">
+            <div id="containerTitulo">
+                <h1>DASHBOARD</h1>
+            </div>
+            <div class="container__dashboard" id="containerDashboard">
+                <div>
+                    <h1>CATEGORIA A</h1>
+                    <h4>Produtos cadastrados: </h4>
+                    <p id="categAQuantidadeProdutos"></p>
+                    <h4>Média de estoque: </h4>
+                    <p id="categAMediaEstoque"></p>
+                    <h4>Estoque baixo (50 ou menos): </h4>
+                    <ul id="categABaixoEstoque"></ul>
+                </div>
+                <div>
+                    <h1>CATEGORIA B</h1>
+                    <h4>Produtos cadastrados: </h4>
+                    <p id="categBQuantidadeProdutos"></p>
+                    <h4>Média de estoque: </h4>
+                    <p id="categBMediaEstoque"></p>
+                    <h4>Estoque baixo (50 ou menos): </h4>
+                    <ul id="categBBaixoEstoque"></ul>
+                </div>
+                <div>
+                    <h1>CATEGORIA C</h1>
+                    <h4>Produtos cadastrados: </h4>
+                    <p id="categCQuantidadeProdutos"></p>
+                    <h4>Média de estoque: </h4>
+                    <p id="categCMediaEstoque"></p>
+                    <h4>Estoque baixo (50 ou menos): </h4>
+                    <ul id="categCBaixoEstoque"></ul>
+                </div>
+                <div>
+                    <h1>CATEGORIA D</h1>
+                    <h4>Produtos cadastrados: </h4>
+                    <p id="categDQuantidadeProdutos"></p>
+                    <h4>Média de estoque: </h4>
+                    <p id="categDMediaEstoque"></p>
+                    <h4>Estoque baixo (50 ou menos): </h4>
+                    <ul id="categDBaixoEstoque"></ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script defer type="module" src="../../scripts/adminDashboard.js"></script>
+</body>
+</html>

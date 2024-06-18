@@ -129,7 +129,7 @@ function abrirAcessoAdmin() {
 
     if (pedidoUsuarioAdmin === "admin") {
         let pedidoSenhaAdmin = prompt("Insira a senha do administrador:");
-        pedidoSenhaAdmin === "admin" ? window.location.href = "./admin.html" : alert("Senha inválida. Acesso negado.");
+        pedidoSenhaAdmin === "admin" ? window.location.href = "./admin/dashboard.html" : alert("Senha inválida. Acesso negado.");
     } else {
         alert("Usuário inválido. Acesso negado.")
     };

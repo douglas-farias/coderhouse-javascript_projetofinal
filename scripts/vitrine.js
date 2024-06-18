@@ -1,5 +1,5 @@
 import { produtosCadastrados } from "./listaProdutos.js";
-import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, buscarProdutos } from "./domUtils.js";;
+import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, buscarProdutos } from "./domUtils.js";
 
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
@@ -11,7 +11,6 @@ window.login = login;
 window.logout = logout;
 
 function renderizarProdutos(filtro, valor) {
-
     const tituloFiltro = document.getElementById("conteudo__titulo");
     const container = document.querySelector(".conteudo__vitrine");
 
@@ -20,8 +19,8 @@ function renderizarProdutos(filtro, valor) {
     let produtosFiltrados = [];
 
     if (filtro === "categoria") {
-        tituloFiltro.innerText = `CATEGORIA ${valor.charAt(valor.length - 1).toUpperCase()}`;
-        produtosFiltrados = produtosCadastrados[valor];
+        tituloFiltro.innerText = `CATEGORIA ${valor.toUpperCase()}`;
+        produtosFiltrados = produtosCadastrados[`categoria${valor}`];
     } else if (filtro === "novidades") {
         tituloFiltro.innerText = "NOVIDADES";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.novidade);

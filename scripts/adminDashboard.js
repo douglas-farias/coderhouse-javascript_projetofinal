@@ -1,33 +1,17 @@
 import { produtosCadastrados } from "./listaProdutos.js";
-import { buscarProdutos } from "./domUtils.js";
+import { configurarBusca, buscarProdutos, renderizarResultado, redirecionarBusca, renderizarProdutosPorCategoria } from "./domUtilsAdmin.js";
 
-const conteudoTitulo = document.getElementById("conteudo__titulo");
+window.configurarBusca = configurarBusca;
+window.buscarProdutos = buscarProdutos;
+window.renderizarResultado = renderizarResultado;
+window.redirecionarBusca = redirecionarBusca;
+window.renderizarProdutosPorCategoria = renderizarProdutosPorCategoria;
 
 document.getElementById("botaoBuscar").addEventListener("click", function() {
     const termosBusca = document.getElementById("buscaProdutos").value.toLowerCase();
     const resultadosBusca = buscarProdutos(termosBusca, produtosCadastrados);
     renderizarResultado(resultadosBusca, termosBusca);
 });
-
-
-function renderizarResultado(resultados, termosBusca) {
-    const conteudoContainer = document.getElementById("conteudoContainer");
-    conteudoTitulo.innerHTML = "";
-    conteudoContainer.innerHTML = "";
-
-    conteudoTitulo.innerHTML = `BUSCA: ${termosBusca.toUpperCase()}`;
-
-    resultados.forEach(produto => {
-        const produtoDiv = document.createElement("div");
-        produtoDiv.innerHTML = `
-            <img src="${produto.imagem}" alt="${produto.imagemAlt}">
-            <h2>${produto.nome}</h2>
-            <p>Preço: ${produto.precoString}</p>
-            <p>Estoque: ${produto.estoque}</p>
-        `;
-        conteudoContainer.appendChild(produtoDiv);
-    });
-}
 
 function obterEstatisticas() {
     let estatisticasPorCategoria = [];
@@ -78,9 +62,6 @@ function atualizarEstatisticas() {
 
 document.addEventListener("DOMContentLoaded", atualizarEstatisticas);
 
-window.buscarProdutos = buscarProdutos;
-
 const urlParams = new URLSearchParams(window.location.search);
-const categoria = urlParams.get('categoria');
-const filtro = urlParams.get('filtro');
-const busca = urlParams.get('busca');
+const categoria = urlParams.get("categoria");
+const busca = urlParams.get("busca");

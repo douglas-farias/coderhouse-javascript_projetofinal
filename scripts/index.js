@@ -11,6 +11,11 @@ window.fecharPopupPerfil = fecharPopupPerfil;
 window.login = login;
 window.logout = logout;
 
+function realizarBuscaProdutos() {
+    const termosBusca = document.getElementById('buscaProdutos').value.toLowerCase();
+    window.location.href = `./pages/vitrine.html?busca=${termosBusca}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector(".feed__slider");
     const sliderContainer = document.querySelector(".slider__imagens");
@@ -80,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     atualizarIndicadores();
+
+    document.getElementById('botaoBuscar').addEventListener('click', realizarBuscaProdutos);
 
     const buscaProdutosInput = document.getElementById("buscaProdutos");
     if (buscaProdutosInput) {
