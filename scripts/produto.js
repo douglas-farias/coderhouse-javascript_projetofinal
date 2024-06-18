@@ -155,7 +155,7 @@ function abrirPopupConclusao() {
 
 function fecharPopupContinuar() {
     popupConclusao.classList.remove("container__conclusao--exibir");
-    window.location.href = `vitrine.html?categoria=categoria${produtoSelecionado.categoria}`;
+    window.location.href = `vitrine.html?categoria=${produtoSelecionado.categoria}`;
 }
 
 function fecharPopupVerCarrinho() {

@@ -17,6 +17,7 @@ async function carregarProdutos() {
         const data = await response.json();
         produtosCadastrados = data.produtos;
         inicializarPagina();
+        console.log(produtosCadastrados)
     } catch (error) {
         console.error("Erro ao carregar produtos:", error);
     }

@@ -18,8 +18,7 @@ body {
     display: grid;
     padding: 20px;
     grid-template-columns: 2fr 10fr;
-    grid-template-rows: 72px auto;
-    column-gap: 24px;
+    gap: 24px;
     grid-template-areas:
     "lateral busca"
     "lateral dashboard";
@@ -54,7 +53,50 @@ header {
     color: #FFFFFF;
 }
 
-.menu__lateral input {
-    background-color: #4563BF;
-    color: #FFFFFF;
+.menu__busca {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.menu__busca input {
+    flex-grow: 1;
+    height: 24px;
+    border: 0;
+    outline: 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12pt;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #4563BF;
+    color: #4563BF;
+}
+
+.menu__busca input:focus {
+    font-weight: 400;
+    border-bottom: 2px solid #4563BF;
+}
+
+.menu__busca img {
+    width: 24px;
+    height: 24px;
+}
+
+.menu__busca button {
+    background-color: #FFFFFF00;
+    cursor: pointer;
+    color: #2135A6;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;  
+}
+
+#conteudo__titulo {
+    color: #000000;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24pt;
+    margin-bottom: 20px;
 }

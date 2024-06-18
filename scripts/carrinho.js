@@ -36,13 +36,13 @@ obterCarrinho();
 
 function salvarCarrinho() {
     if (usuarioLogado) {
-        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
         let indiceUsuario = usuarios.findIndex(u => u.email === usuarioLogado.email);
         usuarios[indiceUsuario].carrinho = itensCarrinho;
-        localStorage.setItem('usuarios', JSON.stringify(usuarios));
-        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuarioLogado));
     } else {
-        localStorage.setItem('carrinhoTemp', JSON.stringify(itensCarrinho));
+        localStorage.setItem("carrinhoTemp", JSON.stringify(itensCarrinho));
     }
 }
 
@@ -90,24 +90,24 @@ function renderizarCarrinho() {
     });
 
     document.querySelectorAll("#quantidade__subtrair").forEach(botao => {
-        botao.addEventListener('click', function () {
-            const indice = this.getAttribute('data-index');
+        botao.addEventListener("click", function () {
+            const indice = this.getAttribute("data-index");
             alterarQuantidade(indice, -1);
             atualizarQuantidadeCarrinhoHeader();
         });
     });
 
     document.querySelectorAll("#quantidade__somar").forEach(botao => {
-        botao.addEventListener('click', function () {
-            const indice = this.getAttribute('data-index');
+        botao.addEventListener("click", function () {
+            const indice = this.getAttribute("data-index");
             alterarQuantidade(indice, 1);
             atualizarQuantidadeCarrinhoHeader();
         });
     });
 
     document.querySelectorAll(".quantidade__deletar").forEach(botao => {
-        botao.addEventListener('click', function () {
-            const indice = this.getAttribute('data-index');
+        botao.addEventListener("click", function () {
+            const indice = this.getAttribute("data-index");
             removerItem(indice);
             atualizarQuantidadeCarrinhoHeader();
         });
@@ -160,10 +160,7 @@ function obterCupomDesconto() {
     obterFreteSelecionado();
 }
 
-function calcularDataEntrega(opcaoFrete) {
-    const previsaoEntrega = document.getElementById("previsaoEntrega");
-    previsaoEntrega.innerHTML = "";
-    
+function calcularDataEntrega(opcaoFrete, elementoPrevisao) {
     const dataAtual = new Date();
 
     const diasFrete = {
@@ -186,7 +183,7 @@ function calcularDataEntrega(opcaoFrete) {
     const dataEntregaMinFormatada = formatoData(dataEntregaMin);
     const dataEntregaMaxFormatada = formatoData(dataEntregaMax);
 
-    previsaoEntrega.innerHTML = `${dataEntregaMinFormatada} a ${dataEntregaMaxFormatada}.`;
+    elementoPrevisao.innerHTML = `${dataEntregaMinFormatada} a ${dataEntregaMaxFormatada}.`;
 }
 
 function obterFreteSelecionado() {
@@ -201,13 +198,16 @@ function obterFreteSelecionado() {
         subtotalFrete.innerHTML = `R$&nbsp0,00`;
     }
 
+    const previsaoEntrega = document.getElementById("previsaoEntrega");
     if (freteSelecionado) {
-        calcularDataEntrega(freteSelecionado.id === "fretePadrao" ? "padrao" : "expressa");
+        calcularDataEntrega(freteSelecionado.id === "fretePadrao" ? "padrao" : "expressa", previsaoEntrega);
         atualizarTotalCompra(valorFrete);
     } else {
-        calcularDataEntrega("padrao");
+        calcularDataEntrega("padrao", previsaoEntrega);
         atualizarTotalCompra(0);
     }
+
+    habilitarBotaoFinalizar();
 }
 
 function preencherEndereco() {
@@ -254,7 +254,8 @@ document.getElementById("inserirCupom").addEventListener("click", function () {
 
 function habilitarBotaoFinalizar() {
     const botaoFinalizarCompra = document.getElementById("finalizarCompra");
-    (itensCarrinho.length === 0) ? botaoFinalizarCompra.setAttribute("disabled", "disabled") : botaoFinalizarCompra.removeAttribute("disabled");
+    const freteSelecionado = document.querySelector('input[name="opcaoFrete"]:checked');
+    (itensCarrinho.length === 0 || !freteSelecionado) ? botaoFinalizarCompra.setAttribute("disabled", "disabled") : botaoFinalizarCompra.removeAttribute("disabled");
 }
 
 const popupConclusao = document.querySelector(".container__conclusao");
@@ -273,6 +274,14 @@ function abrirPopupConclusao() {
         
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+        const freteSelecionado = document.querySelector('input[name="opcaoFrete"]:checked');
+        const elementoPrevisaoConclusao = document.getElementById("previsaoEntregaConclusao");
+        if (freteSelecionado) {
+            calcularDataEntrega(freteSelecionado.id === "fretePadrao" ? "padrao" : "expressa", elementoPrevisaoConclusao);
+        } else {
+            calcularDataEntrega("padrao", elementoPrevisaoConclusao);
+        }
     } else {
         abrirPopupAcesso();
     }
