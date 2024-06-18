@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/icons/favicon.png">
     <link rel="stylesheet" href="../../styles/admin/mainAdmin.css">
+    <link rel="stylesheet" href="../../styles/admin/dashboard.css">
     <title>EC_Admin_Dashboard</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
@@ -13,6 +14,7 @@
 <body>
     <header>
         <div class="menu__lateral">
+            <h2>E_COMMERCE</h2>
             <div>
                 <h3><a href="./dashboard.html">Dashboard</a></h3>
             </div>
@@ -22,6 +24,12 @@
                 <a href="./categoria.html?categoria=B">Categoria B</a>
                 <a href="./categoria.html?categoria=C">Categoria C</a>
                 <a href="./categoria.html?categoria=D">Categoria D</a>
+            </div>
+            <div class="menu__listas">
+                <h3>Listas</h3>
+                <a href="">Ofertas</a>
+                <a href="">Novidades</a>
+                <a href="">Repor estoque</a>
             </div>
             <div class="menu__cadastrar">
                 <h3>Cadatrar</h3>
@@ -44,41 +52,65 @@
                 <h1></h1>
             </div>
             <div class="container__dashboard" id="containerDashboard">
-                <div>
+                <div class="dashboard__categoria">
                     <h1>CATEGORIA A</h1>
-                    <h4>Produtos cadastrados: </h4>
-                    <p id="categAQuantidadeProdutos"></p>
-                    <h4>Média de estoque: </h4>
-                    <p id="categAMediaEstoque"></p>
-                    <h4>Estoque baixo (50 ou menos): </h4>
-                    <ul id="categABaixoEstoque"></ul>
+                    <div class="categoria__produtos">
+                        <h4>Produtos cadastrados:&nbsp</h4>
+                        <p id="categAQuantidadeProdutos"></p>
+                    </div>
+                    <div class="categoria__estoqueMedia">
+                        <h4>Média de estoque:&nbsp</h4>
+                        <p id="categAMediaEstoque"></p>
+                    </div>
+                    <div class="categoria__estoqueBaixo">
+                        <h4>Estoque baixo (50 ou menos):</h4>
+                        <ul id="categABaixoEstoque"></ul>
+                    </div>
                 </div>
-                <div>
+                <div class="dashboard__categoria">
                     <h1>CATEGORIA B</h1>
-                    <h4>Produtos cadastrados: </h4>
-                    <p id="categBQuantidadeProdutos"></p>
-                    <h4>Média de estoque: </h4>
-                    <p id="categBMediaEstoque"></p>
-                    <h4>Estoque baixo (50 ou menos): </h4>
-                    <ul id="categBBaixoEstoque"></ul>
+                    <div class="categoria__produtos">
+                        <h4>Produtos cadastrados:&nbsp</h4>
+                        <p id="categBQuantidadeProdutos"></p>
+                    </div>
+                    <div class="categoria__estoqueMedia">
+                        <h4>Média de estoque:&nbsp</h4>
+                        <p id="categBMediaEstoque"></p>
+                    </div>
+                    <div class="categoria__estoqueBaixo">
+                        <h4>Estoque baixo (50 ou menos): </h4>
+                        <ul id="categBBaixoEstoque"></ul>
+                    </div>
                 </div>
-                <div>
+                <div class="dashboard__categoria">
                     <h1>CATEGORIA C</h1>
-                    <h4>Produtos cadastrados: </h4>
-                    <p id="categCQuantidadeProdutos"></p>
-                    <h4>Média de estoque: </h4>
-                    <p id="categCMediaEstoque"></p>
-                    <h4>Estoque baixo (50 ou menos): </h4>
-                    <ul id="categCBaixoEstoque"></ul>
+                    <div class="categoria__produtos">
+                        <h4>Produtos cadastrados:&nbsp</h4>
+                        <p id="categCQuantidadeProdutos"></p>
+                    </div>
+                    <div class="categoria__estoqueMedia">
+                        <h4>Média de estoque:&nbsp</h4>
+                        <p id="categCMediaEstoque"></p>
+                    </div>
+                    <div class="categoria__estoqueBaixo">
+                        <h4>Estoque baixo (50 ou menos): </h4>
+                        <ul id="categCBaixoEstoque"></ul>
+                    </div>
                 </div>
-                <div>
+                <div class="dashboard__categoria">
                     <h1>CATEGORIA D</h1>
-                    <h4>Produtos cadastrados: </h4>
-                    <p id="categDQuantidadeProdutos"></p>
-                    <h4>Média de estoque: </h4>
-                    <p id="categDMediaEstoque"></p>
-                    <h4>Estoque baixo (50 ou menos): </h4>
-                    <ul id="categDBaixoEstoque"></ul>
+                    <div class="categoria__produtos">
+                        <h4>Produtos cadastrados:&nbsp</h4>
+                        <p id="categDQuantidadeProdutos"></p>
+                    </div>
+                    <div class="categoria__estoqueMedia">
+                        <h4>Média de estoque:&nbsp</h4>
+                        <p id="categDMediaEstoque"></p>
+                    </div>
+                    <div class="categoria__estoqueBaixo">
+                        <h4>Estoque baixo (50 ou menos): </h4>
+                        <ul id="categDBaixoEstoque"></ul>
+                    </div>
                 </div>
             </div>
         </section>

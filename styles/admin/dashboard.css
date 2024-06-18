@@ -1,0 +1,34 @@
+
+
+.dashboard__categoria {
+    display: grid;
+    background-color: #F2F2F2;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 24px;
+    grid-template-areas: 
+    "categoria categoria"
+    "produtos baixo"
+    "media baixo";
+}
+
+.dashboard__categoria h1 {
+    margin-bottom: 12px;
+    grid-area: categoria;
+}
+
+.categoria__produtos {
+    display: flex;
+    flex-direction: row;
+    grid-area: produtos;
+}
+
+.categoria__estoqueMedia {
+    display: flex;
+    flex-direction: row;    
+    grid-area: media;
+}
+
+.categoria__estoqueBaixo {
+    grid-area: baixo;
+}
