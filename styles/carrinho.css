@@ -470,6 +470,11 @@ footer {
     padding-top: 48px;
 }
 
+.popup__mensagem img {
+    width: 300px;
+    height: 300px;
+}
+
 .popup__mensagem h2 {
     font-weight: 300;
     font-style: normal;
