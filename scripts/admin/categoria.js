@@ -1,4 +1,4 @@
-import { produtosCadastrados } from "./listaProdutos.js";
+import { produtosCadastrados } from "../listaProdutos.js";
 import { configurarBusca, buscarProdutos, renderizarResultado, redirecionarBusca, renderizarProdutosPorCategoria } from "./domUtilsAdmin.js";
 
 window.configurarBusca = configurarBusca;
