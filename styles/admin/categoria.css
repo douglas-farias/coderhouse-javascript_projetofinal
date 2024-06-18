@@ -1,0 +1,68 @@
+.conteudo__produto {
+    display: grid;
+    background-color: #F2F2F2;
+    min-height: 90px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    grid-template-areas:
+    "imagem nome preco quantidade subtotal"
+    "imagem categoria preco quantidade deletar";
+    color: #000000;
+}
+
+.produto__imagem {
+    grid-area: imagem;
+}
+
+.produto__nome {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: bold;
+    font-size: 15pt;
+    grid-area: nome;
+}
+
+.produto__preco {
+    font-weight: 100;
+    font-style: normal;
+    grid-area: preco;
+}
+
+.produto__estoque {
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: space-evenly;
+    grid-area: quantidade;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: bold;
+    font-size: 12pt;
+}
+
+.produto__botaoEditar a{
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-style: bold;
+    font-size: 12pt;
+}
+
+.item__quantidade #quantidade__qtde {
+    font-weight: 100;
+    font-style: normal;
+}
+
+.item__subtotal {
+    display: flex;
+    justify-content: right;
+    font-weight: 900;
+    font-style: bold;
+    font-size: 15pt;
+    grid-area: subtotal;
+}

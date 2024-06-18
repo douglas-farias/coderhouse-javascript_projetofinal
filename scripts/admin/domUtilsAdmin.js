@@ -34,12 +34,13 @@ export function renderizarResultado(resultados, termosBusca) {
 
     resultados.forEach(produto => {
         const produtoDiv = document.createElement("div");
+        produtoDiv.className = "conteudo__produto";
         produtoDiv.innerHTML = `
-            <img src="${produto.imagem}" alt="${produto.imagemAlt}">
-            <h2>${produto.nome}</h2>
-            <p>Preço: ${produto.precoString}</p>
-            <p>Estoque: ${produto.estoque}</p>
-            <a href="edicaoProduto.html?id=${produto.id}">Editar</a>
+            <img src="${produto.imagem}" alt="${produto.imagemAlt}" class="produto__imagem">
+            <h2 class="produto__nome">${produto.nome}</h2>
+            <p class="produto__preco">Preço: ${produto.precoString}</p>
+            <p class="produto__estoque">Estoque: ${produto.estoque}</p>
+            <a href="edicaoProduto.html?id=${produto.id}"><button class="produto__botaoEditar">Editar</button></a>
         `;
         conteudoContainer.appendChild(produtoDiv);
     });
@@ -63,12 +64,13 @@ export function renderizarProdutosPorCategoria(categoria, produtosCadastrados) {
 
     produtosFiltrados.forEach(produto => {
         const produtoDiv = document.createElement("div");
+        produtoDiv.className = "conteudo__produto";
         produtoDiv.innerHTML = `
-            <img src="${produto.imagem}" alt="${produto.imagemAlt}">
-            <h2>${produto.nome}</h2>
-            <p>Preço: ${produto.precoString}</p>
-            <p>Estoque: ${produto.estoque}</p>
-            <a href="edicaoProduto.html?id=${produto.id}">Editar</a>
+            <img src="${produto.imagem}" alt="${produto.imagemAlt}" class="produto__imagem">
+            <h2 class="produto__nome">${produto.nome}</h2>
+            <p class="produto__preco">Preço: ${produto.precoString}</p>
+            <p class="produto__estoque">Estoque: ${produto.estoque}</p>
+            <a href="edicaoProduto.html?id=${produto.id}"><button class="produto__botaoEditar">Editar</button></a>
         `;
         conteudoContainer.appendChild(produtoDiv);
     });
