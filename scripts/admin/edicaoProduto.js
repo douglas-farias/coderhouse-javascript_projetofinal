@@ -19,7 +19,6 @@ function renderizarItem(produto) {
 
     const itemContainer = document.getElementsByClassName("container__formulario")[0];
 
-    // Convertendo precoString para precoFloat
     const precoFloat = parseFloat(produto.precoString.replace(",", "."));
 
     itemContainer.innerHTML = `
