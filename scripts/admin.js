@@ -79,3 +79,8 @@ function atualizarEstatisticas() {
 document.addEventListener("DOMContentLoaded", atualizarEstatisticas);
 
 window.buscarProdutos = buscarProdutos;
+
+const urlParams = new URLSearchParams(window.location.search);
+const categoria = urlParams.get('categoria');
+const filtro = urlParams.get('filtro');
+const busca = urlParams.get('busca');

@@ -81,7 +81,7 @@ function renderizarCarrinho() {
             </div>
             <h3 class="item__subtotal">R$&nbsp${(item.quantidadeItem * item.item.precoFloat).toFixed(2).replace(".", ",")}</h3>
             <button class="quantidade__deletar" data-index="${indice}">
-                <img src="../icons/black-bold_fechar.png" alt="Excluir item"></img>
+                <img src="../assets/icons/black-bold_fechar.png" alt="Excluir item"></img>
             </button>`;
         
         containerLista.appendChild(divItem);

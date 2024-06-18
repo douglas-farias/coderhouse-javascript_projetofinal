@@ -5,14 +5,14 @@ export function atualizarUsuarioLogadoHeader() {
     if (usuarioLogado) {
         menuSupUsuario.innerHTML=`
             <li><button onclick="abrirPopupPerfil()">Perfil</button></li>
-            <li><a href="/assets/pages/carrinho.html">Carrinho_</a></li>
-            <a href="/assets/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
+            <li><a href="/pages/carrinho.html">Carrinho_</a></li>
+            <a href="/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
         `;
     } else {
         menuSupUsuario.innerHTML=`
             <li><button onclick="abrirPopupAcesso()">Entrar</button></li>
-            <li><a href="/assets/pages/carrinho.html">Carrinho_</a></li>
-            <a href="/assets/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
+            <li><a href="/pages/carrinho.html">Carrinho_</a></li>
+            <a href="/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
         `;
     }
 }
@@ -55,7 +55,7 @@ export function abrirPopupAcesso() {
                     <figure>
                         <img src="" alt="Imagem de Cadastro">
                     </figure>
-                    <a href="/assets/pages/cadastro.html">
+                    <a href="/pages/cadastro.html">
                         <button>CADASTRAR-SE</button>
                     </a>
                 </div>
@@ -209,7 +209,7 @@ export function realizarBuscaProdutos() {
     if (termosBusca.trim() === "") {
         alert("Por favor, insira um termo de busca.");
     } else {
-        window.location.href = `/assets/pages/vitrine.html?busca=${termosBusca}`;
+        window.location.href = `/pages/vitrine.html?busca=${termosBusca}`;
     }
 }
 
