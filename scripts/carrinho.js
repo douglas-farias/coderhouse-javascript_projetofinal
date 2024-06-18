@@ -140,7 +140,7 @@ function atualizarSubtotalItens() {
     obterFreteSelecionado();
 }
 
-function obterCumpomDesconto() {
+function obterCupomDesconto() {
     const inputCupom = document.getElementById("cupomInserido");
     const descontoHTML = document.getElementById("somaValores__valorDesconto");
     descontoHTML.innerHTML = "";
@@ -201,8 +201,13 @@ function obterFreteSelecionado() {
         subtotalFrete.innerHTML = `R$&nbsp0,00`;
     }
 
-    calcularDataEntrega(freteSelecionado.id === "fretePadrao" ? "padrao" : "expressa");
-    atualizarTotalCompra(valorFrete);
+    if (freteSelecionado) {
+        calcularDataEntrega(freteSelecionado.id === "fretePadrao" ? "padrao" : "expressa");
+        atualizarTotalCompra(valorFrete);
+    } else {
+        calcularDataEntrega("padrao");
+        atualizarTotalCompra(0);
+    }
 }
 
 function preencherEndereco() {
@@ -244,7 +249,7 @@ document.getElementById("limparCarrinho").addEventListener("click", function () 
 });
 
 document.getElementById("inserirCupom").addEventListener("click", function () {
-    obterCumpomDesconto();
+    obterCupomDesconto();
 });
 
 function habilitarBotaoFinalizar() {
