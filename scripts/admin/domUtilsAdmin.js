@@ -39,6 +39,7 @@ export function renderizarResultado(resultados, termosBusca) {
             <h2>${produto.nome}</h2>
             <p>Preço: ${produto.precoString}</p>
             <p>Estoque: ${produto.estoque}</p>
+            <a href="edicaoProduto.html?id=${produto.id}">Editar</a>
         `;
         conteudoContainer.appendChild(produtoDiv);
     });
@@ -67,6 +68,7 @@ export function renderizarProdutosPorCategoria(categoria, produtosCadastrados) {
             <h2>${produto.nome}</h2>
             <p>Preço: ${produto.precoString}</p>
             <p>Estoque: ${produto.estoque}</p>
+            <a href="edicaoProduto.html?id=${produto.id}">Editar</a>
         `;
         conteudoContainer.appendChild(produtoDiv);
     });

@@ -1,3 +1,4 @@
+import { produtosCadastrados } from "./listaProdutos.js";
 import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
@@ -12,8 +13,6 @@ window.login = login;
 window.logout = logout;
 
 // RENDERIZAÇÃO DO PRODUTO SELECIONADO
-
-import { produtosCadastrados } from "./listaProdutos.js";
 
 function renderizarItem(produto) {
     const tituloHead = document.getElementById("tituloHead");
