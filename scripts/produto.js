@@ -1,5 +1,16 @@
 import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
+window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+window.abrirPopupAcesso = abrirPopupAcesso;
+window.fecharPopupAcesso = fecharPopupAcesso;
+window.abrirPopupPerfil = abrirPopupPerfil;
+window.fecharPopupPerfil = fecharPopupPerfil;
+window.fecharPopupContinuar = fecharPopupContinuar;
+window.fecharPopupVerCarrinho = fecharPopupVerCarrinho;
+window.login = login;
+window.logout = logout;
+
 // RENDERIZAÇÃO DO PRODUTO SELECIONADO
 
 import { produtosCadastrados } from "./listaProdutos.js";
@@ -152,18 +163,3 @@ function fecharPopupVerCarrinho() {
     popupConclusao.classList.remove("container__conclusao--exibir");
     window.location.href = "carrinho.html";
 }
-
-window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
-window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
-
-window.abrirPopupAcesso = abrirPopupAcesso;
-window.fecharPopupAcesso = fecharPopupAcesso;
-
-window.abrirPopupPerfil = abrirPopupPerfil;
-window.fecharPopupPerfil = fecharPopupPerfil;
-
-window.fecharPopupContinuar = fecharPopupContinuar;
-window.fecharPopupVerCarrinho = fecharPopupVerCarrinho;
-
-window.login = login;
-window.logout = logout;

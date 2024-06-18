@@ -9,7 +9,6 @@
     text-decoration: none;
     border-width: 0;
     text-decoration: none;
-    overflow: hidden;
 }
 
 a {
@@ -61,7 +60,7 @@ body {
 /* ------------ HEADER ------------ */
 
 header {
-    margin: 25px 50px; 
+    margin: 25px 60px; 
 }
 
 nav {
@@ -105,7 +104,6 @@ main {
 
 .conteudo {
     display: grid;
-    grid-template-rows: 40px auto 40px;
     column-gap: 60px;
     row-gap: 24px;
     grid-template-areas:
@@ -114,6 +112,7 @@ main {
 }
 
 .conteudo__titulo {
+    color: #000000;
     grid-area: titulo;
 }
 
@@ -252,10 +251,18 @@ button:hover {
 footer {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-content: center;
-    margin: 24px 60px;
+    align-items: center;
+    margin: 0 60px;
     margin-top: auto;
+}
+
+#acessoAdmin img {
+    background: none;
+    background-color: #FFFFFF;
+    width: 36px;
+    height: 36px;
 }
 
 /* ------------ POP UP ------------ */

@@ -4,7 +4,7 @@ export function atualizarUsuarioLogadoHeader() {
 
     if (usuarioLogado) {
         menuSupUsuario.innerHTML=`
-        <li><button onclick="abrirPopupPerfil()">Perfil</button></li>
+            <li><button onclick="abrirPopupPerfil()">Perfil</button></li>
             <li><a href="/assets/pages/carrinho.html">Carrinho_</a></li>
             <a href="/assets/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
         `;
@@ -15,7 +15,7 @@ export function atualizarUsuarioLogadoHeader() {
             <a href="/assets/pages/carrinho.html"><li id="quantidadeCarrinho">0</li></a>
         `;
     }
-};
+}
 
 export function atualizarQuantidadeCarrinhoHeader() {
     let somaQuantidades = 0;
@@ -35,7 +35,7 @@ export function atualizarQuantidadeCarrinhoHeader() {
     if (quantidadeCarrinho) {
         quantidadeCarrinho.innerText = somaQuantidades;
     }
-};
+}
 
 export function abrirPopupAcesso() {
     const popupAcesso = document.querySelector(".container__acesso");
@@ -141,12 +141,12 @@ export function abrirPopupPerfil() {
     document.getElementById("botoesEditar").addEventListener("click", editarPerfil);
 }
 
-
 export function fecharPopupPerfil() {
     const popupPerfil = document.querySelector(".container__acesso");
     popupPerfil.classList.remove("container__acesso--exibir");
     popupPerfil.innerHTML = "";
 }
+
 export function login() {
     const loginEmail = document.getElementById("loginEmail");
     const loginSenha = document.getElementById("loginSenha");
@@ -156,13 +156,13 @@ export function login() {
 
     const usuarioAcesso = usuarios.find((u) => u.email === loginEmail.value);
 
-    if(usuarioAcesso && usuarioAcesso.senha === loginSenha.value) {
+    if (usuarioAcesso && usuarioAcesso.senha === loginSenha.value) {
         let carrinhoTemp = JSON.parse(localStorage.getItem('carrinhoTemp')) || [];
         
         if (carrinhoTemp.length > 0) {
             usuarioAcesso.carrinho = [...usuarioAcesso.carrinho, ...carrinhoTemp];
             localStorage.removeItem('carrinhoTemp');
-        };
+        }
 
         usuarioAcesso.login = true;
 
@@ -172,19 +172,64 @@ export function login() {
         alertaDadosInvalidos.innerText = "";
         window.location.reload();
     } else {
-        alertaDadosInvalidos.innerText = "email e/ou senha inválidos"
-    };
-};
+        alertaDadosInvalidos.innerText = "email e/ou senha inválidos";
+    }
+}
 
 export function logout() {
-    let usuarioLogado = localStorage.getItem("usuarioLogado")
+    let usuarioLogado = localStorage.getItem("usuarioLogado");
     usuarioLogado = JSON.parse(usuarioLogado);
     usuarioLogado.login = false;
     localStorage.removeItem("usuarioLogado");
     window.location.reload();
-};
+}
+
+export function buscarProdutos(termosBusca, produtosCadastrados) {
+    const resultadosBusca = [];
+
+    for (let categoria in produtosCadastrados) {
+        produtosCadastrados[categoria].forEach(produto => {
+            if (
+                produto.nome.toLowerCase().includes(termosBusca) ||
+                produto.descricao.toLowerCase().includes(termosBusca) ||
+                produto.categoria.toLowerCase().includes(termosBusca)
+            ) {
+                resultadosBusca.push(produto);
+            }
+        });
+    }
+
+    console.log("Resultados da busca:", resultadosBusca);
+
+    return resultadosBusca;
+}
+
+export function realizarBuscaProdutos() {
+    const termosBusca = document.getElementById('buscaProdutos').value.toLowerCase();
+    if (termosBusca.trim() === "") {
+        alert("Por favor, insira um termo de busca.");
+    } else {
+        window.location.href = `/assets/pages/vitrine.html?busca=${termosBusca}`;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    atualizarUsuarioLogadoHeader(); 
+    atualizarUsuarioLogadoHeader();
     atualizarQuantidadeCarrinhoHeader();
+
+    const botaoBuscar = document.getElementById('botaoBuscar');
+    const buscaProdutosInput = document.getElementById('buscaProdutos');
+    
+    if (botaoBuscar) {
+        botaoBuscar.addEventListener('click', realizarBuscaProdutos);
+    }
+
+    if (buscaProdutosInput) {
+        buscaProdutosInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                realizarBuscaProdutos();
+            }
+        });
+    }
 });

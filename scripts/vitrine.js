@@ -1,13 +1,20 @@
 import { produtosCadastrados } from "./listaProdutos.js";
-import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
+import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, buscarProdutos } from "./domUtils.js";;
+
+window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+window.abrirPopupAcesso = abrirPopupAcesso;
+window.fecharPopupAcesso = fecharPopupAcesso;
+window.abrirPopupPerfil = abrirPopupPerfil;
+window.fecharPopupPerfil = fecharPopupPerfil;
+window.login = login;
+window.logout = logout;
 
 function renderizarProdutos(filtro, valor) {
-    const tituloHead = document.getElementById("tituloHead");
 
     const tituloFiltro = document.getElementById("conteudo__titulo");
-    tituloFiltro.innerText = "";
+    const container = document.querySelector(".conteudo__vitrine");
 
-    const container = document.getElementsByClassName("conteudo__vitrine")[0];
     container.innerHTML = "";
 
     let produtosFiltrados = [];
@@ -15,21 +22,26 @@ function renderizarProdutos(filtro, valor) {
     if (filtro === "categoria") {
         tituloFiltro.innerText = `CATEGORIA ${valor.charAt(valor.length - 1).toUpperCase()}`;
         produtosFiltrados = produtosCadastrados[valor];
-        tituloHead.innerText = `EC_Categoria ${valor.charAt(valor.length - 1).toUpperCase()}`
     } else if (filtro === "novidades") {
         tituloFiltro.innerText = "NOVIDADES";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.novidade);
-        tituloHead.innerText = `EC_Novidades`;
     } else if (filtro === "ofertas") {
         tituloFiltro.innerText = "OFERTAS";
         produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.oferta);
-        tituloHead.innerText = `EC_Ofertas`;
+    } else if (filtro === "busca") {
+        tituloFiltro.innerText = `BUSCA: ${valor.toUpperCase()}`;
+        produtosFiltrados = buscarProdutos(valor, produtosCadastrados);
+    }
+
+    if (produtosFiltrados.length === 0) {
+        container.innerHTML = "<p>Não foram encontrados resultados.</p>";
+        return;
     }
 
     produtosFiltrados.forEach(produto => {
         const divProduto = document.createElement("div");
         divProduto.className = "conteudo__produto";
-        divProduto.id = `prodtuo__${produto.id}`;
+        divProduto.id = `produto__${produto.id}`;
 
         divProduto.innerHTML = `<figure class="produto__imagem">
                                     <a href="produto.html?id=${produto.id}">
@@ -38,34 +50,38 @@ function renderizarProdutos(filtro, valor) {
                                 </figure>
                                 <div>
                                     <h4>${produto.nome}</h4>
-                                    <span id="precoProduto${produto.id}">R$ ${produto.precoString}</span>
+                                    <span>R$ ${produto.precoString}</span>
                                 </div>`;
 
-        container.appendChild(divProduto)
+        container.appendChild(divProduto);
     });
-};
+}
 
 const urlParams = new URLSearchParams(window.location.search);
 const categoria = urlParams.get('categoria');
 const filtro = urlParams.get('filtro');
+const busca = urlParams.get('busca');
 
 if (categoria) {
     renderizarProdutos('categoria', categoria);
 } else if (filtro) {
     renderizarProdutos(filtro);
-};
+} else if (busca) {
+    renderizarProdutos('busca', busca);
+}
 
-window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
-window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+const buscaProdutosInput = document.getElementById("buscaProdutos");
+if (buscaProdutosInput) {
+    buscaProdutosInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            const termosBusca = buscaProdutosInput.value.toLowerCase();
+            if (termosBusca.trim() === "") {
+                alert("Por favor, insira um termo de busca.");
+            } else {
+                window.location.href = `vitrine.html?busca=${termosBusca}`;
+            }
+        }
+    });
+}
 
-
-window.abrirPopupAcesso = abrirPopupAcesso;
-window.fecharPopupAcesso = fecharPopupAcesso;
-
-window.abrirPopupPerfil = abrirPopupPerfil;
-window.fecharPopupPerfil = fecharPopupPerfil;
-
-window.login = login;
-window.logout = logout;
-
-export { renderizarProdutos }
+export { renderizarProdutos };

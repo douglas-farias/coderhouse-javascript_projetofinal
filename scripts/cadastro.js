@@ -26,14 +26,14 @@ const preencherEndereco = (resultadoBusca) => {
     usuarioLogradouro.value = resultadoBusca.logradouro;
     usuarioBairro.value = resultadoBusca.bairro;
     usuarioCidadeUf.value = `${resultadoBusca.localidade}, ${resultadoBusca.uf}`;
-}
+};
 
 const buscarCep = async () => {
     const url = `http://viacep.com.br/ws/${usuarioCEP.value}/json/`;
     const promisseViaCep = await fetch(url);
     const resultadoBusca = await promisseViaCep.json();
     preencherEndereco(resultadoBusca);
-}
+};
 
 usuarioCEP.addEventListener("focusout", buscarCep);
 
@@ -43,7 +43,7 @@ function inicializarFormulario() {
     });
 
     document.querySelector(".conteudo__formulario").addEventListener("submit", cadastrarUsuario);
-}
+};
 
 function validarFormulario() {
     let emailInserido = usuarioEmail.value;
@@ -67,7 +67,7 @@ function validarFormulario() {
     senhasRepetidas ? senhaAlertaRepetir.innerText = "" : senhaAlertaRepetir.innerText = "As senhas digitadas não coincidem."; 
 
     (formularioPreenchido && !usuarioEncontrado && senhasRepetidas) ? botaoCadastrar.removeAttribute("disabled") : botaoCadastrar.setAttribute("disabled", "disabled");
-}
+};
 
 function gerarID() {
     let ultimoID = localStorage.getItem("ultimoID");
@@ -81,7 +81,7 @@ function gerarID() {
     localStorage.setItem("ultimoID", proximoID);
 
     return `u${proximoID.toString().padStart(4,"0")}`;
-}
+};
 
 function cadastrarUsuario(evento) {
     evento.preventDefault();
@@ -111,18 +111,30 @@ function cadastrarUsuario(evento) {
     abrirPopupConclusao();
     document.querySelector(".conteudo__formulario").reset();
     botaoCadastrar.disabled = true;
-}
+};
 
 const popupConclusao = document.querySelector(".container__conclusao");
 
 function abrirPopupConclusao() {
     popupConclusao.classList.add("container__conclusao--exibir");
-}
+};
 
 function fecharPopupConclusao() {
     popupConclusao.classList.remove("container__conclusao--exibir");
     window.location.href = "../../index.html";
-}
+};
+
+function abrirAcessoAdmin() {
+    let pedidoUsuarioAdmin = prompt("Insira o usuário do administrador:");
+
+    if (pedidoUsuarioAdmin === "admin") {
+        let pedidoSenhaAdmin = prompt("Insira a senha do administrador:");
+        pedidoSenhaAdmin === "admin" ? window.location.href = "./admin.html" : alert("Senha inválida. Acesso negado.");
+    } else {
+        alert("Usuário inválido. Acesso negado.")
+    };
+};
 
 window.cadastrarUsuario = cadastrarUsuario;
 window.fecharPopupConclusao = fecharPopupConclusao;
+window.abrirAcessoAdmin = abrirAcessoAdmin;

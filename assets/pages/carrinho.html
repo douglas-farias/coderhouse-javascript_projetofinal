@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../icons/favicon.png">
+    <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/carrinho.css">
     <title>EC_Carrinho</title>
     <style>
@@ -13,15 +14,16 @@
 <body>
     <header class="menu-sup">
         <nav>
-            <div class="menu-sup__home"><a href="../../index.html">E_COMMERCE</a></div>
-            <ul class="menu-sup__loja">
-                <li>
-                    <!-- <input type="text">
-                    <button id="menu-sup__busca">Procurar</button> -->
-                </li>
-            </ul>
+            <div class="menu-sup__home">
+                <a href="../../index.html">E_COMMERCE</a>
+            </div>
+            <div class="menu__busca">
+                <label for="buscaProdutos"></label>
+                <input type="text" id="buscaProdutos" placeholder="Busque os produtos">
+                <button id="botaoBuscar"><img src="../icons/2135A6-light_busca.svg" alt=""></button>
+            </div>
             <ul class="menu-sup__usuario">
-
+                <!-- CONTEÚDO INSERIDO PELO SCRIPT -->
             </ul>
         </nav>
     </header>
@@ -76,7 +78,7 @@
                         <th>PREÇO</th>
                     </tr>
                     <tr id="fretePadrao">
-                        <td><input type="radio" name="opcaoFrete" value="5" checked></td>
+                        <td><input type="radio" name="opcaoFrete" value="5"></td>
                         <td>PADRÃO</td>
                         <td>10 a 15 dias</td>
                         <td>R$ 5,00</td>

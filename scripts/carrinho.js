@@ -1,5 +1,16 @@
 import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
+window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
+window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
+window.abrirPopupAcesso = abrirPopupAcesso;
+window.fecharPopupAcesso = fecharPopupAcesso;
+window.abrirPopupPerfil = abrirPopupPerfil;
+window.fecharPopupPerfil = fecharPopupPerfil;
+window.login = login;
+window.logout = logout;
+window.abrirPopupConclusao = abrirPopupConclusao;
+window.fecharPopupConclusao = fecharPopupConclusao;
+
 atualizarQuantidadeCarrinhoHeader();
 
 let itensCarrinho = [];
@@ -270,21 +281,6 @@ function fecharPopupConclusao() {
 renderizarCarrinho();
 preencherEndereco();
 habilitarBotaoFinalizar();
-
-window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
-window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;
-
-window.abrirPopupAcesso = abrirPopupAcesso;
-window.fecharPopupAcesso = fecharPopupAcesso;
-
-window.abrirPopupPerfil = abrirPopupPerfil;
-window.fecharPopupPerfil = fecharPopupPerfil;
-
-window.login = login;
-window.logout = logout;
-
-window.abrirPopupConclusao = abrirPopupConclusao;
-window.fecharPopupConclusao = fecharPopupConclusao;
 
 document.querySelectorAll('input[name="opcaoFrete"]').forEach(radio => {
     radio.addEventListener("change", function() {

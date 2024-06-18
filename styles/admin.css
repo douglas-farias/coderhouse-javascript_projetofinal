@@ -1,0 +1,60 @@
+/* ------------ GERAL ------------ */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border-width: 0;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 72px auto;
+    column-gap: 24px;
+    grid-template-areas:
+    "lateral busca"
+    "lateral dashboard";
+}
+
+main {
+    grid-area: dashboard;
+}
+
+.menu__busca {
+    grid-area: busca;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #4563BF;
+    border-radius: 15px;
+    padding: 15px;
+    color: #FFFFFF;
+    grid-area: lateral;
+}
+
+.menu__lateral div {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu__lateral button {
+    background-color: #4563BF;
+    color: #FFFFFF;
+}
+
+.menu__lateral input {
+    background-color: #4563BF;
+    color: #FFFFFF;
+}

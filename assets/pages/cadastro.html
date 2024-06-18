@@ -44,7 +44,7 @@
             </div>
             <div class="formulario__dadosAcesso">
                 <label for="formulario__email">Email*</label>
-                <input type="text" id="formulario__email" placeholder="Endereço de email" required>
+                <input type="email" id="formulario__email" placeholder="Endereço de email" required>
                 <h6 id="formulario__alertaEmailRepetido"></h6>
                 <label for="formulario__senha">Senha*</label>
                 <input type="password" id="formulario__senha" placeholder="Senha" required>
@@ -67,6 +67,9 @@
         </section>
     </main>
     <footer>
+        <button id="acessoAdmin" onclick="abrirAcessoAdmin()">
+            <img src="../icons/2135A6-regular_admin.svg" alt="">
+        </button>
         <h5>contato@ecommerce.com</h5>
     </footer>
     <script defer type="module" src="../../scripts/cadastro.js"></script>
