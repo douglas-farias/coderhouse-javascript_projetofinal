@@ -40,7 +40,7 @@ function obterEstatisticas() {
     }
 
     return estatisticasPorCategoria;
-};
+}
 
 function atualizarEstatisticas() {
     const estatisticas = obterEstatisticas();
@@ -65,3 +65,10 @@ document.addEventListener("DOMContentLoaded", atualizarEstatisticas);
 const urlParams = new URLSearchParams(window.location.search);
 const categoria = urlParams.get("categoria");
 const busca = urlParams.get("busca");
+
+if (categoria) {
+    renderizarProdutosPorCategoria(categoria, produtosCadastrados);
+} else if (busca) {
+    const resultadosBusca = buscarProdutos(busca, produtosCadastrados);
+    renderizarResultado(resultadosBusca, busca);
+}
