@@ -1,0 +1,192 @@
+#conteudo__titulo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12pt;
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 18px;
+    grid-template-areas:
+        ". botao-cadastrar"
+        "div-geral div-imagem"
+        "div-valor div-imagem"
+        "div-status div-imagem";
+}
+
+fieldset {
+    padding: 15px;
+    border-radius: 15px;
+    color: #4563BF;
+}
+
+fieldset h3 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15pt;
+    grid-area: geral-titulo;
+    margin-bottom: 12px;
+}
+
+.formulario label{
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+    margin-bottom: 6px;
+}
+
+.formulario input {
+    border: 0;
+    outline: 0;
+    margin-bottom: 18px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+    border-bottom: 1px solid #4563BF;
+    color: #4563BF;
+}
+
+.formulario input::placeholder {
+    font-weight: 200;
+}
+
+.formulario input:focus {
+    font-weight: 500;
+    border-bottom: 2px solid #4563BF;
+}
+
+.formulario input:disabled {
+    border:0;
+    outline: 0;
+}
+
+.formulario textarea {
+    resize: none;
+    outline: 0;
+    border: 1px solid #4563BF;
+    border-radius: 7.5px;
+    padding: 7.5px;
+    width: auto;
+    height: 150px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+    color: #4563BF;
+}
+
+.formulario textarea::placeholder {
+    font-weight: 200;
+}
+
+.formulario textarea:focus {
+    font-weight: 500;
+    border: 2px solid #4563BF;
+}
+
+.formulario__geral {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F2F2;
+    grid-area: div-geral;
+}
+
+#divId {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+#divId label {
+    margin: 0 18px 0 0;
+}
+
+#divId input {
+    margin-bottom: 0;
+}
+
+.formulario__geral input {
+    height: 21px;
+    background-color: #F2F2F2
+}
+
+.formulario__geral select {
+    appearance: none;
+    outline: 0;
+    background-color: #F2F2F2;
+    border-bottom: 1px solid #4563BF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+    margin-bottom: 18px;
+    color: #4563BF;
+}
+
+.formulario__geral select:focus {
+    border-bottom: 2px solid #4563BF;
+}
+
+.formulario__geral select:invalid {
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12pt;
+    color: #757575;
+}
+
+.formulario__geral option {
+    appearance: none;
+    border: 1px solid #4563BF;
+    margin: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+.formulario__valor {
+    background-color: #F2F2F2;
+    grid-area: div-valor;
+}
+
+.formulario__valor input {
+    height: 24px;
+    background-color: #F2F2F2
+}
+
+.formulario__status {
+    background-color: #F2F2F2;
+    grid-area: div-status;
+}
+
+.formulario__status input {
+    height: 24px;
+    background-color: #F2F2F2
+}
+
+.formulario__imagem {
+    display: flex;
+    flex-direction: column;
+    background-color: #ADC0D9;
+    grid-area: div-imagem;
+}
+
+.formulario__imagem input {
+    height: 24px;
+    background-color: #ADC0D9
+}
+
+.formulario__imagem input::placeholder {
+    color: #000000;
+}
+
+.formulario__botao {
+    grid-area: botao-cadastrar;
+}
