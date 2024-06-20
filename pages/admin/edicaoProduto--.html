@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../assets/icons/favicon.png">
+    <link rel="stylesheet" href="../../styles/admin/mainAdmin.css">
+    <link rel="stylesheet" href="../../styles/admin/produto.css">
+    <title id="tituloHead"></title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu__lateral">
+            <h2>E_COMMERCE</h2>
+            <div>
+                <h3><a href="./dashboard.html">Dashboard</a></h3>
+            </div>
+            <div class="menu__existentes">
+                <h3>Produtos Cadastrados</h3>
+                <a href="./filtro.html?categoria=A">Categoria A</a>
+                <a href="./filtro.html?categoria=B">Categoria B</a>
+                <a href="./filtro.html?categoria=C">Categoria C</a>
+                <a href="./filtro.html?categoria=D">Categoria D</a>
+            </div>
+            <div class="menu__listas">
+                <h3>Listas</h3>
+                <a href="./filtro.html?filtro=ofertas">Ofertas</a>
+                <a href="./filtro.html?filtro=novidades">Novidades</a>
+                <a href="./filtro.html?filtro=estoque">Repor estoque</a>
+            </div>
+            <div class="menu__cadastrar">
+                <h3>Cadatrar</h3>
+                <a href="./novoProduto.html">Novo produto</a>
+            </div>
+            <div>
+                <a href="../../index.html">Sair</a>
+            </div>
+        </div>
+    </header>
+    <section class="menu__busca">
+        <label for="buscaProdutos"></label>
+        <input type="text" id="buscaProdutos" placeholder="Busque os produtos">
+        <button id="botaoBuscar"><img src="../../assets/icons/2135A6-light_busca.svg" alt=""></button>
+    </section>
+    <main class="conteudo__principal">
+        <div id="conteudo__titulo"></div>
+        <section id="conteudoContainer">
+            <div id="containerTitulo">
+                <h1>EDIÇÃO DE PRODUTO</h1>
+            </div>
+            <div class="container__formulario" id="containerFormulario">
+                <form action="">
+                    <h3>Informações gerais</h3>
+                    <label for="id">ID:</label>
+                    <input type="text" name="id" id="id" placeholder="0000" disabled>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" placeholder="Nome do produto" required>
+                        <label for="categoria">Categoria:</label>
+                        <select name="categoria" id="" title="Categoria:" required>
+                            <option value="A">Categoria A</option>
+                            <option value="B">Categoria B</option>
+                            <option value="C">Categoria C</option>
+                            <option value="D">Categoria D</option>
+                        </select>
+                        <label for="descricao">Descrição:</label>
+                        <textarea name="descricao" id="descricao" autocapitalize="sentences" minlength="10" maxlength="250" placeholder="Descrição do produto" required></textarea>
+                    <h3>Valor</h3>
+                        <label for="precoString">R$</label>
+                        <input type="text" name="precoString" id="precoString" placeholder="Valor do produto"required>
+                        <label for="precoFloat">R$</label>
+                        <input type="text" name="precoFloat" id="precoFloat" placeholder="Valor do produto" disabled>
+                    <h3>Imagem</h3>
+                        <label for="imagem">Imagem principal</label>
+                        <input type="file" name="imagem" id="imagem" placeholder="Imagem do produto" required>
+                        <label for="imagemAlt">Descição da imagem</label>
+                        <input type="text" name="imagemAlt"id="imagemAlt" placeholder="Breve descição da imagem" required>
+                    <h3>Desconto</h3>
+                        <h4>O produto possui desconto?</h4>
+                        <label>
+                            <input type="radio" name="oferta" value="true"> POSSUI desconto
+                        </label>
+                        <label>
+                            <input type="radio" name="oferta" value="false"> NÃO POSSUI desconto
+                        </label>
+                        <h4>Insita o novo valor do produto:</h4>
+                        <label for="precoComOferta">R$</label>
+                        <input type="text" name="precoComOferta" id="precoComOferta" placeholder="Valor do produto com desconto" disabled>
+                    <h3>Novidade</h3>
+                    <h4>O produto é uma novidade?</h4>
+                    <label>
+                        <input type="radio" name="oferta" value="true"> Sim
+                    </label>
+                    <label>
+                        <input type="radio" name="oferta" value="false"> Não
+                    </label>
+                    <h3>Estoque</h3>
+                        <label for="estoque">Quantidade em estoque:</label>
+                        <input type="number" name="estoque" id="estoque" placeholder="Quantidade em estoque"required>
+                    <h3>Finalizar</h3>
+                    <button>
+                        <input type="submit" value="Cadastrar">
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script defer type="module" src="../../scripts/admin/edicaoProduto.js"></script>
+</body>
+</html>

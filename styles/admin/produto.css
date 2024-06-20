@@ -12,22 +12,21 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 18px;
     grid-template-areas:
-        ". . botao-cadastrar"
         "div-geral div-geral div-imagem"
         "div-valor div-oferta div-imagem"
         "div-novidade div-novidade div-imagem"
-        "div-estoque div-estoque div-imagem";
+        "div-estoque div-estoque botao-cadastrar";
 }
 
 fieldset {
-    padding: 15px;
-    border-radius: 15px;
+    padding: 18px;
+    border-radius: 18px;
     color: #4563BF;
 }
 
 fieldset h3 {
     font-family: "Roboto", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
     font-size: 15pt;
     grid-area: geral-titulo;
@@ -37,7 +36,7 @@ fieldset h3 {
 
 .formulario label{
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     font-size: 12pt;
     margin-bottom: 6px;
@@ -45,7 +44,7 @@ fieldset h3 {
 
 .formulario p {
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     font-size: 12pt;
 }
@@ -291,7 +290,7 @@ fieldset h3 {
     float: left;
 }
 
-.oferta__input input[type="radio"]:checked {
+.novidade__container input[type="radio"]:checked {
     background-color: #4563BF;
 }
 
@@ -336,6 +335,70 @@ fieldset h3 {
     grid-area: div-imagem;
 }
 
+.container__imgsPreview {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.container__imgsPreview img {
+    width: 168px;
+    height: 168px;
+}
+
+.container__upload div {
+    display: flex;
+    flex-direction: column;
+}
+
+.container__uploadImg1 {
+    margin-bottom: 18px;
+}
+
+#uploadImg1, #uploadImg2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    grid-template-areas:
+    "nomeArqImg labelImg";
+}
+
+#nomeArquivoImagem1, #nomeArquivoImagem2 {
+    margin-bottom: 0;
+    grid-area: nomeArqImg;
+}
+
+#labelImg1, #labelImg2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4563BF;
+    padding: 5px 0;
+    margin-bottom: 0;
+    width: 100%;
+    height: 36px;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 12pt;
+    text-align: center;
+    grid-area: labelImg;
+    cursor: pointer;
+}
+
+#labelImg1:hover, #labelImg2:hover {
+    background-color: #2135A6;
+    font-weight: 400;
+}
+
+#imagem, #imagem2 {
+    display: none;
+}
+
 .formulario__imagem input {
     background-color: #ADC0D9
 }
@@ -346,6 +409,26 @@ fieldset h3 {
 
 /* ------------ BOTAO ------------ */
 
-.formulario__botao {
+button[type="submit"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4563BF;
+    padding: 5px 0;
+    margin-bottom: 0;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12pt;
+    text-align: center;
     grid-area: botao-cadastrar;
+}
+
+button[type="submit"]:hover {
+    background-color: #2135A6;
+    font-weight: 700;
 }

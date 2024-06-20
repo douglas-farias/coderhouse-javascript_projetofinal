@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/icons/favicon.png">
     <link rel="stylesheet" href="../../styles/admin/mainAdmin.css">
-    <link rel="stylesheet" href="../../styles/admin/novoProduto.css">
+    <link rel="stylesheet" href="../../styles/admin/produto.css">
     <title>EC_Admin_Novo Produto</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
@@ -48,9 +48,6 @@
     <main class="conteudo__principal">
         <div id="conteudo__titulo">
             <h1>CADASTRO DE PRODUTO</h1>
-            <button class="formulario__botao">
-                <input type="submit" value="Cadastrar" id="botaoCadastrar">
-            </button>
         </div>
         <section class="conteudo__container" id="conteudoContainer">
             <div class="container__formulario" id="containerFormulario">
@@ -89,10 +86,32 @@
                     </fieldset>
                     <fieldset class="formulario__imagem" id="formularioImagem">
                         <h3><legend>IMAGENS</legend></h3>
-                        <label for="imagem">Imagem principal</label>
-                        <input type="file" name="imagem" id="imagem" placeholder="Imagem do produto" required>
-                        <label for="imagemAlt">Descição da imagem</label>
-                        <input type="text" name="imagemAlt" id="imagemAlt" placeholder="Breve descição da imagem" required>
+                        <div class="container__imgsPreview">
+                            <img src="../../assets/images/nome-do-arquivo1.png" alt="" id="thumbImagem1">
+                            <img src="../../assets/images/nome-do-arquivo2.png" alt="" id="thumbImagem2">
+                        </div>
+                        <div class="container__upload">
+                            <div class="container__uploadImg1">
+                                <p>IMAGEM 1</p>
+                                <div id="uploadImg1">
+                                    <input id="nomeArquivoImagem1" placeholder="nome-do-arquivo1.png" value="" disabled>
+                                    <label for="imagem" id="labelImg1">Adicionar imagem 1</label>
+                                    <input type="file" name="imagem" id="imagem"required>
+                                </div>
+                                <label for="imagemAlt">Descição da imagem</label>
+                                <input type="text" name="imagemAlt" id="imagemAlt" placeholder="Breve descição da imagem" required>
+                            </div>
+                            <div class="container__uploadImg2">
+                                <p>IMAGEM 2</p>
+                                <div id="uploadImg2">
+                                    <input id="nomeArquivoImagem1" placeholder="nome-do-arquivo2.png" value="" disabled>
+                                    <label for="imagem2" id="labelImg2">Adicionar imagem 2</label>
+                                    <input type="file" name="imagem2" id="imagem2"required>
+                                </div>
+                                <label for="imagemAlt2">Descição da imagem 2</label>
+                                <input type="text" name="imagemAlt2" id="imagemAlt2" placeholder="Breve descição da imagem 2" required>
+                            </div>
+                        </div>
                     </fieldset>
                     <fieldset class="formulario__oferta">
                         <h3><legend>OFERTA</legend></h3>
@@ -131,7 +150,7 @@
                             <input type="number" name="estoque" id="estoque" placeholder="Quantidade em estoque" required>
                         </div>
                     </fieldset>
-                    
+                    <button type="submit" class="formulario__botao">CADASTRAR</button>
                 </form>
             </div>
         </section>
