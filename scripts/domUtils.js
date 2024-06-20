@@ -53,7 +53,7 @@ export function abrirPopupAcesso() {
                 </div>
                 <div class="acesso__cadastro">
                     <figure>
-                        <img src="" alt="Imagem de Cadastro">
+                        <img src="/assets/images/transparente_logo.png" alt="Logo" id="imagemLogo">
                     </figure>
                     <a href="/pages/cadastro.html">
                         <button>CADASTRAR-SE</button>

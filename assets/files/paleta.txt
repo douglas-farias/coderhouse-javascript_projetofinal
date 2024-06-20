@@ -1,7 +1,0 @@
-preto: #000000
-fundo: #FFFFFF
-cinza: #F2F2F2
-clara 1: #ADC0D9
-clara 2: #7999D9
-media: #4563BF
-escura: #2135A6
