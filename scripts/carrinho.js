@@ -8,8 +8,6 @@ window.abrirPopupPerfil = abrirPopupPerfil;
 window.fecharPopupPerfil = fecharPopupPerfil;
 window.login = login;
 window.logout = logout;
-window.abrirPopupConclusao = abrirPopupConclusao;
-window.fecharPopupConclusao = fecharPopupConclusao;
 
 atualizarQuantidadeCarrinhoHeader();
 
@@ -301,5 +299,8 @@ document.querySelectorAll('input[name="opcaoFrete"]').forEach(radio => {
         calcularDataEntrega(this.value);
     });
 });
+
+window.abrirPopupConclusao = abrirPopupConclusao;
+window.fecharPopupConclusao = fecharPopupConclusao;
 
 export { itensCarrinho };
