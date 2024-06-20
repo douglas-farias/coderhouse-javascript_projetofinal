@@ -167,8 +167,6 @@ fieldset h3 {
 
 /* ------------ PRECO ------------ */
 
-/* ------------ PRECO ------------ */
-
 .formulario__valor {
     background-color: #F2F2F2;
     grid-area: div-valor;
@@ -181,7 +179,7 @@ fieldset h3 {
 .divPrecos {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Ajuste o espaçamento entre os campos conforme necessário */
+    gap: 10px;
 }
 
 .preco__container {
@@ -190,7 +188,7 @@ fieldset h3 {
 }
 
 .preco__container label {
-    margin-right: 10px; /* Ajuste a margem conforme necessário */
+    margin-right: 10px;
 }
 
 .preco__container input {
