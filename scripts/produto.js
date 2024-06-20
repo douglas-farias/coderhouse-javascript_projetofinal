@@ -26,12 +26,13 @@ function renderizarItem(produto) {
     sectionItemImagens.className = "conteudo__imagens";
     sectionItemImagens.innerHTML = `<figure class="imagens__produto">
                                         <img src="${produto.imagem}" alt="${produto.imagemAlt}">
+                                        <img src="${produto.imagem2}" alt="${produto.imagemAlt2}">
                                     </figure>
-                                    <ul class="imagens__relacionados">
+                                    <!-- <ul class="imagens__relacionados">
                                         <li><img src="${produto.imagem}" alt=""></li>
                                         <li><img src="${produto.imagem}" alt=""></li>
                                         <li><img src="${produto.imagem}" alt=""></li>
-                                    </ul>`;
+                                    </ul> -->`;
 
     const sectionItemInfos = document.createElement("section");
     sectionItemInfos.className = "conteudo__infos";

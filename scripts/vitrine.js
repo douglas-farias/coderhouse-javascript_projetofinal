@@ -1,3 +1,4 @@
+import { produtosCadastrados } from "./listaProdutos.js";
 import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, buscarProdutos } from "./domUtils.js";
 
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
@@ -8,20 +9,6 @@ window.abrirPopupPerfil = abrirPopupPerfil;
 window.fecharPopupPerfil = fecharPopupPerfil;
 window.login = login;
 window.logout = logout;
-
-let produtosCadastrados = {};
-
-async function carregarProdutos() {
-    try {
-        const response = await fetch("../assets/files/listaProdutos.json");
-        const data = await response.json();
-        produtosCadastrados = data.produtos;
-        inicializarPagina();
-        console.log(produtosCadastrados)
-    } catch (error) {
-        console.error("Erro ao carregar produtos:", error);
-    }
-}
 
 function renderizarProdutos(filtro, valor) {
     const tituloFiltro = document.getElementById("conteudo__titulo");
@@ -98,6 +85,6 @@ function inicializarPagina() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", carregarProdutos);
+document.addEventListener("DOMContentLoaded", inicializarPagina);
 
 export { renderizarProdutos };
