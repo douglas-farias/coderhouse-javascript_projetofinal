@@ -151,7 +151,7 @@ function renderizarItem(produto, produtos) {
                     <input type="number" name="estoque" id="estoque" placeholder="Quantidade em estoque" value="${produto.estoque}" required>
                 </div>
             </fieldset>
-            <div class="formulario__botoes">
+            <div class="formulario__botoesEdicao">
                 <button type="submit" class="formulario__botao" id="botaoSalvar">SALVAR EDIÇÃO</button>
                 <button type="button" class="formulario__botao" id="botaoExcluir">EXCLUIR PRODUTO</button>
             </div>
