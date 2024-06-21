@@ -3,9 +3,9 @@ import { configurarBusca, buscarProdutos, renderizarResultado, redirecionarBusca
 
 document.addEventListener('DOMContentLoaded', () => {
     importarProdutos();
+    configurarBusca();
 });
 
-window.configurarBusca = configurarBusca;
 window.buscarProdutos = buscarProdutos;
 window.renderizarResultado = renderizarResultado;
 window.redirecionarBusca = redirecionarBusca;

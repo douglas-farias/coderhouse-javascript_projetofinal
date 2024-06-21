@@ -88,7 +88,6 @@ function cadastrarUsuario(evento) {
 
     let carrinhoUsuario = [];
 
-    // Verificar se há itens no carrinho temporário e adicionar ao carrinho do usuário
     let carrinhoTemp = JSON.parse(localStorage.getItem("carrinhoTemp")) || [];
     if (carrinhoTemp.length > 0) {
         carrinhoUsuario = carrinhoTemp;

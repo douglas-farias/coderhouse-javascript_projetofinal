@@ -53,6 +53,17 @@
     font-size: 12pt;
 }
 
+.conteudo__container span {
+    display: inline;
+    padding-bottom: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 24pt;
+    color: #2135A6;
+}
+
+
 .item__quantidade #quantidade__qtde {
     font-weight: 100;
     font-style: normal;

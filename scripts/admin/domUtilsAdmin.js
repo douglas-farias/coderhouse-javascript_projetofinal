@@ -27,6 +27,9 @@ export function filtrarProdutos(tipoFiltro, valorFiltro, produtosCadastrados) {
     const conteudoTitulo = document.getElementById("conteudo__titulo");
     conteudoTitulo.innerHTML = "";
 
+    const conteudoContainer = document.getElementById("conteudoContainer");
+    conteudoContainer.innerHTML = "";
+
     let todosProdutos = combinarProdutos(produtosCadastrados);
     let resultados = [];
 
@@ -47,6 +50,11 @@ export function filtrarProdutos(tipoFiltro, valorFiltro, produtosCadastrados) {
         resultados = todosProdutos.filter(produto => produto.estoque <= 50);
     } else {
         resultados = todosProdutos;
+    }
+
+    if (resultados.length === 0) {
+        conteudoContainer.innerHTML = "<span>Não foram encontrados resultados.</span>";
+        return;
     }
     
     renderizarResultado(resultados, valorFiltro);

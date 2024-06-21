@@ -409,7 +409,15 @@ fieldset h3 {
 
 /* ------------ BOTAO ------------ */
 
-button[type="submit"] {
+.formulario__botoes {
+    display: grid;
+    gap: 9px;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "botaoExcluir botaoSalvar" ;
+}
+
+.formulario__botoes button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -428,7 +436,25 @@ button[type="submit"] {
     grid-area: botao-cadastrar;
 }
 
-button[type="submit"]:hover {
+.formulario__botoes button:hover {
+    
+}
+
+#botaoExcluir {
+    background-color: #D98879;
+    grid-area: botaoExcluir;
+}
+
+#botaoExcluir:hover {
+    background-color: #b24c3a;
+    font-weight: 700;
+}
+
+#botaoSalvar {
+    grid-area: botaoSalvar;
+}
+
+#botaoSalvar:hover {
     background-color: #2135A6;
     font-weight: 700;
 }

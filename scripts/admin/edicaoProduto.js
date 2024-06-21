@@ -3,9 +3,9 @@ import { configurarBusca, buscarProdutos, renderizarResultado, redirecionarBusca
 
 document.addEventListener('DOMContentLoaded', () => {
     importarProdutos();
+    configurarBusca();
 });
 
-window.configurarBusca = configurarBusca;
 window.buscarProdutos = buscarProdutos;
 window.renderizarResultado = renderizarResultado;
 window.redirecionarBusca = redirecionarBusca;
@@ -19,24 +19,41 @@ document.getElementById("botaoBuscar").addEventListener("click", function() {
     renderizarResultado(resultadosBusca, termosBusca);
 });
 
-function extrairNomeImagem(caminhoImg) {
-    const splitCaminho = caminhoImg.split("/");
-    return splitCaminho[splitCaminho.length - 1];
+function carregarProdutos() {
+    const produtosJSON = localStorage.getItem("produtosCadastrados");
+    return produtosJSON ? JSON.parse(produtosJSON) : { produtosCadastrados: { categoriaA: [], categoriaB: [], categoriaC: [], categoriaD: [] } };
 }
 
-function renderizarItem(produto) {
+function salvarProdutos(produtos) {
+    localStorage.setItem("produtosCadastrados", JSON.stringify(produtos));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const itemID = urlParams.get('id');
+    const produtos = carregarProdutos();
+    let produtoSelecionado = null;
+
+    for (const chave in produtos.produtosCadastrados) {
+        produtoSelecionado = produtos.produtosCadastrados[chave].find(prod => prod.id === itemID);
+        if (produtoSelecionado) {
+            break;
+        }
+    }
+
+    if (produtoSelecionado) {
+        renderizarItem(produtoSelecionado, produtos);
+    }
+});
+
+function renderizarItem(produto, produtos) {
     const tituloHead = document.getElementById("tituloHead");
     tituloHead.innerText = `EC_Edição ${produto.nome}`;
 
-    const nomeImg1 = extrairNomeImagem(produto.imagem);
-    const nomeImg2 = extrairNomeImagem(produto.imagem2);
-
-    const itemContainer = document.getElementsByClassName("container__formulario")[0];
-
-    const precoFloat = parseFloat(produto.precoString.replace(",", ".")).toFixed(2);
+    const itemContainer = document.getElementById("containerFormulario");
 
     itemContainer.innerHTML = `
-        <form action="" class="formulario">
+        <form id="formProduto" class="formulario">
             <fieldset class="formulario__geral">
                 <h3 id="geral__titulo"><legend>GERAL</legend></h3>
                 <div id="divId">
@@ -64,7 +81,7 @@ function renderizarItem(produto) {
                     </div>
                     <div class="preco__container">
                         <label for="precoFloat">R$</label>
-                        <input type="text" name="precoFloat" id="precoFloat" placeholder="0.00" value="${precoFloat}" disabled>
+                        <input type="text" name="precoFloat" id="precoFloat" placeholder="0.00" value="${produto.precoFloat.toFixed(2)}" disabled>
                     </div>
                 </div>
             </fieldset>
@@ -78,22 +95,22 @@ function renderizarItem(produto) {
                     <div class="container__uploadImg1">
                         <p>IMAGEM 1</p>
                         <div id="uploadImg1">
-                            <input id="nomeArquivoImagem1" placeholder="nome-do-arquivo1.png" value="${nomeImg1}" disabled>
+                            <input id="nomeArquivoImagem1" placeholder="nome-do-arquivo1.png" value="${extrairNomeImagem(produto.imagem)}" disabled>
                             <label for="imagem" id="labelImg1">Alterar imagem 1</label>
-                            <input type="file" name="imagem" id="imagem"required>
+                            <input type="file" name="imagem" id="imagem">
                         </div>
-                        <label for="imagemAlt">Descição da imagem</label>
-                        <input type="text" name="imagemAlt" id="imagemAlt" placeholder="Breve descição da imagem" value="${produto.imagemAlt}" required>
+                        <label for="imagemAlt">Descrição da imagem</label>
+                        <input type="text" name="imagemAlt" id="imagemAlt" placeholder="Breve descrição da imagem" value="${produto.imagemAlt}" required>
                     </div>
                     <div class="container__uploadImg2">
                         <p>IMAGEM 2</p>
                         <div id="uploadImg2">
-                            <input id="nomeArquivoImagem1" placeholder="nome-do-arquivo2.png" value="${nomeImg2}" disabled>
+                            <input id="nomeArquivoImagem2" placeholder="nome-do-arquivo2.png" value="${extrairNomeImagem(produto.imagem2)}" disabled>
                             <label for="imagem2" id="labelImg2">Alterar imagem 2</label>
-                            <input type="file" name="imagem2" id="imagem2"required>
+                            <input type="file" name="imagem2" id="imagem2">
                         </div>
-                        <label for="imagemAlt2">Descição da imagem 2</label>
-                        <input type="text" name="imagemAlt2" id="imagemAlt2" placeholder="Breve descição da imagem 2" value="${produto.imagemAlt2}" required>
+                        <label for="imagemAlt2">Descrição da imagem 2</label>
+                        <input type="text" name="imagemAlt2" id="imagemAlt2" placeholder="Breve descrição da imagem 2" value="${produto.imagemAlt2}" required>
                     </div>
                 </div>
             </fieldset>
@@ -101,9 +118,9 @@ function renderizarItem(produto) {
                 <h3><legend>OFERTA</legend></h3>
                 <div class="divOferta">
                     <div class="oferta__input" id="ofertaInput">
-                        <p>Produto em oferta?</p>                             
+                        <p>Produto em oferta?</p>
                         <label for="ofertaFalse">
-                            <input type="radio" name="oferta" value="false" id="ofertaFalse" ${!produto.novidade ? 'checked' : ''}>NÃO
+                            <input type="radio" name="oferta" value="false" id="ofertaFalse" ${!produto.oferta ? 'checked' : ''}>NÃO
                         </label>
                         <label for="ofertaTrue">
                             <input type="radio" name="oferta" value="true" id="ofertaTrue" ${produto.oferta ? 'checked' : ''}>SIM
@@ -111,7 +128,7 @@ function renderizarItem(produto) {
                     </div>
                     <div class="oferta__preco">
                         <label for="precoComOferta">Novo preço: R$</label>
-                        <input type="text" name="precoComOferta" id="precoComOferta" placeholder="0.00" disabled>
+                        <input type="text" name="precoComOferta" id="precoComOferta" placeholder="0.00" value="${produto.precoComOferta}" ${!produto.oferta ? 'disabled' : ''}>
                     </div>
                 </div>
             </fieldset>
@@ -120,10 +137,10 @@ function renderizarItem(produto) {
                 <div class="novidade__container">
                     <p>O produto é uma novidade?</p>
                     <label>
-                        <input type="radio" name="novidade" value="true" id="novidade" ${produto.novidade ? 'checked' : ''}> SIM
+                        <input type="radio" name="novidade" value="true" ${produto.novidade ? 'checked' : ''}> SIM
                     </label>
                     <label>
-                        <input type="radio" name="novidade" value="false" id="novidade" ${!produto.novidade ? 'checked' : ''}> NÃO
+                        <input type="radio" name="novidade" value="false" ${!produto.novidade ? 'checked' : ''}> NÃO
                     </label>
                 </div>
             </fieldset>
@@ -134,42 +151,70 @@ function renderizarItem(produto) {
                     <input type="number" name="estoque" id="estoque" placeholder="Quantidade em estoque" value="${produto.estoque}" required>
                 </div>
             </fieldset>
-            <button type="submit" class="formulario__botao">SALVAR EDIÇÃO</button>
+            <div class="formulario__botoes">
+                <button type="submit" class="formulario__botao" id="botaoSalvar">SALVAR EDIÇÃO</button>
+                <button type="button" class="formulario__botao" id="botaoExcluir">EXCLUIR PRODUTO</button>
+            </div>
         </form>
     `;
 
-    const formProduto = document.getElementById("formProduto");
-    const inputImagem = document.getElementById("imagem");
-    const imagemAtual = document.getElementById("imagemAtual");
-
-    inputImagem.addEventListener("change", function(event) {
-        const arquivo = event.target.files[0];
-        if (arquivo) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imagemAtual.src = e.target.result;
-                produto.imagem = e.target.result;
-            };
-            reader.readAsDataURL(arquivo);
-        }
-    });
-
-    formProduto.addEventListener("submit", function(event) {
+    document.getElementById("formProduto").addEventListener("submit", function(event) {
         event.preventDefault();
-        console.log("Produto atualizado:", produto);
+        atualizarProduto(produto, produtos);
+    });
+
+    document.getElementById("botaoExcluir").addEventListener("click", function() {
+        let confirmarExclusao;
+        do {
+            confirmarExclusao = parseInt(prompt(`Deseja excluir ${produto.nome}? Selecione a opção desejada:\n\n   1. Sim\n   2. Não\n\nATENÇÃO: Após a exclusão não será possível recuperar o produto excluído.`));
+            
+            if (confirmarExclusao === 1) {
+                excluirProduto(produto, produtos);
+                break;
+            } else if (confirmarExclusao === 2) {
+                alert("O produto não foi excluído.");
+                break;
+            } else {
+                alert("Opção inválida.");
+            }
+        } while (confirmarExclusao !== 1 && confirmarExclusao !== 2);
     });
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const itemID = urlParams.get('id');
+function atualizarProduto(produto, produtos) {
+    produto.nome = document.getElementById("nome").value;
+    produto.categoria = document.getElementById("categoria").value;
+    produto.descricao = document.getElementById("descricao").value;
+    produto.precoString = document.getElementById("precoString").value;
+    produto.precoFloat = parseFloat(document.getElementById("precoString").value.replace(",", "."));
+    produto.imagemAlt = document.getElementById("imagemAlt").value;
+    produto.imagemAlt2 = document.getElementById("imagemAlt2").value;
+    produto.oferta = document.querySelector('input[name="oferta"]:checked').value === "true";
+    produto.precoComOferta = document.getElementById("precoComOferta").value;
+    produto.novidade = document.querySelector('input[name="novidade"]:checked').value === "true";
+    produto.estoque = parseInt(document.getElementById("estoque").value, 10);
 
-let produtoSelecionado = "";
-for (const chave in arrayProdCadastrados) {
-    const produto = arrayProdCadastrados[chave].find(prod => prod.id === itemID);
-    if (produto) {
-        produtoSelecionado = produto;
-        break;
+    if (document.getElementById("imagem").files[0]) {
+        produto.imagem = URL.createObjectURL(document.getElementById("imagem").files[0]);
+    } if (document.getElementById("imagem2").files[0]) {
+        produto.imagem2 = URL.createObjectURL(document.getElementById("imagem2").files[0]);
     }
+
+    salvarProdutos(produtos);
+    alert("Produto atualizado com sucesso!");
+    window.location.href = "./dashboard.html";
 }
 
-renderizarItem(produtoSelecionado);
+function excluirProduto(produto, produtos) {
+    const categoria = `categoria${produto.categoria}`;
+    produtos.produtosCadastrados[categoria] = produtos.produtosCadastrados[categoria].filter(p => p.id !== produto.id);
+
+    salvarProdutos(produtos);
+    alert("Produto excluído com sucesso!");
+    window.location.href = "./dashboard.html";
+}
+
+function extrairNomeImagem(caminhoImg) {
+    const splitCaminho = caminhoImg.split("/");
+    return splitCaminho[splitCaminho.length - 1];
+}

@@ -16,27 +16,27 @@
         <div class="menu__lateral">
             <h2>E_COMMERCE</h2>
             <div>
-                <h3><a href="./dashboard.html">Dashboard</a></h3>
+                <h3><a href="./dashboard.html">DASHBOARD</a></h3>
             </div>
             <div class="menu__existentes">
-                <h3>Produtos Cadastrados</h3>
+                <h3>PRODUTOS CADASTRADOS</h3>
                 <a href="./filtro.html?categoria=A">Categoria A</a>
                 <a href="./filtro.html?categoria=B">Categoria B</a>
                 <a href="./filtro.html?categoria=C">Categoria C</a>
                 <a href="./filtro.html?categoria=D">Categoria D</a>
             </div>
             <div class="menu__listas">
-                <h3>Listas</h3>
+                <h3>LISTAS</h3>
                 <a href="./filtro.html?filtro=ofertas">Ofertas</a>
                 <a href="./filtro.html?filtro=novidades">Novidades</a>
                 <a href="./filtro.html?filtro=estoque">Baixo estoque</a>
             </div>
             <div class="menu__cadastrar">
-                <h3>Cadatrar</h3>
+                <h3>CADASTRAR</h3>
                 <a href="./novoProduto.html">Novo produto</a>
             </div>
             <div>
-                <a href="../../index.html">Sair</a>
+                <a href="../../index.html">SAIR</a>
             </div>
         </div>
     </header>
@@ -51,7 +51,7 @@
         </div>
         <section class="conteudo__container" id="conteudoContainer">
             <div class="container__formulario" id="containerFormulario">
-                <form action="" class="formulario">
+                <form action="" class="formulario" id="formularioProduto">
                     <fieldset class="formulario__geral">
                         <h3 id="geral__titulo"><legend>GERAL</legend></h3>
                         <div id="divId">
@@ -96,7 +96,7 @@
                                 <div id="uploadImg1">
                                     <input id="nomeArquivoImagem1" placeholder="nome-do-arquivo1.png" value="" disabled>
                                     <label for="imagem" id="labelImg1">Adicionar imagem 1</label>
-                                    <input type="file" name="imagem" id="imagem"required>
+                                    <input type="file" name="imagem" id="imagem" required>
                                 </div>
                                 <label for="imagemAlt">Descição da imagem</label>
                                 <input type="text" name="imagemAlt" id="imagemAlt" placeholder="Breve descição da imagem" required>
@@ -104,9 +104,9 @@
                             <div class="container__uploadImg2">
                                 <p>IMAGEM 2</p>
                                 <div id="uploadImg2">
-                                    <input id="nomeArquivoImagem1" placeholder="nome-do-arquivo2.png" value="" disabled>
+                                    <input id="nomeArquivoImagem2" placeholder="nome-do-arquivo2.png" value="" disabled>
                                     <label for="imagem2" id="labelImg2">Adicionar imagem 2</label>
-                                    <input type="file" name="imagem2" id="imagem2"required>
+                                    <input type="file" name="imagem2" id="imagem2" required>
                                 </div>
                                 <label for="imagemAlt2">Descição da imagem 2</label>
                                 <input type="text" name="imagemAlt2" id="imagemAlt2" placeholder="Breve descição da imagem 2" required>
@@ -150,7 +150,7 @@
                             <input type="number" name="estoque" id="estoque" placeholder="Quantidade em estoque" required>
                         </div>
                     </fieldset>
-                    <button type="submit" class="formulario__botao">CADASTRAR</button>
+                    <button type="submit" class="formulario__botao" id="formulario__botao">CADASTRAR</button>
                 </form>
             </div>
         </section>
