@@ -1,11 +1,11 @@
 export function importarProdutos() {
-    if (!localStorage.getItem('produtos')) {
+    if (!localStorage.getItem('produtosCadastrados')) {
       fetch("../assets/files/listaProdutos.json")
         .then((response) => response.json())
-        .then((produtos) => {
+        .then((produtosCadastrados) => {
           // Converte o objeto JSON em uma string e armazena no localStorage
-          localStorage.setItem('produtos', JSON.stringify(produtos));
-          console.log('Produtos importados e armazenados no localStorage:', produtos);
+          localStorage.setItem('produtosCadastrados', JSON.stringify(produtosCadastrados));
+          console.log('Produtos importados e armazenados no localStorage:', produtosCadastrados);
         })
         .catch((error) => {
           console.error('Erro ao buscar produtos:', error);
