@@ -3,7 +3,7 @@
 .conteudo__topo {
     display: grid;
     gap: 10px;
-    grid-template-columns: auto 600px;
+    grid-template-columns: auto 480px;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 
     "titulo ofertasAlgumas"
@@ -124,8 +124,8 @@
 }
 
 .slider__imagens img {
-    width: 600px;
-    height: 840px;
+    width: 480px;
+    height: 672px;
     object-fit: cover;
     border-radius: 14px;
 }
@@ -134,7 +134,7 @@
     display: flex;
     list-style: none;
     padding: 0;
-    margin: 10px 0 0 0;
+    margin: 10px 0;
     justify-content: center;
     position: absolute;
     bottom: 10px;

@@ -1,6 +1,10 @@
 import { renderizarProdutos } from './vitrine.js';
 import { produtosCadastrados } from "./listaProdutos.js";
-import { atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, atualizarQuantidadeCarrinhoHeader } from "./domUtils.js";
+import { importarProdutos, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, atualizarQuantidadeCarrinhoHeader } from "./domUtils.js";
+
+document.addEventListener('DOMContentLoaded', () => {
+    importarProdutos();
+});
 
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;

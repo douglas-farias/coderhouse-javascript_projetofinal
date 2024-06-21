@@ -1,4 +1,8 @@
-import { atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
+import { importarProdutos, atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
+
+document.addEventListener('DOMContentLoaded', () => {
+    importarProdutos();
+});
 
 window.atualizarQuantidadeCarrinhoHeader = atualizarQuantidadeCarrinhoHeader;
 window.atualizarUsuarioLogadoHeader = atualizarUsuarioLogadoHeader;

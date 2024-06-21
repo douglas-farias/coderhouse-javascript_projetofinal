@@ -1,3 +1,20 @@
+export function importarProdutos() {
+    if (!localStorage.getItem('produtos')) {
+      fetch("../assets/files/listaProdutos.json")
+        .then((response) => response.json())
+        .then((produtos) => {
+          // Converte o objeto JSON em uma string e armazena no localStorage
+          localStorage.setItem('produtos', JSON.stringify(produtos));
+          console.log('Produtos importados e armazenados no localStorage:', produtos);
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar produtos:', error);
+        });
+    } else {
+      console.log('Produtos já estão armazenados no localStorage.');
+    };
+}
+
 export function atualizarUsuarioLogadoHeader() {
     const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
     const menuSupUsuario = document.querySelector(".menu-sup__usuario");

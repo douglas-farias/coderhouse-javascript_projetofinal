@@ -1,5 +1,10 @@
 import { produtosCadastrados } from "../listaProdutos.js";
+import { importarProdutos } from "../domUtils.js";
 import { configurarBusca, buscarProdutos, renderizarResultado, redirecionarBusca, renderizarProdutosPorCategoria } from "./domUtilsAdmin.js";
+
+document.addEventListener('DOMContentLoaded', () => {
+    importarProdutos();
+});
 
 window.configurarBusca = configurarBusca;
 window.buscarProdutos = buscarProdutos;
