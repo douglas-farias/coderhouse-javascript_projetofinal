@@ -1,5 +1,4 @@
 import { renderizarProdutos } from './vitrine.js';
-import { produtosCadastrados } from "./listaProdutos.js";
 import { importarProdutos, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, atualizarQuantidadeCarrinhoHeader } from "./domUtils.js";
 
 document.addEventListener('DOMContentLoaded', () => {

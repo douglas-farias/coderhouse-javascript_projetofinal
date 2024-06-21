@@ -51,7 +51,14 @@ main {
 }
 
 .item__imagem {
+    width: 90px;
+    height: 90px;
     grid-area: imagem;
+}
+
+.item__imagem img {
+    width: 90px;
+    height: 90px;
 }
 
 .item__nome {

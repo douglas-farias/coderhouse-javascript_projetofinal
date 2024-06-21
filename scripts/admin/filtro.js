@@ -1,10 +1,11 @@
-import { produtosCadastrados } from "../listaProdutos.js";
 import { importarProdutos } from "../domUtils.js";
 import { configurarBusca, filtrarProdutos } from "./domUtilsAdmin.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     importarProdutos();
 });
+
+const arrayProdCadastrados = JSON.parse(localStorage.getItem("produtosCadastrados")).produtosCadastrados;
 
 configurarBusca();
 
@@ -27,6 +28,6 @@ if (categoria) {
     valorFiltro = filtro;
 }
 
-filtrarProdutos(tipoFiltro, valorFiltro, produtosCadastrados);
+filtrarProdutos(tipoFiltro, valorFiltro, arrayProdCadastrados);
 
 export { filtrarProdutos };

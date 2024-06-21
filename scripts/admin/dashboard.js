@@ -1,4 +1,3 @@
-import { produtosCadastrados } from "../listaProdutos.js";
 import { importarProdutos } from "../domUtils.js";
 import { configurarBusca, buscarProdutos, renderizarResultado, redirecionarBusca, renderizarProdutosPorCategoria } from "./domUtilsAdmin.js";
 
@@ -12,21 +11,23 @@ window.renderizarResultado = renderizarResultado;
 window.redirecionarBusca = redirecionarBusca;
 window.renderizarProdutosPorCategoria = renderizarProdutosPorCategoria;
 
+const arrayProdCadastrados = JSON.parse(localStorage.getItem("produtosCadastrados")).produtosCadastrados;
+
 document.getElementById("botaoBuscar").addEventListener("click", function() {
     const termosBusca = document.getElementById("buscaProdutos").value.toLowerCase();
-    const resultadosBusca = buscarProdutos(termosBusca, produtosCadastrados);
+    const resultadosBusca = buscarProdutos(termosBusca, arrayProdCadastrados);
     renderizarResultado(resultadosBusca, termosBusca);
 });
 
 function obterEstatisticas() {
     let estatisticasPorCategoria = [];
 
-    for (let categoria in produtosCadastrados) {
+    for (let categoria in arrayProdCadastrados) {
         let totalProdutos = 0;
         let totalEstoque = 0;
         let baixoEstoque = [];
 
-        produtosCadastrados[categoria].forEach(produto => {
+        arrayProdCadastrados[categoria].forEach(produto => {
             totalProdutos++;
             totalEstoque += produto.estoque;
             if (produto.estoque <= 50) {
@@ -38,7 +39,7 @@ function obterEstatisticas() {
 
         estatisticasPorCategoria.push({
             categoria: categoria.replace("categoria", ""),
-            produtosCadastrados: totalProdutos,
+            arrayProdCadastrados: totalProdutos,
             estoqueMedio: estoqueMedio,
             baixoEstoque: baixoEstoque
         });
@@ -52,7 +53,7 @@ function atualizarEstatisticas() {
 
     estatisticas.forEach(estatistica => {
         const categoria = estatistica.categoria.toUpperCase();
-        document.getElementById(`categ${categoria}QuantidadeProdutos`).innerText = estatistica.produtosCadastrados;
+        document.getElementById(`categ${categoria}QuantidadeProdutos`).innerText = estatistica.arrayProdCadastrados;
         document.getElementById(`categ${categoria}MediaEstoque`).innerText = estatistica.estoqueMedio.toFixed(2);
 
         const baixoEstoqueLista = document.getElementById(`categ${categoria}BaixoEstoque`);
@@ -72,8 +73,8 @@ const categoria = urlParams.get("categoria");
 const busca = urlParams.get("busca");
 
 if (categoria) {
-    renderizarProdutosPorCategoria(categoria, produtosCadastrados);
+    renderizarProdutosPorCategoria(categoria, arrayProdCadastrados);
 } else if (busca) {
-    const resultadosBusca = buscarProdutos(busca, produtosCadastrados);
+    const resultadosBusca = buscarProdutos(busca, arrayProdCadastrados);
     renderizarResultado(resultadosBusca, busca);
 }

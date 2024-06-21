@@ -163,12 +163,12 @@ function obterCupomDesconto() {
 }
 
 function calcularDataEntrega(opcaoFrete, elementoPrevisao) {
-    const dataAtual = new Date();
-
     const diasFrete = {
         padrao: { min: 10, max: 15 },
         expressa: { min: 3, max: 5 }
     };
+
+    const dataAtual = new Date();
 
     const dataEntregaMin = new Date(dataAtual);
     dataEntregaMin.setDate(dataAtual.getDate() + diasFrete[opcaoFrete].min);
@@ -185,7 +185,9 @@ function calcularDataEntrega(opcaoFrete, elementoPrevisao) {
     const dataEntregaMinFormatada = formatoData(dataEntregaMin);
     const dataEntregaMaxFormatada = formatoData(dataEntregaMax);
 
-    elementoPrevisao.innerHTML = `${dataEntregaMinFormatada} a ${dataEntregaMaxFormatada}.`;
+    if (elementoPrevisao) {
+        elementoPrevisao.innerHTML = `${dataEntregaMinFormatada} a ${dataEntregaMaxFormatada}.`;
+    }
 }
 
 function obterFreteSelecionado() {
@@ -268,20 +270,11 @@ function abrirPopupConclusao() {
     if (usuarioLogado) {
         popupConclusao.classList.add("container__conclusao--exibir");
 
-        usuarioLogado.carrinho = [];
-        
-        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-        let indiceUsuario = usuarios.findIndex(u => u.email === usuarioLogado.email);
-        usuarios[indiceUsuario] = usuarioLogado;
-        
-        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
-        localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
         const freteSelecionado = document.querySelector('input[name="opcaoFrete"]:checked');
         const elementoPrevisaoConclusao = document.getElementById("previsaoEntregaConclusao");
-        if (freteSelecionado) {
+        if (freteSelecionado && elementoPrevisaoConclusao) {
             calcularDataEntrega(freteSelecionado.id === "fretePadrao" ? "padrao" : "expressa", elementoPrevisaoConclusao);
-        } else {
+        } else if (elementoPrevisaoConclusao) {
             calcularDataEntrega("padrao", elementoPrevisaoConclusao);
         }
     } else {
@@ -290,6 +283,35 @@ function abrirPopupConclusao() {
 }
 
 function fecharPopupConclusao() {
+    let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+    if (usuarioLogado && usuarioLogado.carrinho.length > 0) {
+        let produtosCadastrados = JSON.parse(localStorage.getItem('produtosCadastrados')).produtosCadastrados;
+
+        usuarioLogado.carrinho.forEach(item => {
+            for (const categoria in produtosCadastrados) {
+                if (Array.isArray(produtosCadastrados[categoria])) {
+                    let produto = produtosCadastrados[categoria].find(produto => produto.id === item.item.id);
+                    if (produto) {
+                        produto.estoque -= item.quantidadeItem;
+                        if (produto.estoque < 0) produto.estoque = 0;
+                        break;
+                    }
+                }
+            }
+        });
+
+        localStorage.setItem('produtosCadastrados', JSON.stringify({ produtosCadastrados }));
+
+        usuarioLogado.carrinho = [];
+
+        let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        let indiceUsuario = usuarios.findIndex(u => u.email === usuarioLogado.email);
+        usuarios[indiceUsuario] = usuarioLogado;
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+    }
+
     popupConclusao.classList.remove("container__conclusao--exibir");
     window.location.href = "/index.html";
 }

@@ -1,4 +1,3 @@
-import { produtosCadastrados } from "../listaProdutos.js";
 import { importarProdutos } from "../domUtils.js";
 import { configurarBusca, buscarProdutos, renderizarResultado, redirecionarBusca, renderizarProdutosPorCategoria } from "./domUtilsAdmin.js";
 
@@ -12,9 +11,11 @@ window.renderizarResultado = renderizarResultado;
 window.redirecionarBusca = redirecionarBusca;
 window.renderizarProdutosPorCategoria = renderizarProdutosPorCategoria;
 
+const arrayProdCadastrados = JSON.parse(localStorage.getItem("produtosCadastrados")).produtosCadastrados;
+
 document.getElementById("botaoBuscar").addEventListener("click", function() {
     const termosBusca = document.getElementById("buscaProdutos").value.toLowerCase();
-    const resultadosBusca = buscarProdutos(termosBusca, produtosCadastrados);
+    const resultadosBusca = buscarProdutos(termosBusca, arrayProdCadastrados);
     renderizarResultado(resultadosBusca, termosBusca);
 });
 
@@ -163,8 +164,8 @@ const urlParams = new URLSearchParams(window.location.search);
 const itemID = urlParams.get('id');
 
 let produtoSelecionado = "";
-for (const chave in produtosCadastrados) {
-    const produto = produtosCadastrados[chave].find(prod => prod.id === itemID);
+for (const chave in arrayProdCadastrados) {
+    const produto = arrayProdCadastrados[chave].find(prod => prod.id === itemID);
     if (produto) {
         produtoSelecionado = produto;
         break;
