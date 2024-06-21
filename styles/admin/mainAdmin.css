@@ -47,6 +47,20 @@ header {
     width: 15%;
 }
 
+header h3 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+}
+
+header a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 12pt;
+}
+
 .menu__lateral {
     display: grid;
     gap: 36px;

@@ -68,10 +68,12 @@ export function renderizarResultado(resultados, termosBusca) {
         const produtoDiv = document.createElement("div");
         produtoDiv.className = "conteudo__produto";
         produtoDiv.innerHTML = `
-            <img src="${produto.imagem}" alt="${produto.imagemAlt}" class="produto__imagem">
-            <h2 class="produto__nome">${produto.nome}</h2>
-            <p class="produto__preco">Preço: ${produto.precoString}</p>
-            <p class="produto__estoque">Estoque: ${produto.estoque}</p>
+            <div class="produto__div">
+                <img src="${produto.imagem}" alt="${produto.imagemAlt}" class="produto__imagem">
+                <h2 class="produto__nome">${produto.nome}</h2>
+                <p class="produto__preco">Preço: ${produto.precoString}</p>
+                <p class="produto__estoque">Estoque: ${produto.estoque}</p>
+            </div>
             <a href="edicaoProduto.html?id=${produto.id}"><button class="produto__botaoEditar">Editar</button></a>
         `;
         conteudoContainer.appendChild(produtoDiv);
