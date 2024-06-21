@@ -1,4 +1,3 @@
-import { produtosCadastrados } from "./listaProdutos.js";
 import { importarProdutos, atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout } from "./domUtils.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,9 +55,11 @@ function renderizarItem(produto) {
 const urlParams = new URLSearchParams(window.location.search);
 const itemID = urlParams.get('id');
 
+const arrayProdCadastrados = JSON.parse(localStorage.getItem("produtosCadastrados")).produtosCadastrados;
+
 let produtoSelecionado = "";
-for (const chave in produtosCadastrados) {
-    const produto = produtosCadastrados[chave].find(prod => prod.id === itemID);
+for (const chave in arrayProdCadastrados) {
+    const produto = arrayProdCadastrados[chave].find(prod => prod.id === itemID);
     if (produto) {
         produtoSelecionado = produto;
         break;

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', inicializarFormulario);
 
 // DECLARAÇÃO DAS PRINCIPAIS CONSTANTES
-const formulario = document.getElementsByClassName("conteudo__formulario")[0];
+const formulario = document.querySelector(".conteudo__formulario");
 
 const usuarioNome = document.getElementById("formulario__nome");
 const usuarioSobrenome = document.getElementById("formulario__sobrenome");
@@ -42,13 +42,13 @@ function inicializarFormulario() {
         campo.addEventListener("input", validarFormulario);
     });
 
-    document.querySelector(".conteudo__formulario").addEventListener("submit", cadastrarUsuario);
+    formulario.addEventListener("submit", cadastrarUsuario);
 };
 
 function validarFormulario() {
     let emailInserido = usuarioEmail.value;
 
-    let usuariosJSON = JSON.parse(localStorage.getItem("usuarios"));
+    let usuariosJSON = JSON.parse(localStorage.getItem("usuarios")) || [];
     let usuarioEncontrado = usuariosJSON.find(usuario => usuario.email === emailInserido);
 
     if (usuariosJSON) {
@@ -88,6 +88,13 @@ function cadastrarUsuario(evento) {
 
     let carrinhoUsuario = [];
 
+    // Verificar se há itens no carrinho temporário e adicionar ao carrinho do usuário
+    let carrinhoTemp = JSON.parse(localStorage.getItem("carrinhoTemp")) || [];
+    if (carrinhoTemp.length > 0) {
+        carrinhoUsuario = carrinhoTemp;
+        localStorage.removeItem('carrinhoTemp');
+    };
+
     const usuario = {
         id: gerarID(),
         nome: usuarioNome.value,
@@ -109,7 +116,7 @@ function cadastrarUsuario(evento) {
     localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 
     abrirPopupConclusao();
-    document.querySelector(".conteudo__formulario").reset();
+    formulario.reset();
     botaoCadastrar.disabled = true;
 };
 

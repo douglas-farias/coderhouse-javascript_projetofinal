@@ -1,4 +1,3 @@
-import { produtosCadastrados } from "./listaProdutos.js";
 import { importarProdutos, atualizarQuantidadeCarrinhoHeader, atualizarUsuarioLogadoHeader, abrirPopupAcesso, fecharPopupAcesso, abrirPopupPerfil, fecharPopupPerfil, login, logout, buscarProdutos } from "./domUtils.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,22 +17,24 @@ function renderizarProdutos(filtro, valor) {
     const tituloFiltro = document.getElementById("conteudo__titulo");
     const container = document.querySelector(".conteudo__vitrine");
 
+    const arrayProdCadastrados = JSON.parse(localStorage.getItem("produtosCadastrados")).produtosCadastrados;
+
     container.innerHTML = "";
 
     let produtosFiltrados = [];
 
     if (filtro === "categoria") {
         tituloFiltro.innerText = `CATEGORIA ${valor.toUpperCase()}`;
-        produtosFiltrados = produtosCadastrados[`categoria${valor}`] || [];
+        produtosFiltrados = arrayProdCadastrados[`categoria${valor}`];
     } else if (filtro === "novidades") {
         tituloFiltro.innerText = "NOVIDADES";
-        produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.novidade);
+        produtosFiltrados = Object.values(arrayProdCadastrados).flat().filter(produto => produto.novidade);
     } else if (filtro === "ofertas") {
         tituloFiltro.innerText = "OFERTAS";
-        produtosFiltrados = Object.values(produtosCadastrados).flat().filter(produto => produto.oferta);
+        produtosFiltrados = Object.values(arrayProdCadastrados).flat().filter(produto => produto.oferta);
     } else if (filtro === "busca") {
         tituloFiltro.innerText = `BUSCA: ${valor.toUpperCase()}`;
-        produtosFiltrados = buscarProdutos(valor, produtosCadastrados);
+        produtosFiltrados = buscarProdutos(valor, arrayProdCadastrados);
     }
 
     if (produtosFiltrados.length === 0) {

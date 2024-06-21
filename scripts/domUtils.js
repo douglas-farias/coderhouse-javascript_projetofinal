@@ -3,7 +3,6 @@ export function importarProdutos() {
       fetch("../assets/files/listaProdutos.json")
         .then((response) => response.json())
         .then((produtosCadastrados) => {
-          // Converte o objeto JSON em uma string e armazena no localStorage
           localStorage.setItem('produtosCadastrados', JSON.stringify(produtosCadastrados));
           console.log('Produtos importados e armazenados no localStorage:', produtosCadastrados);
         })
